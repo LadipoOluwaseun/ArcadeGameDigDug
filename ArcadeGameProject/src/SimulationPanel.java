@@ -27,7 +27,7 @@ public class SimulationPanel extends JPanel{
 		add(Box.createHorizontalStrut(GAP_WIDTH));
 		// add "rigid stuff" to force minimum spacing
 		add(Box.createHorizontalStrut(GAP_WIDTH));
-		add(worldComponent);
+//		add(worldComponent);
 		// adds "stretchy stuff" to force the world to the left
 		add(Box.createGlue());
 		// add "rigid stuff" to force minimum spacing
