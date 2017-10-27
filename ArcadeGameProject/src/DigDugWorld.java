@@ -1,6 +1,10 @@
 import java.awt.Dimension;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +23,9 @@ public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Tempor
 	private static final long UPDATE_INTERVAL_MS = 10;
 	private final int WIDTH = 500;
 	private final int HEIGHT = 600;
+	
+	private final int NUMBER_OF_OBJECTS_WIDE = 15;
+	private final int NUMBER_OF_OBJECTS_HIGH = 15;
 	
 	private final List<Stuff> stuff = new ArrayList<Stuff>();
 	private final List<Stuff> stuffToAdd = new ArrayList<Stuff>();
@@ -51,6 +58,43 @@ public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Tempor
 		return 0;
 	}
 
+	@Override
+	public ArrayList<Stuff> readLevelFile(String filename) {
+
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			System.out.println((char)br.read());
+
+			ArrayList<Stuff>  initialBoardLayout = new ArrayList<>();
+			for (int i = 0; i < this.NUMBER_OF_OBJECTS_HIGH*this.NUMBER_OF_OBJECTS_WIDE; i++) {
+				if ((char)br.read()=='d') {
+					Dirt d = new Dirt(null, null);
+					initialBoardLayout.add(d);
+				} else if ((char)br.read()=='O') {
+					EmptySpace o = new EmptySpace(null, null);
+					initialBoardLayout.add(o);
+				} else if ((char)br.read()=='H') {
+					Hero h = new Hero(null, null);
+					initialBoardLayout.add(h);
+				}
+			}
+			
+			System.out.println("FileRead");
+			System.out.println(initialBoardLayout);
+			br.close();
+		} catch (FileNotFoundException exception) {
+			// TODO Auto-generated catch-block stub.
+			exception.printStackTrace();
+		} catch (IOException exception) {
+			// TODO Auto-generated catch-block stub.
+			exception.printStackTrace();
+		}
+		
+		
+		
+	}
+
+	
 //	@Override
 //	public synchronized void timePassed() {
 //		if (!this.isPaused) {
