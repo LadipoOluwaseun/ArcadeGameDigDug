@@ -103,7 +103,7 @@ public class DigDugWorldComponent extends JComponent{
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyChar();
 			if(key == KeyEvent.VK_U) {
-	//			world.changeLevel(true);
+//				world.changeLevel(true);
 			}
 			
 			if(key == KeyEvent.VK_D) {
@@ -111,19 +111,19 @@ public class DigDugWorldComponent extends JComponent{
 			}
 			
 			if(key == KeyEvent.VK_UP) {
-				// Hero.moveUp();
+//				 Hero.moveUp();
 			}
 			
 			if(key == KeyEvent.VK_DOWN) {
-				// Hero.moveDown();
+//				 Hero.moveDown();
 			}
 			
 			if(key == KeyEvent.VK_RIGHT) {
-				// Hero.moveRight();
+//				 Hero.moveRight();
 			}
 			
 			if(key == KeyEvent.VK_LEFT) {
-				// Hero.moveLeft();
+//				 Hero.moveLeft();
 			}
 		}
 	
