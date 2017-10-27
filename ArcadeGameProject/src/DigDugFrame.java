@@ -1,3 +1,5 @@
+//JUSTIN TODO finish NewGame button
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,8 +40,9 @@ public class DigDugFrame extends JFrame {
 			content.add(Box.createVerticalStrut(GAP));
 		
 		add(content);
-
+		add(newGameButtonComponent());
 		add(quitButtonComponent(), BorderLayout.PAGE_END);
+		
 		setResizable(false);
 		
 		pack();

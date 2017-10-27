@@ -28,10 +28,16 @@ public class TestingFileRead implements DigDugEnvironment, Drawable, Temporal{
 			System.out.println((char)br.read());
 			br.close();
 			ArrayList<Stuff>  initialBoardLayout = new ArrayList<>();
-			for (int i = 0; i < NUMBER_OF_OBJECTS_HIGH*NUMBER_OF_OBJECTS_WIDE; i++) {
+			for (int i = 0; i < this.NUMBER_OF_OBJECTS_HIGH*this.NUMBER_OF_OBJECTS_WIDE; i++) {
 				if ((char)br.read()=='d') {
 					Dirt d = new Dirt(null, null);
 					initialBoardLayout.add(d);
+				} else if ((char)br.read()=='O') {
+					EmptySpace o = new EmptySpace(null, null);
+					initialBoardLayout.add(o);
+				} else if ((char)br.read()=='H') {
+					Hero h = new Hero(null, null);
+					initialBoardLayout.add(h);
 				}
 			}
 			
