@@ -4,9 +4,10 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.util.List;
 
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
-public class DigDugWorldComponent {
+public class DigDugWorldComponent extends JComponent{
 	private DigDugWorld world;
 	private static final int FRAMES_PER_SECOND = 30;
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
@@ -14,8 +15,8 @@ public class DigDugWorldComponent {
 
 	DigDugWorldComponent(DigDugWorld world) {
 		this.world = world;
-	setPreferredSize(world.getSize());
-	setMaximumSize(world.getSize());
+//	setPreferredSize(world.getSize());
+//	setMaximumSize(world.getSize());
 
 	// Creates a separate "thread of execution" to trigger periodic
 	// repainting of this component.

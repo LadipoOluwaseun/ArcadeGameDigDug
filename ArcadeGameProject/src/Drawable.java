@@ -8,6 +8,8 @@ public interface Drawable {
 	 * 
 	 * @return the shape to draw
 	 */
+	Color getColor();
+	
 	Shape getShape();
 
 }
