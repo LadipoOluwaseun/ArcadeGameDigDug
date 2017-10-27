@@ -58,7 +58,6 @@ public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Tempor
 		return 0;
 	}
 
-	@Override
 	public ArrayList<Stuff> readLevelFile(String filename) {
 
 		try {
@@ -77,6 +76,7 @@ public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Tempor
 					Hero h = new Hero(null, null);
 					initialBoardLayout.add(h);
 				}
+				return initialBoardLayout;
 			}
 			
 			System.out.println("FileRead");
@@ -90,7 +90,7 @@ public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Tempor
 			exception.printStackTrace();
 		}
 		
-		
+		return new ArrayList<Stuff>();
 		
 	}
 
