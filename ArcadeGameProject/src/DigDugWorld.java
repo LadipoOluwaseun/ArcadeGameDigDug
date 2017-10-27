@@ -5,6 +5,15 @@ import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * creates the world for all of the "Stuff" to be added to, where everything is implemented and controls 
+ * are used
+ * 
+ * @author smithea2.
+ *         Created Oct 27, 2017.
+ */
+
 public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	boolean isPaused;
 	private static final long UPDATE_INTERVAL_MS = 10;

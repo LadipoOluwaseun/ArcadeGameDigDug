@@ -3,7 +3,7 @@ import java.awt.geom.Point2D;
 
 public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	private DigDugEnvironment world;
-	private Point2D stuffPoint;
+	private Point2D.Double stuffPoint;
 	private boolean isPaused;
 	/**
 	 * Constructs stuff centered at the given point in the given world.
@@ -12,7 +12,7 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	 * 
 	 * @param centerPoint
 	 */
-	public Stuff(DigDugEnvironment world, Point2D point) {
+	public Stuff(DigDugEnvironment world, Point2D.Double point) {
 		this.world = world;
 		this.stuffPoint = point;
 	}
@@ -21,34 +21,34 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 		return this.world;
 	}
 	
-	protected void setPoint(Point2D point) {
-		this.stuffPoint = point;
+	protected void setPoint(Point2D.Double newPoint) {
+		this.stuffPoint = newPoint;
 	}
 	//need to implement the methods below
 	@Override
 	public void timePassed() {
-			
+			//ignored
 	}
 
 	@Override
 	public void die() {
-		
+		//not yet implemented
 	}
 
 	@Override
 	public boolean getIsPaused() {
-		return isPaused;
+		return this.isPaused;
 		
 	}
 
 	@Override
 	public void setIsPaused(boolean setIsPaused) {
-		isPaused = setIsPaused;
+		this.isPaused = setIsPaused;
 	}
 	
 	@Override
-	public void moveTo(Point2D point) {
-		Point2D newPoint = new Point2D.Double(point.getX(),point.getY());
+	public void moveTo(Point2D.Double point) {
+		Point2D.Double newPoint = new Point2D.Double(point.getX(),point.getY());
 		this.setPoint(newPoint);
 	}
 	

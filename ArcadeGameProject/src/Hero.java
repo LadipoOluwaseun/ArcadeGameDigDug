@@ -26,12 +26,14 @@ public class Hero extends Character{
 	public int changeX;
 	public int changeY;
 	public Line2D.Double cord;
+	public boolean cordExtended;
 
 	public Hero(DigDugEnvironment world, Point2D.Double point) {
 		super(world, point);
 		this.point = point;
 		this.changeX = 0;
 		this.changeY = 0;
+		this.cordExtended = false;
 	}
 	
 	public void moveUp() {
@@ -74,8 +76,7 @@ public class Hero extends Character{
 
 	@Override
 	public void updateColor() {
-		this.color = this.color;
-		
+		//does not change color
 	}
 
 	@Override
@@ -83,9 +84,16 @@ public class Hero extends Character{
 		return this.score;
 	}
 	
-	public void extendCord() {
+	public Line2D.Double extendCord() {
 		this.cord = new Line2D.Double(new Point2D.Double(this.x, this.y), 
 				new Point2D.Double(this.x + this.changeX*10, this.y + this.changeY*10));
+		this.cordExtended = true;
+		return this.cord;
+	}
+	
+	public Line2D.Double retractCord() {
+		this.cord = null;
+		return this.cord;
 	}
 
 	@Override

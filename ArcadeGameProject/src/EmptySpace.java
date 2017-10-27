@@ -10,7 +10,7 @@ public class EmptySpace extends Stuff{
 	 * @param world
 	 * @param point
 	 */
-	public EmptySpace(DigDugEnvironment world, Point2D point) {
+	public EmptySpace(DigDugEnvironment world, Point2D.Double point) {
 		super(world, point);
 		// TODO Auto-generated constructor stub.
 	}
