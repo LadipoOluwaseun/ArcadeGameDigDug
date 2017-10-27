@@ -34,6 +34,7 @@ public class Hero extends Stuff{
 		this.changeX = 0;
 		this.changeY = 0;
 		this.cordExtended = false;
+		this.color = Color.CYAN;
 	}
 	
 	public void moveUp() {
