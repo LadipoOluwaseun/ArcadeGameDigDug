@@ -2,40 +2,49 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
 
+/**
+ * 
+ * creates the dirt for the DigDugWorld
+ *
+ * @author smithea2.
+ *         Created Oct 27, 2017.
+ */
+
 public class Dirt extends Character{
 
-	public Dirt(DigDugEnvironment world, Point2D point) {
+	public Shape shape;
+	public Point2D.Double point;
+	
+	
+	public Dirt(DigDugEnvironment world, Point2D.Double point) {
 		super(world, point);
-		// TODO Auto-generated constructor stub
+		this.point = point;
 	}
 
 	@Override
 	public Shape getShape() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.shape;
 	}
 
 	@Override
 	public Point2D getCenterPoint() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.point;
 	}
 
 	@Override
 	public void updatePosition() {
-		// TODO Auto-generated method stub
-		
+		//doesn't update (it is dirt)
 	}
 
 	@Override
 	public void updateSize() {
-		// TODO Auto-generated method stub
+		// does not update (it is dirt)
 		
 	}
 
 	@Override
 	public void updateColor() {
-		// TODO Auto-generated method stub
+		// Does not update (it is dirt)
 		
 	}
 

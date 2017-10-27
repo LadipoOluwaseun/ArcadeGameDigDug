@@ -4,6 +4,15 @@ import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 
+
+/**
+ * 
+ * creates and implements methods of the hero in DigDugWorld.
+ *
+ * @author smithea2.
+ *         Created Oct 26, 2017.
+ */
+
 public class Hero extends Character{
 	
 	private Point2D.Double point;
