@@ -17,11 +17,16 @@ public class SimulationPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private static final int GAP_WIDTH = 10;
 	
+	/**
+	 * Constructs a new simulation where the world for DigDug has the requirements
+	 * from the text file read in DigDugWorld 
+	 */
+	
 	public SimulationPanel() {
 		// Change layout so the buttons and the world are side-by-side.
 		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-		DigDugWorld world = new DigDugWorld();
-		DigDugWorldComponent worldComponent = new DigDugWorldComponent(world);
+//		DigDugWorld world = new DigDugWorld();
+//		DigDugWorldComponent worldComponent = new DigDugWorldComponent(world);
 		// add "rigid stuff" to force minimum spacing
 		add(Box.createHorizontalStrut(GAP_WIDTH));
 		// add "rigid stuff" to force minimum spacing

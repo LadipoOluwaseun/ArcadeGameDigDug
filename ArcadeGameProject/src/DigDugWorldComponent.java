@@ -7,6 +7,14 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
+/**
+ * 
+ * Renders the components of the DigDug world on the GUI
+ *
+ * @author smithea2.
+ *         Created Oct 26, 2017.
+ */
+
 public class DigDugWorldComponent extends JComponent{
 	private DigDugWorld world;
 	private static final int FRAMES_PER_SECOND = 30;
