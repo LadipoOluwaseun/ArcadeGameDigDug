@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.util.List;
 
-import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 public class DigDugWorldComponent {
@@ -15,7 +14,6 @@ public class DigDugWorldComponent {
 
 	DigDugWorldComponent(DigDugWorld world) {
 		this.world = world;
-	}
 	setPreferredSize(world.getSize());
 	setMaximumSize(world.getSize());
 
@@ -38,7 +36,6 @@ public class DigDugWorldComponent {
 	new Thread(repainter).start();
 }
 
-@Override
 protected void paintComponent(Graphics g) {
 	super.paintComponent(g);
 	Graphics2D g2 = (Graphics2D) g;
