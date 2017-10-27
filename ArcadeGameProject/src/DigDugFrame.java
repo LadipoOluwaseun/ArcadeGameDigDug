@@ -1,7 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -24,10 +23,10 @@ public class DigDugFrame extends JFrame {
 	/**
 	 * Constructs a frame for displaying the given simulations.
 	 * 
-	 * @param panels
+	 * @param worlds
 	 *            a non-empty list of simulation panels to display
 	 */
-	public DigDugFrame(List<SimulationPanel> panels) {
+	public DigDugFrame(SimulationPanel worlds) {
 		setTitle("Dig Dug Worlds");
 
 		JPanel content = new JPanel();
@@ -35,10 +34,9 @@ public class DigDugFrame extends JFrame {
 		content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
 		// add "rigid stuff" to force minimum spacing
 		content.add(Box.createVerticalStrut(GAP));
-		for (SimulationPanel sp : panels) {
-			content.add(sp);
+			content.add(worlds);
 			content.add(Box.createVerticalStrut(GAP));
-		}
+		
 		add(content);
 
 		add(quitButtonComponent(), BorderLayout.PAGE_END);
