@@ -79,7 +79,7 @@ public class DigDugWorldComponent extends JComponent{
 			showNullPointerMessage("shape", d);
 			return;
 		}
-		
+		g2.setColor(color);
 		g2.fill(shape);
 	}
 
