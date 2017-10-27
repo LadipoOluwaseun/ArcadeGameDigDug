@@ -1,5 +1,3 @@
-import java.awt.Color;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -20,10 +18,10 @@ public class SimulationPanel extends JPanel{
 	 * @param height
 	 * @param color
 	 */
-	public SimulationPanel(int width, int height, Color color) {
+	public SimulationPanel() {
 		// Change layout so the buttons and the world are side-by-side.
 		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-		DigDugWorld world = new DigDugWorld(width, height, color);
+		DigDugWorld world = new DigDugWorld();
 		DigDugWorldComponent worldComponent = new DigDugWorldComponent(world);
 		// add "rigid stuff" to force minimum spacing
 		add(Box.createHorizontalStrut(GAP_WIDTH));
