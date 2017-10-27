@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
 
@@ -45,6 +46,12 @@ public class Hero extends Character{
 	
 	public void extendCord() {
 		
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
