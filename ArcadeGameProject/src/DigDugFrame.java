@@ -1,6 +1,7 @@
 //JUSTIN TODO finish NewGame button
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +21,7 @@ import javax.swing.JPanel;
  */
 public class DigDugFrame extends JFrame {
 
-	private static final int GAP = 10;
+	private static final int GAP = 0;
 
 	/**
 	 * Constructs a frame for displaying the given simulations.
@@ -28,22 +29,25 @@ public class DigDugFrame extends JFrame {
 	 * @param worlds
 	 *            a non-empty list of simulation panels to display
 	 */
-	public DigDugFrame(SimulationPanel worlds) {
+	public DigDugFrame(SimulationPanel sp, DigDugWorld worlds) {
 		setTitle("Dig Dug Worlds");
 
 		JPanel content = new JPanel();
+		content.setPreferredSize(new Dimension(600, 600));
 		// Changes the layout of the panel so the worlds will stack vertically
 		content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
 		// add "rigid stuff" to force minimum spacing
-		content.add(Box.createVerticalStrut(GAP));
-			content.add(worlds);
-			content.add(Box.createVerticalStrut(GAP));
+//		content.add(Box.createVerticalStrut(GAP));
+//			content.add(worlds);
+		content.add(sp, BorderLayout.CENTER);
+//		content.add(Box.createVerticalStrut(GAP));
 		
 		add(content);
-		add(newGameButtonComponent());
-		add(quitButtonComponent(), BorderLayout.PAGE_END);
 		
-		setResizable(false);
+
+		add(quitButtonComponent(), BorderLayout.SOUTH);
+		
+//		setResizable(false);
 		
 		pack();
 	}
@@ -58,6 +62,20 @@ public class DigDugFrame extends JFrame {
 		quitPanel.add(Box.createHorizontalGlue());
 		JButton quitButton = new JButton("Quit");
 		quitPanel.add(quitButton);
+		
+		JButton newGameButton = new JButton("New Game");
+		quitPanel.add(newGameButton);
+
+		ActionListener newGamer = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				dispose();
+//				System.exit(0);
+				Main.main(null);
+			}
+		};
+		
 
 		ActionListener quitter = new ActionListener() {
 			@Override
@@ -69,28 +87,11 @@ public class DigDugFrame extends JFrame {
 		};
 		
 		quitButton.addActionListener(quitter);
-		return quitPanel;
-	}
-	
-	private JComponent newGameButtonComponent(){
-		Box quitPanel = Box.createHorizontalBox();
-		quitPanel
-				.setBorder(BorderFactory.createEmptyBorder(0, GAP, GAP, GAP));
-		quitPanel.add(Box.createHorizontalGlue());
-		JButton newGameButton = new JButton("New Game");
-		quitPanel.add(newGameButton);
-
-		ActionListener newGamer = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				dispose();
-				System.exit(0);
-			}
-		};
-		
 		newGameButton.addActionListener(newGamer);
 		return quitPanel;
 	}
+
+	
+
 
 }

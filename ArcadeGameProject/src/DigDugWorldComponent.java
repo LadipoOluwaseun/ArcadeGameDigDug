@@ -1,13 +1,14 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+
+import com.sun.javafx.geom.Rectangle;
 
 /**
  * 
@@ -50,12 +51,12 @@ public class DigDugWorldComponent extends JComponent{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-	
+//		System.out.println("hi");
 		drawDrawable(g2, this.world);
-	
 		List<Drawable> drawableParts = this.world.getDrawableParts();
 		for (Drawable d : drawableParts) {
 			drawDrawable(g2, d);
+			
 		}
 	}
 
@@ -74,13 +75,19 @@ public class DigDugWorldComponent extends JComponent{
 			showNullPointerMessage("color", d);
 			return;
 		}
-		Shape shape = d.getShape();
+		Rectangle shape = d.getShape();
 		if (shape == null) {
 			showNullPointerMessage("shape", d);
 			return;
 		}
+//		System.out.println("bye");
 		g2.setColor(color);
-		g2.fill(shape);
+//		System.out.println(shape.x);
+//		System.out.println(shape.width);
+		g2.drawRect(shape.x, shape.y, shape.width, shape.height);
+		g2.fillRect(shape.x, shape.y, shape.width, shape.height);
+		
+		
 	}
 
 /**

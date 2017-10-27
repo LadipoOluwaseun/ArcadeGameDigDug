@@ -1,6 +1,7 @@
 import java.awt.Color;
-import java.awt.Shape;
 import java.awt.geom.Point2D;
+
+import com.sun.javafx.geom.Rectangle;
 
 /**
  * 
@@ -12,18 +13,23 @@ import java.awt.geom.Point2D;
 
 public class Dirt extends Stuff{
 
-	public Shape shape;
+	public Rectangle rect;
 	public Point2D.Double point;
+	public int WIDTH;
+	public int HEIGHT;
 	
 	
 	public Dirt(DigDugEnvironment world, Point2D.Double point) {
 		super(world, point);
 		this.point = point;
-	}
+		this.WIDTH = 30;
+		this.HEIGHT = 30;
+		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
+		}
 
 	@Override
-	public Shape getShape() {
-		return this.shape;
+	public Rectangle getShape() {
+		return this.rect;
 	}
 
 	@Override

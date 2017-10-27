@@ -1,6 +1,7 @@
 import java.awt.Color;
-import java.awt.Shape;
 import java.awt.geom.Point2D;
+
+import com.sun.javafx.geom.Rectangle;
 
 public class EmptySpace extends Stuff{
 
@@ -10,33 +11,48 @@ public class EmptySpace extends Stuff{
 	 * @param world
 	 * @param point
 	 */
+	
+	public Rectangle shape;
+	public Point2D.Double point;
+	public int WIDTH;
+	public int HEIGHT;
+	
+	
 	public EmptySpace(DigDugEnvironment world, Point2D.Double point) {
 		super(world, point);
-		// TODO Auto-generated constructor stub.
-	}
+		this.point = point;
+		this.WIDTH = 30;
+		this.HEIGHT = 30;
+		this.shape = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
+		}
 
 	@Override
-	public Color getColor() {
-		// TODO Auto-generated method stub.
-		return null;
-	}
-
-	@Override
-	public Shape getShape() {
-		// TODO Auto-generated method stub.
-		return null;
+	public Rectangle getShape() {
+		return this.shape;
 	}
 
 	@Override
 	public Point2D getCenterPoint() {
-		// TODO Auto-generated method stub.
-		return null;
+		return this.point;
+	}
+
+	public void updatePosition() {
+		//doesn't update (it is dirt)
+	}
+
+	public void updateSize() {
+		// does not update (it is dirt)
+		
 	}
 
 	@Override
 	public double getscore() {
-		// TODO Auto-generated method stub.
 		return 0;
+	}
+
+	@Override
+	public Color getColor() {
+		return Color.black;
 	}
 
 

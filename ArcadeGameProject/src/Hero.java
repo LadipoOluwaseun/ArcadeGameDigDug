@@ -1,8 +1,9 @@
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+
+import com.sun.javafx.geom.Rectangle;
 
 
 /**
@@ -18,7 +19,7 @@ public class Hero extends Stuff{
 	private Point2D.Double point;
 	private int y;
 	private int x;
-	public Shape shape;
+	public Rectangle shape;
 	public Point2D center;
 	private Dimension size;
 	private Color color;
@@ -27,6 +28,8 @@ public class Hero extends Stuff{
 	public int changeY;
 	public Line2D.Double cord;
 	public boolean cordExtended;
+	public int WIDTH;
+	public int HEIGHT;
 
 	public Hero(DigDugEnvironment world, Point2D.Double point) {
 		super(world, point);
@@ -35,6 +38,9 @@ public class Hero extends Stuff{
 		this.changeY = 0;
 		this.cordExtended = false;
 		this.color = Color.CYAN;
+		this.WIDTH = 30;
+		this.HEIGHT = 30;
+		this.shape = new Rectangle((int) point.getX(), (int) point.getY(), WIDTH, HEIGHT);
 	}
 	
 	public void moveUp() {
@@ -54,7 +60,7 @@ public class Hero extends Stuff{
 	}
 
 	@Override
-	public Shape getShape() {
+	public Rectangle getShape() {
 		return this.shape;
 	}
 

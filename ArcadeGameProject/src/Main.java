@@ -22,22 +22,10 @@ public class Main {
 	 *            ignored
 	 */
 	public static void main(String[] args) {
-		SimulationPanel worlds = constructSimulations();
-		JFrame frame = new DigDugFrame(worlds);
+		DigDugWorld world = new DigDugWorld();
+		SimulationPanel worlds = new SimulationPanel(world);
+		JFrame frame = new DigDugFrame(worlds, world);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
-
-	/**
-	 * This helper method constructs a list of simulation objects that will each
-	 * simulate a world of bouncing balls.
-	 * 
-	 * @return a list of worlds
-	 */
-	private static SimulationPanel constructSimulations() {
-		SimulationPanel sp = new SimulationPanel();
-		
-		return sp;
-	}
-
 }

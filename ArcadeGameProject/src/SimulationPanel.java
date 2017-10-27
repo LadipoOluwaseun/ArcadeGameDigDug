@@ -22,18 +22,17 @@ public class SimulationPanel extends JPanel{
 	 * from the text file read in DigDugWorld 
 	 */
 	
-	public SimulationPanel() {
+	public SimulationPanel(DigDugWorld world) {
 		// Change layout so the buttons and the world are side-by-side.
 		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-//		DigDugWorld world = new DigDugWorld();
-//		DigDugWorldComponent worldComponent = new DigDugWorldComponent(world);
+		DigDugWorldComponent worldComponent = new DigDugWorldComponent(world);
 		// add "rigid stuff" to force minimum spacing
 		add(Box.createHorizontalStrut(GAP_WIDTH));
 		// add "rigid stuff" to force minimum spacing
 		add(Box.createHorizontalStrut(GAP_WIDTH));
-//		add(worldComponent);
+		add(worldComponent);
 		// adds "stretchy stuff" to force the world to the left
-		add(Box.createGlue());
+//		add(Box.createGlue());
 		// add "rigid stuff" to force minimum spacing
 		add(Box.createHorizontalStrut(GAP_WIDTH));
 	}

@@ -1,5 +1,6 @@
 import java.awt.Color;
-import java.awt.Shape;
+
+import com.sun.javafx.geom.Rectangle;
 
 /**
  * @author smithea2.
@@ -15,6 +16,6 @@ public interface Drawable {
 	 */
 	Color getColor();
 	
-	Shape getShape();
+	Rectangle getShape();
 
 }
