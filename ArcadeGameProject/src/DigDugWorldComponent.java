@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -45,17 +47,17 @@ public class DigDugWorldComponent extends JComponent{
 	new Thread(repainter).start();
 }
 
-protected void paintComponent(Graphics g) {
-	super.paintComponent(g);
-	Graphics2D g2 = (Graphics2D) g;
-
-	drawDrawable(g2, this.world);
-
-	List<Drawable> drawableParts = this.world.getDrawableParts();
-	for (Drawable d : drawableParts) {
-		drawDrawable(g2, d);
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+	
+		drawDrawable(g2, this.world);
+	
+		List<Drawable> drawableParts = this.world.getDrawableParts();
+		for (Drawable d : drawableParts) {
+			drawDrawable(g2, d);
+		}
 	}
-}
 
 /**
  * This helper method draws the given drawable object on the given graphics
@@ -66,35 +68,76 @@ protected void paintComponent(Graphics g) {
  * @param d
  *            the drawable object
  */
-private void drawDrawable(Graphics2D g2, Drawable d) {
-	Color color = d.getColor();
-	if (color == null) {
-		showNullPointerMessage("color", d);
-		return;
+	private void drawDrawable(Graphics2D g2, Drawable d) {
+		Color color = d.getColor();
+		if (color == null) {
+			showNullPointerMessage("color", d);
+			return;
+		}
+		Shape shape = d.getShape();
+		if (shape == null) {
+			showNullPointerMessage("shape", d);
+			return;
+		}
+		
+		g2.fill(shape);
 	}
-	Shape shape = d.getShape();
-	if (shape == null) {
-		showNullPointerMessage("shape", d);
-		return;
-	}
-	
-	g2.fill(shape);
-}
 
 /**
  * Displays an error message explaining that the Ball's color/shape was null
  * so it could not be drawn. Show the message only once per component.
  */
-private void showNullPointerMessage(String nullAttribute, Drawable d) {
-	if (!this.hasShownNullErrorMessage) {
-		this.hasShownNullErrorMessage = true;
-		String message = "I could not draw this Drawable object of type "
-				+ d.getClass().getName() + " because its " + nullAttribute
-				+ " is null.\n";
-		JOptionPane.showMessageDialog(null, message,
-				"Null pointer exception", JOptionPane.ERROR_MESSAGE);
-	}
+	private void showNullPointerMessage(String nullAttribute, Drawable d) {
+		if (!this.hasShownNullErrorMessage) {
+			this.hasShownNullErrorMessage = true;
+			String message = "I could not draw this Drawable object of type "
+					+ d.getClass().getName() + " because its " + nullAttribute
+					+ " is null.\n";
+			JOptionPane.showMessageDialog(null, message,
+					"Null pointer exception", JOptionPane.ERROR_MESSAGE);
+		}
 }
-
-
+	public class DigDugKeyHandler implements KeyListener{
+		
+		@Override
+		public void keyPressed(KeyEvent e) {
+			int key = e.getKeyChar();
+			if(key == KeyEvent.VK_U) {
+	//			world.changeLevel(true);
+			}
+			
+			if(key == KeyEvent.VK_D) {
+	//			world.changeLevel(false);
+			}
+			
+			if(key == KeyEvent.VK_UP) {
+				// Hero.moveUp();
+			}
+			
+			if(key == KeyEvent.VK_DOWN) {
+				// Hero.moveDown();
+			}
+			
+			if(key == KeyEvent.VK_RIGHT) {
+				// Hero.moveRight();
+			}
+			
+			if(key == KeyEvent.VK_LEFT) {
+				// Hero.moveLeft();
+			}
+		}
+	
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub.
+			
+		}
+	
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub.
+			
+		}
+		
+		}
 }
