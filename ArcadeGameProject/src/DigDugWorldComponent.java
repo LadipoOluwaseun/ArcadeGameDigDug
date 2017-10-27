@@ -1,14 +1,12 @@
-import javax.swing.JOptionPane;
-
 public class DigDugWorldComponent {
 	private DigDugWorld world;
 	private static final int FRAMES_PER_SECOND = 30;
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
 	private boolean hasShownNullErrorMessage = false;
 
-	DigDugWorldComponent(DigDugWorld world) {
-		this.world = world;
-	}
+//	DigDugWorldComponent(DigDugWorld world) {
+//		this.world = world;
+//	}
 //	setPreferredSize(world.getSize());
 //	setMaximumSize(world.getSize());
 //
@@ -67,21 +65,21 @@ public class DigDugWorldComponent {
 //	
 //	g2.fill(shape);
 //}
-
-/**
- * Displays an error message explaining that the Ball's color/shape was null
- * so it could not be drawn. Show the message only once per component.
- */
-private void showNullPointerMessage(String nullAttribute, Drawable d) {
-	if (!this.hasShownNullErrorMessage) {
-		this.hasShownNullErrorMessage = true;
-		String message = "I could not draw this Drawable object of type "
-				+ d.getClass().getName() + " because its " + nullAttribute
-				+ " is null.\n";
-		JOptionPane.showMessageDialog(null, message,
-				"Null pointer exception", JOptionPane.ERROR_MESSAGE);
-	}
-}
+//
+///**
+// * Displays an error message explaining that the Ball's color/shape was null
+// * so it could not be drawn. Show the message only once per component.
+// */
+//private void showNullPointerMessage(String nullAttribute, Drawable d) {
+//	if (!this.hasShownNullErrorMessage) {
+//		this.hasShownNullErrorMessage = true;
+//		String message = "I could not draw this Drawable object of type "
+//				+ d.getClass().getName() + " because its " + nullAttribute
+//				+ " is null.\n";
+//		JOptionPane.showMessageDialog(null, message,
+//				"Null pointer exception", JOptionPane.ERROR_MESSAGE);
+//	}
+//}
 
 
 }
