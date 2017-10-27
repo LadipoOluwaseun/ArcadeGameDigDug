@@ -1,16 +1,15 @@
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
+import java.io.FileReader;
 import java.time.temporal.Temporal;
-import java.time.temporal.TemporalField;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	boolean isPaused;
 	private static final long UPDATE_INTERVAL_MS = 10;
-	private final int width;
-	private final int height;
+	private final int WIDTH = 500;
+	private final int HEIGHT = 600;
 	
 	private final List<Stuff> stuff = new ArrayList<Stuff>();
 	private final List<Stuff> stuffToAdd = new ArrayList<Stuff>();
@@ -19,7 +18,7 @@ public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Tempor
 	
 	public DigDugWorld(){
 		
-		this.background = new Rectangle2D.Double(0, 0, this.width, this.height)
+		this.background = new Rectangle2D.Double(0, 0, this.WIDTH, this.HEIGHT);
 		Runnable tickTock = new Runnable() {
 			@Override
 			public void run() {
