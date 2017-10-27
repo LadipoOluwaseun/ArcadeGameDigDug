@@ -68,5 +68,26 @@ public class DigDugFrame extends JFrame {
 		quitButton.addActionListener(quitter);
 		return quitPanel;
 	}
+	
+	private JComponent newGameButtonComponent(){
+		Box quitPanel = Box.createHorizontalBox();
+		quitPanel
+				.setBorder(BorderFactory.createEmptyBorder(0, GAP, GAP, GAP));
+		quitPanel.add(Box.createHorizontalGlue());
+		JButton newGameButton = new JButton("New Game");
+		quitPanel.add(newGameButton);
+
+		ActionListener newGamer = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				dispose();
+				System.exit(0);
+			}
+		};
+		
+		newGameButton.addActionListener(newGamer);
+		return quitPanel;
+	}
 
 }
