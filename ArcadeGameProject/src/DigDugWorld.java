@@ -1,11 +1,9 @@
 import java.awt.Dimension;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
-import java.io.FileReader;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	boolean isPaused;
@@ -27,7 +25,7 @@ public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Tempor
 				try {
 					while (true) {
 						Thread.sleep(UPDATE_INTERVAL_MS);
-						timePassed();
+//						timePassed();
 					}
 				} catch (InterruptedException exception) {
 					// Stop when interrupted
@@ -36,7 +34,7 @@ public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Tempor
 		};
 		new Thread(tickTock).start();
 	}
-	
+
 	public int lives(){
 		return 0;
 	}
@@ -44,43 +42,43 @@ public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Tempor
 		return 0;
 	}
 
-	@Override
-	public synchronized void timePassed() {
-		if (!this.isPaused) {
-			for (Temporal t : this.stuff) {
-				t.timePassed();
-			}
-		}
-		this.stuff.removeAll(this.stuffToRemove);
-		this.stuffToRemove.clear();
-		this.stuff.addAll(this.stuffToAdd);
-		this.stuffToAdd.clear();
-		this.stuffToRemove.clear();
+//	@Override
+//	public synchronized void timePassed() {
+//		if (!this.isPaused) {
+//			for (Temporal t : this.stuff) {
+//				t.timePassed();
+//			}
+//		}
+//		this.stuff.removeAll(this.stuffToRemove);
+//		this.stuffToRemove.clear();
+//		this.stuff.addAll(this.stuffToAdd);
+//		this.stuffToAdd.clear();
+//		this.stuffToRemove.clear();
+//
+//		
+//	}
 
-		
-	}
+//	@Override
+//	public void die() {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void setIsPaused(boolean isPaused) {
+//		this.isPaused = isPaused;
+//		
+//	}
+//
+//	@Override
+//	public boolean getIsPaused() {
+//		return this.isPaused;
+//	}
 
-	@Override
-	public void die() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setIsPaused(boolean isPaused) {
-		this.isPaused = isPaused;
-		
-	}
-
-	@Override
-	public boolean getIsPaused() {
-		return this.isPaused;
-	}
-
-	@Override
-	public Shape getShape() {
-		return this.background;
-	}
+//	@Override
+//	public Shape getShape() {
+//		return this.background;
+//	}
 
 	@Override
 	public void addStuff(Stuff stuff) {
@@ -101,13 +99,13 @@ public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Tempor
 		return draw;
 	}
 
-	@Override
-	public void readLevelFile(String filename) {
-		FileReader file = new FileReader(filename);
-		Scanner s = new Scanner(file);
-		
-		
-	}
+//	@Override
+//	public void readLevelFile(String filename) {
+//		FileReader file = new FileReader(filename);
+//		Scanner s = new Scanner(file);
+//		
+//		
+//	}
 
 	@Override
 	public void updateScore() {
