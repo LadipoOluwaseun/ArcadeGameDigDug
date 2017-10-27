@@ -1,9 +1,11 @@
+import java.awt.Dimension;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.io.FileReader;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	boolean isPaused;
@@ -104,11 +106,17 @@ public abstract class DigDugWorld implements DigDugEnvironment, Drawable, Tempor
 		FileReader file = new FileReader(filename);
 		Scanner s = new Scanner(file);
 		
+		
 	}
 
 	@Override
 	public void updateScore() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Dimension getSize(){
+		Dimension d = new Dimension(this.WIDTH, this.HEIGHT);
+		return d;
 	}
 }
