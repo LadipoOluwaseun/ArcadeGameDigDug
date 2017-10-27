@@ -13,7 +13,7 @@ import java.awt.geom.Point2D;
  *         Created Oct 26, 2017.
  */
 
-public class Hero extends Character{
+public class Hero extends Stuff{
 	
 	private Point2D.Double point;
 	private int y;
@@ -62,21 +62,14 @@ public class Hero extends Character{
 		return this.center;
 	}
 
-	@Override
 	public void updatePosition() {
 		this.x = this.x + this.changeX;
 		this.y = this.y + this.changeY;
 		this.point = new Point2D.Double(this.x, this.y);
 	}
 
-	@Override
 	public void updateSize() {
 		this.size = this.size;
-	}
-
-	@Override
-	public void updateColor() {
-		//does not change color
 	}
 
 	@Override

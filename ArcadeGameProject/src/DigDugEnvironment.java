@@ -7,7 +7,5 @@ public interface DigDugEnvironment {
 	
 	List<Drawable> getDrawableParts();
 	
-	void readLevelFile(String filename);
-	
 	void updateScore();
 }

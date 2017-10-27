@@ -1,6 +1,14 @@
 import java.awt.geom.Point2D;
 
 
+/**
+ * 
+ * the abstract superclass over all of the objects that are drawn on the DigDugWorld
+ * 
+ * @author smithea2.
+ *         Created Oct 27, 2017.
+ */
+
 public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	private DigDugEnvironment world;
 	private Point2D.Double stuffPoint;
