@@ -1,3 +1,5 @@
+
+
 /**
  * The main class for your arcade game.
  * 
@@ -15,7 +17,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Write your cool arcade game here!");
+		
 	}
 
 }
