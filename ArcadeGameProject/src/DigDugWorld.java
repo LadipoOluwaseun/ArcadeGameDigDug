@@ -37,9 +37,11 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private final int NUMBER_OF_OBJECTS_HIGH = 15;
 	private final double WIDTH_OF_EACH_STUFF = 30;
 	private final double HEIGHT_OF_EACH_STUFF = 30;
+	public int current;
 	
 	public DigDugWorld(){
-		readLevelFile("Level1.txt");
+		this.current = 1;
+		readLevelFile("Level" + current + ".txt");
 		this.background = new Rectangle(0, 0, this.WIDTH, this.HEIGHT);
 		Runnable tickTock = new Runnable() {
 			@Override
@@ -135,6 +137,19 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		return d;
 	}
 	
+	public void changeLevel(boolean levelUp) {
+		System.out.println("yay");
+		if(levelUp) {
+			this.readLevelFile("Level" + (this.current + 1) + ".txt");
+			this.current++;
+		} else {
+			this.readLevelFile("Level" + (this.current - 1) + ".txt");
+			this.current--;
+		}
+		
+		
+	}
+	
 	public void readLevelFile(String filename) {
 
 		try {
@@ -159,7 +174,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 				
 				Point2D.Double p = new Point2D.Double(column*this.WIDTH_OF_EACH_STUFF, row*this.HEIGHT_OF_EACH_STUFF);
 				char currentChar = (char) br.read();
-				System.out.println(currentChar);
+//				System.out.println(currentChar);
 				if (currentChar=='d') {
 					Dirt d = new Dirt(this, p);
 					initialBoardLayout.add(d);
