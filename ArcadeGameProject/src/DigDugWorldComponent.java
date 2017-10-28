@@ -26,6 +26,8 @@ public class DigDugWorldComponent extends JComponent{
 
 	DigDugWorldComponent(DigDugWorld world) {
 		this.world = world;
+		DigDugKeyHandler kh = new DigDugKeyHandler();
+		addKeyListener(kh);
 //	setPreferredSize(world.getSize());
 //	setMaximumSize(world.getSize());
 
@@ -55,6 +57,7 @@ public class DigDugWorldComponent extends JComponent{
 		drawDrawable(g2, this.world);
 		List<Drawable> drawableParts = this.world.getDrawableParts();
 		for (Drawable d : drawableParts) {
+			
 			drawDrawable(g2, d);
 			
 		}
@@ -108,13 +111,14 @@ public class DigDugWorldComponent extends JComponent{
 		
 		@Override
 		public void keyPressed(KeyEvent e) {
-			int key = e.getKeyChar();
-			if(key == KeyEvent.VK_U) {
-//				world.changeLevel(true);
+			char key = e.getKeyChar();
+			if(key == 'U') {
+				System.out.println(1);
+				world.changeLevel(true);
 			}
 			
 			if(key == KeyEvent.VK_D) {
-	//			world.changeLevel(false);
+				world.changeLevel(false);
 			}
 			
 			if(key == KeyEvent.VK_UP) {
@@ -136,13 +140,66 @@ public class DigDugWorldComponent extends JComponent{
 	
 		@Override
 		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub.
+//			int key = e.getKeyChar();
+//			if(key == KeyEvent.VK_U) {
+//				System.out.println(1);
+//				world.changeLevel(true);
+//			}
+//			
+//			if(key == KeyEvent.VK_D) {
+//				world.changeLevel(false);
+//			}
+//			
+//			if(key == KeyEvent.VK_UP) {
+////				 Hero.moveUp();
+//			}
+//			
+//			if(key == KeyEvent.VK_DOWN) {
+////				 Hero.moveDown();
+//			}
+//			
+//			if(key == KeyEvent.VK_RIGHT) {
+////				 Hero.moveRight();
+//			}
+//			
+//			if(key == KeyEvent.VK_LEFT) {
+////				 Hero.moveLeft();
+//			}
 			
 		}
 	
 		@Override
 		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub.
+			int key = e.getKeyChar();
+			if(key == 'u') {
+				System.out.println(1);
+				world.changeLevel(true);
+			}
+			
+			if(key == KeyEvent.VK_D) {
+				world.changeLevel(false);
+			}
+			
+			if(key == KeyEvent.VK_UP) {
+//				 Hero.moveUp();
+			}
+			
+			if(key == KeyEvent.VK_DOWN) {
+//				 Hero.moveDown();
+			}
+			
+			if(key == KeyEvent.VK_RIGHT) {
+//				 Hero.moveRight();
+			}
+			
+			if(key == KeyEvent.VK_LEFT) {
+//				 Hero.moveLeft();
+			}
+			if(key == KeyEvent.VK_Q) {
+				//Hero.extendCord();
+				//time.sleep();
+				//Hero.retractCord();
+			}
 			
 		}
 		
