@@ -23,10 +23,10 @@ public class DigDugFrame extends JFrame {
 	/**
 	 * Constructs a frame for displaying the given simulations.
 	 * 
-	 * @param worlds
+	 * @param world
 	 *            a non-empty list of simulation panels to display
 	 */
-	public DigDugFrame(SimulationPanel sp, DigDugWorld worlds) {
+	public DigDugFrame(SimulationPanel sp, DigDugWorld world) {
 		setTitle("Dig Dug Worlds");
 
 		JPanel content = new JPanel();
@@ -38,12 +38,12 @@ public class DigDugFrame extends JFrame {
 //			content.add(worlds);
 		content.add(sp, BorderLayout.CENTER);
 //		content.add(Box.createVerticalStrut(GAP));
-		add(quitButtonComponent(worlds), BorderLayout.SOUTH);
+		add(quitButtonComponent(world), BorderLayout.SOUTH);
 		
 		add(content);
 
 		
-		addKeyListener(new DigDugKeyHandler(worlds));
+		addKeyListener(new DigDugKeyHandler(world, sp));
 //		setResizable(false);
 		
 		pack();

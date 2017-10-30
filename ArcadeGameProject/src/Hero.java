@@ -43,7 +43,7 @@ public class Hero extends Stuff{
 		this.HEIGHT = 30;
 		this.shape = new Rectangle((int) point.getX(), (int) point.getY(), this.WIDTH, this.HEIGHT);
 		this.DEFAULT_CORD = new Line2D.Double(new Point2D.Double(this.x, this.y), 
-				new Point2D.Double(this.x, this.y));
+				new Point2D.Double(this.x+1, this.y+1));
 		this.cord = this.DEFAULT_CORD;
 	}
 	
@@ -90,16 +90,23 @@ public class Hero extends Stuff{
 	}
 	
 	public Line2D.Double extendCord() {
+		System.out.println("extendCord method in Hero");
+		if(this.cordExtended==false){
+			
 		this.cord = new Line2D.Double(new Point2D.Double(this.x, this.y), 
 				new Point2D.Double(this.x + this.changeX*10, this.y + this.changeY*10));
 		this.cordExtended = true;
 		return this.cord;
-	}
-	
-	public Line2D.Double retractCord() {
+		}
 		this.cord = this.DEFAULT_CORD;
 		return this.cord;
+		
 	}
+//	
+//	public Line2D.Double retractCord() {
+//		this.cord = this.DEFAULT_CORD;
+//		return this.cord;
+//	}
 
 	@Override
 	public Color getColor() {

@@ -1,8 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.geom.Line2D;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -23,12 +22,13 @@ public class DigDugWorldComponent extends JComponent{
 	private static final int FRAMES_PER_SECOND = 30;
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
 	private boolean hasShownNullErrorMessage = false;
-	private Hero hero;
+	Hero hero;
 
 	DigDugWorldComponent(DigDugWorld world) {
 		this.world = world;
-		DigDugKeyHandler kh = new DigDugKeyHandler();
-		this.addKeyListener(kh);
+//		addKeyListener(new DigDugKeyHandler(this.world, this.hero));
+
+
 //	setPreferredSize(world.getSize());
 //	setMaximumSize(world.getSize());
 
@@ -60,10 +60,17 @@ public class DigDugWorldComponent extends JComponent{
 		for (Drawable d : drawableParts) {
 			if (d instanceof Hero) {
 				this.hero = (Hero) d;
+//				System.out.println(hero.toString());
 			}
+
 			drawDrawable(g2, d);
+//			drawCord(g2, this.hero.cord);
+//			System.out.println(this.hero.getCord());
+//			drawCord(g2, this.hero.getCord());
 			
 		}
+		
+		
 	}
 
 /**
@@ -95,6 +102,13 @@ public class DigDugWorldComponent extends JComponent{
 		
 		
 	}
+	
+	private static void drawCord(Graphics2D g2, Line2D.Double d){
+//		System.out.println("drawCordStart");
+		g2.setColor(new Color(0, 0, 0));
+		g2.draw(d);
+//		System.out.println("drawCord End");
+	}
 
 /**
  * Displays an error message explaining that the Ball's color/shape was null
@@ -110,101 +124,9 @@ public class DigDugWorldComponent extends JComponent{
 					"Null pointer exception", JOptionPane.ERROR_MESSAGE);
 		}
 }
-	public class DigDugKeyHandler implements KeyListener{
-		
-		@Override
-		public void keyPressed(KeyEvent e) {
-			int key = e.getKeyCode();
-			if(key == 85) {
-				System.out.println(1);
-				world.changeLevel(true);
-			}
-			
-			if(key == KeyEvent.VK_D) {
-				world.changeLevel(false);
-			}
-			
-			if(key == KeyEvent.VK_UP) {
-//				 Hero.moveUp();
-			}
-			
-			if(key == KeyEvent.VK_DOWN) {
-//				 Hero.moveDown();
-			}
-			
-			if(key == KeyEvent.VK_RIGHT) {
-//				 Hero.moveRight();
-			}
-			
-			if(key == KeyEvent.VK_LEFT) {
-//				 Hero.moveLeft();
-			}
-		}
-	
-		@Override
-		public void keyReleased(KeyEvent e) {
-			int key = e.getKeyChar();
-			if(key == KeyEvent.VK_U) {
-				System.out.println(1);
-				world.changeLevel(true);
-			}
-			
-			if(key == KeyEvent.VK_D) {
-				world.changeLevel(false);
-			}
-			
-			if(key == KeyEvent.VK_UP) {
-//				 .moveUp();
-			}
-			
-			if(key == KeyEvent.VK_DOWN) {
-//				 Hero.moveDown();
-			}
-			
-			if(key == KeyEvent.VK_RIGHT) {
-//				 Hero.moveRight();
-			}
-			
-			if(key == KeyEvent.VK_LEFT) {
-//				 Hero.moveLeft();
-			}
-			
-		}
-	
-		@Override
-		public void keyTyped(KeyEvent e) {
-			int key = e.getKeyChar();
-			if(key == 'u') {
-				System.out.println(1);
-				world.changeLevel(true);
-			}
-			
-			if(key == KeyEvent.VK_D) {
-				world.changeLevel(false);
-			}
-			
-			if(key == KeyEvent.VK_UP) {
-//				 Hero.moveUp();
-			}
-			
-			if(key == KeyEvent.VK_DOWN) {
-//				 Hero.moveDown();
-			}
-			
-			if(key == KeyEvent.VK_RIGHT) {
-//				 Hero.moveRight();
-			}
-			
-			if(key == KeyEvent.VK_LEFT) {
-//				 Hero.moveLeft();
-			}
-			if(key == KeyEvent.VK_Q) {
-				//Hero.extendCord();
-				//time.sleep();
-				//Hero.retractCord();
-			}
-			
-		}
-		
-		}
+	public Hero getHero(){
+//		System.out.println("getHero in component");
+		return this.hero;
+	}
+
 }
