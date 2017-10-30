@@ -43,7 +43,7 @@ public class DigDugFrame extends JFrame {
 		add(content);
 
 		
-		addKeyListener(new DigDugKeyHandler(world, sp));
+		addKeyListener(new DigDugKeyHandler(world));
 //		setResizable(false);
 		
 		pack();

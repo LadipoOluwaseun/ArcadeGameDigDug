@@ -5,9 +5,9 @@ public class DigDugKeyHandler implements KeyListener{
 		DigDugWorld world;
 		Hero hero;
 		
-		DigDugKeyHandler(DigDugWorld world, SimulationPanel sp) {
+		DigDugKeyHandler(DigDugWorld world) {
 			this.world = world;
-			this.hero = sp.worldComponent.getHero();
+			this.hero = world.getHero();
 //			System.out.println("world");
 		}
 	

@@ -39,10 +39,12 @@ public class Dirt extends Stuff{
 		return this.point;
 	}
 
+	@Override
 	public void updatePosition() {
 		//doesn't update (it is dirt)
 	}
 
+	@Override
 	public void updateSize() {
 		// does not update (it is dirt)
 	}

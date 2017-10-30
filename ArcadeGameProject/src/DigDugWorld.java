@@ -5,9 +5,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalField;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +56,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		};
 		new Thread(tickTock).start();
 	}
+	
 
 	public int lives(){
 		return 0;
@@ -67,41 +65,18 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		return 0;
 	}
 
-
-
-	
-//	@Override
-//	public synchronized void timePassed() {
-//		if (!this.isPaused) {
-//			for (Temporal t : this.stuff) {
-//				t.timePassed();
-//			}
-//		}
-//		this.stuff.removeAll(this.stuffToRemove);
-//		this.stuffToRemove.clear();
-//		this.stuff.addAll(this.stuffToAdd);
-//		this.stuffToAdd.clear();
-//		this.stuffToRemove.clear();
-//
-//		
-//	}
-
-//	@Override
-//	public void die() {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void setIsPaused(boolean isPaused) {
-//		this.isPaused = isPaused;
-//		
-//	}
-//
-//	@Override
-//	public boolean getIsPaused() {
-//		return this.isPaused;
-//	}
+	@Override
+	public synchronized void timePassed() {
+		if (!this.isPaused) {
+			for (Temporal t : this.stuff) {
+				t.timePassed();
+			}
+		}
+		this.stuff.removeAll(this.stuffToRemove);
+		this.stuffToRemove.clear();
+		this.stuff.addAll(this.stuffToAdd);
+		this.stuffToAdd.clear();
+	}
 
 	@Override
 	public Rectangle getShape() {
@@ -181,11 +156,14 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 				if (currentChar=='d') {
 					Dirt d = new Dirt(this, p, hero);
 					initialBoardLayout.add(d);
+					this.addStuff(d);
 				} else if (currentChar=='O') {
 					EmptySpace o = new EmptySpace(this, p);
 					initialBoardLayout.add(o);
+					this.addStuff(o);
 				} else if (currentChar=='H') {
 					Hero h = new Hero(this,p);
+					this.addStuff(h);
 					this.hero = h;
 					initialBoardLayout.add(h);
 				}
@@ -210,45 +188,27 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	}
 
 	@Override
-	public boolean isSupported(TemporalField field) {
-		// TODO Auto-generated method stub.
-		return false;
-	}
-
-	@Override
-	public long getLong(TemporalField field) {
-		// TODO Auto-generated method stub.
-		return 0;
-	}
-
-	@Override
-	public boolean isSupported(TemporalUnit unit) {
-		// TODO Auto-generated method stub.
-		return false;
-	}
-
-	@Override
-	public Temporal with(TemporalField field, long newValue) {
-		// TODO Auto-generated method stub.
-		return null;
-	}
-
-	@Override
-	public Temporal plus(long amountToAdd, TemporalUnit unit) {
-		// TODO Auto-generated method stub.
-		return null;
-	}
-
-	@Override
-	public long until(Temporal endExclusive, TemporalUnit unit) {
-		// TODO Auto-generated method stub.
-		return 0;
-	}
-
-	@Override
 	public Color getColor() {
 		// TODO Auto-generated method stub.
 		return Color.BLACK;
+	}
+
+	@Override
+	public void die() {
+		// TODO Auto-generated method stub.
+		
+	}
+
+	@Override
+	public void setIsPaused(boolean isPaused) {
+		// TODO Auto-generated method stub.
+		
+	}
+
+	@Override
+	public boolean getIsPaused() {
+		// TODO Auto-generated method stub.
+		return false;
 	}
 
 }

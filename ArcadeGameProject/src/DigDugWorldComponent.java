@@ -52,6 +52,7 @@ public class DigDugWorldComponent extends JComponent{
 	new Thread(repainter).start();
 }
 
+	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
@@ -126,9 +127,9 @@ public class DigDugWorldComponent extends JComponent{
 					"Null pointer exception", JOptionPane.ERROR_MESSAGE);
 		}
 }
-	public Hero getHero(){
-//		System.out.println("getHero in component");
-		return this.hero;
-	}
+//	public Hero getHero(){
+////		System.out.println("getHero in component");
+//		return this.hero;
+//	}
 
 }

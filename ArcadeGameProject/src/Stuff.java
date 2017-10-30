@@ -44,7 +44,10 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	//need to implement the methods below
 	@Override
 	public void timePassed() {
-			//ignored
+		if (!this.isPaused) {
+		updateSize();
+		updatePosition();
+		}
 	}
 
 	@Override
@@ -67,6 +70,14 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 		Point2D.Double newPoint = new Point2D.Double(point.getX(),point.getY());
 		this.setPoint(newPoint);
 	}
+	
+	public abstract void updatePosition();
+
+	/**
+	 * Updates the size of this object, if necessary, due to the passing of a
+	 * "moment" in time.
+	 */
+	public abstract void updateSize();
 	
 	/**
 	 * Returns the score of this stuff.
