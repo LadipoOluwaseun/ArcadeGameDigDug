@@ -45,21 +45,26 @@ public class Hero extends Stuff{
 		this.DEFAULT_CORD = new Line2D.Double(new Point2D.Double(this.x, this.y), 
 				new Point2D.Double(this.x+1, this.y+1));
 		this.cord = this.DEFAULT_CORD;
+		System.out.println("i'm a hero!");
 	}
 	
 	public void moveUp() {
+		System.out.println("watch me move!");
 		this.changeY = 1;
 	}
 	
 	public void moveDown() {
+		System.out.println("watch me move!");
 		this.changeY = -1;
 	}
 	
 	public void moveLeft() {
+		System.out.println("watch me move!");
 		this.changeX = -1;
 	}
 	
 	public void moveRight() {
+		System.out.println("watch me move!");
 		this.changeX = 1;
 	}
 	
