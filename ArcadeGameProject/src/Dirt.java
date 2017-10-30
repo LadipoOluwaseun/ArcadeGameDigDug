@@ -17,14 +17,16 @@ public class Dirt extends Stuff{
 	public Point2D.Double point;
 	public int WIDTH;
 	public int HEIGHT;
+	public Hero hero;
 	
 	
-	public Dirt(DigDugEnvironment world, Point2D.Double point) {
-		super(world, point);
+	public Dirt(DigDugEnvironment world, Point2D.Double point, Hero heroman) {
+		super(world, point, heroman);
 		this.point = point;
 		this.WIDTH = 30;
 		this.HEIGHT = 30;
 		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
+		this.hero = heroman;
 		}
 
 	@Override
@@ -43,9 +45,8 @@ public class Dirt extends Stuff{
 
 	public void updateSize() {
 		// does not update (it is dirt)
-		
 	}
-
+	
 	@Override
 	public double getscore() {
 		return 0;
