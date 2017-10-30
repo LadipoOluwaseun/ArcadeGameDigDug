@@ -1,5 +1,4 @@
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 
 
 /**
@@ -27,7 +26,7 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 		this.stuffPoint = point;
 	}
 	
-	public Stuff(DigDugEnvironment world, Double point, Hero heroman) {
+	public Stuff(DigDugEnvironment world, Point2D.Double point, Hero heroman) {
 		this.world = world;
 		this.stuffPoint = point;
 		this.hero = heroman;
@@ -90,4 +89,6 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	 * @return the score
 	 */
 	public abstract double getscore();
+	
+//	public abstract void intercepts(Stuff stuff);
 }
