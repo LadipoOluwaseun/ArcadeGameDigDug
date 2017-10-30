@@ -50,25 +50,25 @@ public class Hero extends Stuff implements Runnable {
 
 	public void moveUp() {
 		System.out.println("watch me move!");
-		this.changeY = 1;
+		this.changeY = 5;
 		this.lastDirection = 'u';
 	}
 
 	public void moveDown() {
 		System.out.println("watch me move!");
-		this.changeY = -1;
+		this.changeY = -5;
 		this.lastDirection = 'd';
 	}
 
 	public void moveLeft() {
 		System.out.println("watch me move!");
-		this.changeX = -1;
+		this.changeX = -5;
 		this.lastDirection = 'l';
 	}
 
 	public void moveRight() {
 		System.out.println("watch me move!");
-		this.changeX = 1;
+		this.changeX = 5;
 		this.lastDirection = 'r';
 	}
 
