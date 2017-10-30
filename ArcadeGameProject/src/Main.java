@@ -25,7 +25,10 @@ public class Main {
 		DigDugWorld world = new DigDugWorld();
 		SimulationPanel worlds = new SimulationPanel(world);
 		JFrame frame = new DigDugFrame(worlds, world);
+//		frame.addKeyListener(new DigDugKeyHandler());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 }
+
+

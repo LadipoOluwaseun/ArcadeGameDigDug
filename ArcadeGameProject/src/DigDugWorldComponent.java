@@ -27,7 +27,7 @@ public class DigDugWorldComponent extends JComponent{
 	DigDugWorldComponent(DigDugWorld world) {
 		this.world = world;
 		DigDugKeyHandler kh = new DigDugKeyHandler();
-		addKeyListener(kh);
+		this.addKeyListener(kh);
 //	setPreferredSize(world.getSize());
 //	setMaximumSize(world.getSize());
 
@@ -111,8 +111,8 @@ public class DigDugWorldComponent extends JComponent{
 		
 		@Override
 		public void keyPressed(KeyEvent e) {
-			char key = e.getKeyChar();
-			if(key == 'U') {
+			int key = e.getKeyCode();
+			if(key == 85) {
 				System.out.println(1);
 				world.changeLevel(true);
 			}
@@ -140,31 +140,31 @@ public class DigDugWorldComponent extends JComponent{
 	
 		@Override
 		public void keyReleased(KeyEvent e) {
-//			int key = e.getKeyChar();
-//			if(key == KeyEvent.VK_U) {
-//				System.out.println(1);
-//				world.changeLevel(true);
-//			}
-//			
-//			if(key == KeyEvent.VK_D) {
-//				world.changeLevel(false);
-//			}
-//			
-//			if(key == KeyEvent.VK_UP) {
-////				 Hero.moveUp();
-//			}
-//			
-//			if(key == KeyEvent.VK_DOWN) {
-////				 Hero.moveDown();
-//			}
-//			
-//			if(key == KeyEvent.VK_RIGHT) {
-////				 Hero.moveRight();
-//			}
-//			
-//			if(key == KeyEvent.VK_LEFT) {
-////				 Hero.moveLeft();
-//			}
+			int key = e.getKeyChar();
+			if(key == KeyEvent.VK_U) {
+				System.out.println(1);
+				world.changeLevel(true);
+			}
+			
+			if(key == KeyEvent.VK_D) {
+				world.changeLevel(false);
+			}
+			
+			if(key == KeyEvent.VK_UP) {
+//				 .moveUp();
+			}
+			
+			if(key == KeyEvent.VK_DOWN) {
+//				 Hero.moveDown();
+			}
+			
+			if(key == KeyEvent.VK_RIGHT) {
+//				 Hero.moveRight();
+			}
+			
+			if(key == KeyEvent.VK_LEFT) {
+//				 Hero.moveLeft();
+			}
 			
 		}
 	
