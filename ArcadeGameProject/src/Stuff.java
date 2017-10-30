@@ -1,4 +1,5 @@
 import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 
 
 /**
@@ -26,6 +27,12 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 		this.stuffPoint = point;
 	}
 	
+	public Stuff(DigDugEnvironment world, Double point, Hero heroman) {
+		this.world = world;
+		this.stuffPoint = point;
+		this.hero = heroman;
+	}
+
 	protected DigDugEnvironment getWorld() {
 		return this.world;
 	}
@@ -33,6 +40,7 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	protected void setPoint(Point2D.Double newPoint) {
 		this.stuffPoint = newPoint;
 	}
+	
 	//need to implement the methods below
 	@Override
 	public void timePassed() {
@@ -41,10 +49,6 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 
 	@Override
 	public void die() {
-		if(hero.center.equals(stuffPoint)){
-			this.world.removeStuff(this);
-		}
-		
 	}
 
 	@Override
