@@ -16,9 +16,9 @@ import com.sun.javafx.geom.Rectangle;
 
 public class Hero extends Stuff{
 	
-	private Point2D.Double point;
-	private int y;
-	private int x;
+	public Point2D.Double point;
+	public int y;
+	public int x;
 	public Rectangle shape;
 	public Point2D center;
 	private Dimension size;
@@ -114,7 +114,7 @@ public class Hero extends Stuff{
 	}
 	
 	public Line2D.Double getCord(){
-		return this.cord;    
-	}
+//		return this.cord;  
+		return null;}
 
 }
