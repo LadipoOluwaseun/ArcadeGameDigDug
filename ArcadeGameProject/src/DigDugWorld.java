@@ -179,7 +179,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 				Point2D.Double p = new Point2D.Double(column*this.WIDTH_OF_EACH_STUFF, row*this.HEIGHT_OF_EACH_STUFF);
 				char currentChar = (char) br.read();
 				if (currentChar=='d') {
-					Dirt d = new Dirt(this, p);
+					Dirt d = new Dirt(this, p, hero);
 					initialBoardLayout.add(d);
 				} else if (currentChar=='O') {
 					EmptySpace o = new EmptySpace(this, p);
