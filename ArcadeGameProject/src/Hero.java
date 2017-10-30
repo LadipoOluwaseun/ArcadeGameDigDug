@@ -49,25 +49,25 @@ public class Hero extends Stuff implements Runnable {
 	}
 
 	public void moveUp() {
-		System.out.println("watch me move!");
+		System.out.println("watch me move up!");
 		this.changeY = 5;
 		this.lastDirection = 'u';
 	}
 
 	public void moveDown() {
-		System.out.println("watch me move!");
+		System.out.println("watch me move down!");
 		this.changeY = -5;
 		this.lastDirection = 'd';
 	}
 
 	public void moveLeft() {
-		System.out.println("watch me move!");
+		System.out.println("watch me move left!");
 		this.changeX = -5;
 		this.lastDirection = 'l';
 	}
 
 	public void moveRight() {
-		System.out.println("watch me move!");
+		System.out.println("watch me move right!");
 		this.changeX = 5;
 		this.lastDirection = 'r';
 	}
@@ -86,6 +86,8 @@ public class Hero extends Stuff implements Runnable {
 		double x = this.point.getX() + this.changeX;
 		double y = this.point.getY() + this.changeY;
 		this.point = new Point2D.Double(x, y);
+		this.changeX = 0;
+		this.changeY = 0;
 	}
 
 	public void updateSize() {
