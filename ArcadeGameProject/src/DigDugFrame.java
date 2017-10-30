@@ -5,11 +5,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -41,12 +38,12 @@ public class DigDugFrame extends JFrame {
 //			content.add(worlds);
 		content.add(sp, BorderLayout.CENTER);
 //		content.add(Box.createVerticalStrut(GAP));
+		add(quitButtonComponent(worlds), BorderLayout.SOUTH);
 		
 		add(content);
-		
 
-		add(quitButtonComponent(), BorderLayout.SOUTH);
 		
+		addKeyListener(new DigDugKeyHandler(worlds));
 //		setResizable(false);
 		
 		pack();
@@ -55,16 +52,16 @@ public class DigDugFrame extends JFrame {
 	/**
 	 * Adds a quit button to the bottom-right corner of the window.
 	 */
-	private JComponent quitButtonComponent() {
-		Box quitPanel = Box.createHorizontalBox();
-		quitPanel
-				.setBorder(BorderFactory.createEmptyBorder(0, GAP, GAP, GAP));
-		quitPanel.add(Box.createHorizontalGlue());
+	private JPanel quitButtonComponent(DigDugWorld world) {
+		JPanel quitPanel = new JPanel();
+//		quitPanel
+//				.setBorder(BorderFactory.createEmptyBorder(0, GAP, GAP, GAP));
+//		quitPanel.add(Box.createHorizontalGlue());
 		JButton quitButton = new JButton("Quit");
-		quitPanel.add(quitButton);
+//		quitPanel.add(quitButton);
 		
 		JButton newGameButton = new JButton("New Game");
-		quitPanel.add(newGameButton);
+//		quitPanel.add(newGameButton);
 
 		ActionListener newGamer = new ActionListener() {
 			@Override
@@ -88,6 +85,7 @@ public class DigDugFrame extends JFrame {
 		
 		quitButton.addActionListener(quitter);
 		newGameButton.addActionListener(newGamer);
+//		quitPanel.addKeyListener(new DigDugKeyHandler(world));
 		return quitPanel;
 	}
 
