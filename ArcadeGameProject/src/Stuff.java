@@ -13,6 +13,7 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	private DigDugEnvironment world;
 	private Point2D.Double stuffPoint;
 	private boolean isPaused;
+	private Hero hero;
 	/**
 	 * Constructs stuff centered at the given point in the given world.
 	 * 
@@ -40,7 +41,10 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 
 	@Override
 	public void die() {
-		//not yet implemented
+		if(hero.center.equals(stuffPoint)){
+			this.world.removeStuff(this);
+		}
+		
 	}
 
 	@Override
