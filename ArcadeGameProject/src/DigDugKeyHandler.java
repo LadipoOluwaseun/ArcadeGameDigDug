@@ -4,6 +4,7 @@ import java.awt.event.KeyListener;
 public class DigDugKeyHandler implements KeyListener{
 		DigDugWorld world;
 		Hero hero;
+		String direction;
 		
 		DigDugKeyHandler(DigDugWorld world) {
 			this.world = world;
@@ -26,21 +27,25 @@ public class DigDugKeyHandler implements KeyListener{
 			if(key == 'i') {
 				this.hero.updatePosition(0, -5);
 //				 this.hero.moveUp();
+				this.direction = "up";
 			}
 			
 			if(key == 'k') {
 				this.hero.updatePosition(0, 5);
 //				 this.hero.moveDown();
+				this.direction = "down";
 			}
 			
 			if(key == 'l') {
 				this.hero.updatePosition(5, 0);
 //				 this.hero.moveRight();
+				this.direction = "right";
 			}
 			
 			if(key == 'j') {
 				this.hero.updatePosition(-5, 0);
 //				 this.hero.moveLeft();
+				this.direction = "left";
 			}
 			
 			if(key== 'c'){

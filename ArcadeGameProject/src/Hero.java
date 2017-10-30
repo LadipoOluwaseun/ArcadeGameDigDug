@@ -95,12 +95,22 @@ public class Hero extends Stuff implements Runnable {
 	
 	@Override
 	public void updatePosition(int xVel, int yVel) {
-
+		
 		double x = this.point.getX() + xVel;
 		double y = this.point.getY() + yVel;
+		if(point.getX() > 420) {
+			x = 0;
+		}
+		if(point.getX() < 0) {
+			x = 420;
+		}
+		if(point.getY() < 0) {
+			y = 0;
+		}
+		if(point.getY() > 450) {
+			y = 445;
+		}
 		this.point = new Point2D.Double(x, y);
-//		this.changeX = 0;
-//		this.changeY = 0;
 		System.out.println("updating position " + point);
 
 	}
@@ -131,8 +141,8 @@ public class Hero extends Stuff implements Runnable {
 	}
 
 	public Line2D.Double getCord() {
-		// return this.cord;
-		return null;
+		 return this.cord;
+//		return null;
 	}
 
 	@Override
