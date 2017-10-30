@@ -24,7 +24,7 @@ public class Hero extends Stuff implements Runnable {
 	public int changeX;
 	public int changeY;
 	public Line2D.Double cord;
-	public Line2D.Double DEFAULT_CORD;
+//	public Line2D.Double DEFAULT_CORD;
 	public boolean cordExtended;
 	public int WIDTH;
 	public int HEIGHT;
@@ -41,42 +41,44 @@ public class Hero extends Stuff implements Runnable {
 		this.WIDTH = 30;
 		this.HEIGHT = 30;
 		this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS = 100;
+		this.center = new Point2D.Double(point.getX() + this.WIDTH / 2, point.getY() + this.HEIGHT / 2);
 		this.shape = new Rectangle((int) point.getX(), (int) point.getY(), this.WIDTH, this.HEIGHT);
-		this.DEFAULT_CORD = new Line2D.Double(new Point2D.Double(this.point.getX(), this.point.getY()),
-				new Point2D.Double(this.point.getX(), this.point.getY()));
-		this.cord = this.DEFAULT_CORD;
+		this.cord = new Line2D.Double(new Point2D.Double(this.center.getX(), this.center.getY()),
+				new Point2D.Double(this.center.getX(), this.center.getY()));
+//		this.cord = this.DEFAULT_CORD;
+
 		// System.out.println("i'm a hero!");
 	}
 
-//	public void moveUp() {
-//		System.out.println("watch me move up!");
-//		this.changeY = 5;
-//		this.lastDirection = 'u';
-//	}
-//
-//	public void moveDown() {
-//		System.out.println("watch me move down!");
-//		this.changeY = -5;
-//		this.lastDirection = 'd';
-//	}
-//
-//	public void moveLeft() {
-//		System.out.println("watch me move left!");
-//		this.changeX = -5;
-//		this.lastDirection = 'l';
-//		updatePosition();
-//	}
+	// public void moveUp() {
+	// System.out.println("watch me move up!");
+	// this.changeY = 5;
+	// this.lastDirection = 'u';
+	// }
+	//
+	// public void moveDown() {
+	// System.out.println("watch me move down!");
+	// this.changeY = -5;
+	// this.lastDirection = 'd';
+	// }
+	//
+	// public void moveLeft() {
+	// System.out.println("watch me move left!");
+	// this.changeX = -5;
+	// this.lastDirection = 'l';
+	// updatePosition();
+	// }
 
-//	public void moveRight() {
-//		System.out.println("watch me move right!");
-//		this.changeX = 5;
-//		this.lastDirection = 'r';
-//		updatePosition();
-//	}
+	// public void moveRight() {
+	// System.out.println("watch me move right!");
+	// this.changeX = 5;
+	// this.lastDirection = 'r';
+	// updatePosition();
+	// }
 
 	@Override
 	public Rectangle getShape() {
-		Rectangle rect =  new Rectangle((int) point.getX(), (int) point.getY(), this.WIDTH, this.HEIGHT);
+		Rectangle rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), this.WIDTH, this.HEIGHT);
 		return rect;
 	}
 
@@ -90,28 +92,31 @@ public class Hero extends Stuff implements Runnable {
 		double x = this.point.getX();
 		double y = this.point.getY();
 		this.point = new Point2D.Double(x, y);
-		
+
 	}
-	
+
 	@Override
 	public void updatePosition(int xVel, int yVel) {
-		
+
 		double x = this.point.getX() + xVel;
 		double y = this.point.getY() + yVel;
-		if(point.getX() > 420) {
+		if (this.point.getX() > 420) {
 			x = 0;
 		}
-		if(point.getX() < 0) {
+		if (this.point.getX() < 0) {
 			x = 420;
 		}
-		if(point.getY() < 0) {
+		if (this.point.getY() < 0) {
 			y = 0;
 		}
-		if(point.getY() > 450) {
+		if (this.point.getY() > 450) {
 			y = 445;
 		}
 		this.point = new Point2D.Double(x, y);
-		System.out.println("updating position " + point);
+		System.out.println("updating position " + this.point);
+		this.center = new Point2D.Double(this.point.getX()+WIDTH/2,this.point.getY()+HEIGHT/2);
+		this.cord = new Line2D.Double(this.center.getX(), this.center.getY(), this.center.getX(),
+				this.center.getY());
 
 	}
 
@@ -125,15 +130,24 @@ public class Hero extends Stuff implements Runnable {
 	}
 
 	public Line2D.Double extendCord() {
-		this.run();
+		// Thread thread = new Thread(this);
+		// thread.start();
+		// this.run();
+		// System.out.println("extendCord");
+		this.cord = new Line2D.Double(this.center.getX(), this.center.getY(), this.center.getX() + 30,
+				this.center.getY());
+
 		return this.cord;
 
 	}
+
 	//
-	// public Line2D.Double retractCord() {
-	// this.cord = this.DEFAULT_CORD;
-	// return this.cord;
-	// }
+	public Line2D.Double retractCord() {
+		this.cord = new Line2D.Double(new Point2D.Double(this.center.getX(), this.center.getY()),
+				new Point2D.Double(this.center.getX(), this.center.getY()));
+//		this.cord = this.DEFAULT_CORD;
+		return this.cord;
+	}
 
 	@Override
 	public Color getColor() {
@@ -141,8 +155,8 @@ public class Hero extends Stuff implements Runnable {
 	}
 
 	public Line2D.Double getCord() {
-		 return this.cord;
-//		return null;
+		return this.cord;
+		// return null;
 	}
 
 	@Override
@@ -172,57 +186,66 @@ public class Hero extends Stuff implements Runnable {
 		// * is, we don't always exit when interrupted.
 		// */
 		// }
-		try {
-			System.out.println("run method in Hero");
 
-			if (this.lastDirection == 'u') {
-
-				for (int i = 0; i < 30; i++) {
-					this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-							new Point2D.Double(this.cord.getX2(), this.cord.getY2() - 1));
-					Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
-				}
-				for (int i = 0; i < 30; i++) {
-					this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-							new Point2D.Double(this.cord.getX2(), this.cord.getY2() + 1));
-					Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
-				}
-			} else if (this.lastDirection == 'd') {
-				for (int i = 0; i < 30; i++) {
-					this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-							new Point2D.Double(this.cord.getX2(), this.cord.getY2() + 1));
-					Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
-				}
-				for (int i = 0; i < 30; i++) {
-					this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-							new Point2D.Double(this.cord.getX2(), this.cord.getY2() - 1));
-					Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
-				}
-			} else if (this.lastDirection == 'l') {
-				for (int i = 0; i < 30; i++) {
-					this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-							new Point2D.Double(this.cord.getX2() - 1, this.cord.getY2()));
-					Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
-				}
-				for (int i = 0; i < 30; i++) {
-					this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-							new Point2D.Double(this.cord.getX2() + 1, this.cord.getY2()));
-					Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
-				}
-			} else {
-				for (int i = 0; i < 30; i++) {
-					this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-							new Point2D.Double(this.cord.getX2() + 1, this.cord.getY2()));
-					Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
-				}
-				for (int i = 0; i < 30; i++) {
-					this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-							new Point2D.Double(this.cord.getX2() - 1, this.cord.getY2()));
-					Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
-				}
-			}
-
-		}
+		// try {
+		// System.out.println("run method in Hero");
+		//
+		// if (this.lastDirection == 'u') {
+		//
+		// for (int i = 0; i < 30; i++) {
+		// this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(),
+		// this.cord.getY1()),
+		// new Point2D.Double(this.cord.getX2(), this.cord.getY2() - 1));
+		// Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
+		// }
+		// for (int i = 0; i < 30; i++) {
+		// this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(),
+		// this.cord.getY1()),
+		// new Point2D.Double(this.cord.getX2(), this.cord.getY2() + 1));
+		// Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
+		// }
+		// } else if (this.lastDirection == 'd') {
+		// for (int i = 0; i < 30; i++) {
+		// this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(),
+		// this.cord.getY1()),
+		// new Point2D.Double(this.cord.getX2(), this.cord.getY2() + 1));
+		// Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
+		// }
+		// for (int i = 0; i < 30; i++) {
+		// this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(),
+		// this.cord.getY1()),
+		// new Point2D.Double(this.cord.getX2(), this.cord.getY2() - 1));
+		// Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
+		// }
+		// } else if (this.lastDirection == 'l') {
+		// for (int i = 0; i < 30; i++) {
+		// this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(),
+		// this.cord.getY1()),
+		// new Point2D.Double(this.cord.getX2() - 1, this.cord.getY2()));
+		// Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
+		// }
+		// for (int i = 0; i < 30; i++) {
+		// this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(),
+		// this.cord.getY1()),
+		// new Point2D.Double(this.cord.getX2() + 1, this.cord.getY2()));
+		// Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
+		// }
+		// } else {
+		// for (int i = 0; i < 30; i++) {
+		// this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(),
+		// this.cord.getY1()),
+		// new Point2D.Double(this.cord.getX2() + 1, this.cord.getY2()));
+		// Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
+		// }
+		// for (int i = 0; i < 30; i++) {
+		// this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(),
+		// this.cord.getY1()),
+		// new Point2D.Double(this.cord.getX2() - 1, this.cord.getY2()));
+		// Thread.sleep(this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS);
+		// }
+		// }
+		//
+		// }
 
 		// if(this.cordExtended==false){
 		//
@@ -234,11 +257,10 @@ public class Hero extends Stuff implements Runnable {
 		// }
 		// this.cord = this.DEFAULT_CORD;}
 
-		catch (InterruptedException e) {
-			//
-		}
+		// catch (InterruptedException e) {
+		// //
+		// }
 
 	}
 
-	
 }

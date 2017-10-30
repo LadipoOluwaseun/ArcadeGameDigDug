@@ -75,6 +75,10 @@ public class DigDugKeyHandler implements KeyListener{
 				this.hero.updatePosition(0, 0);
 //				 this.hero.moveLeft();
 			}
+			
+			if(key=='c'){
+				this.hero.retractCord();
+			}
 		}
 	
 		@Override

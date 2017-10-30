@@ -163,6 +163,8 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 					this.addStuff(o);
 				} else if (currentChar=='H') {
 					Hero h = new Hero(this,p);
+//					Thread thread = new Thread(h);
+//					thread.start();
 					this.addStuff(h);
 					this.hero = h;
 					initialBoardLayout.add(h);
