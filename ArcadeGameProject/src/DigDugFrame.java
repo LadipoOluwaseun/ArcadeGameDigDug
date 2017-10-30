@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,24 +28,32 @@ public class DigDugFrame extends JFrame {
 	public DigDugFrame(SimulationPanel sp, DigDugWorld world) {
 		setTitle("Dig Dug Worlds");
 
-		JPanel content = new JPanel();
-		content.setPreferredSize(new Dimension(600, 600));
+		DigDugWorldComponent component = new DigDugWorldComponent(world);
+		component.setPreferredSize(new Dimension(600, 600));
+		add(component);
+		//JPanel content = new JPanel();
+		//content.setPreferredSize();
 		// Changes the layout of the panel so the worlds will stack vertically
-		content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
+		//content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
 		// add "rigid stuff" to force minimum spacing
 //		content.add(Box.createVerticalStrut(GAP));
 //			content.add(worlds);
-		content.add(sp, BorderLayout.CENTER);
+		//content.add(sp, BorderLayout.CENTER);
+		DigDugKeyHandler keyboard = new DigDugKeyHandler(world);
+		component.addKeyListener(keyboard);
+
 //		content.add(Box.createVerticalStrut(GAP));
 		add(quitButtonComponent(world), BorderLayout.SOUTH);
 		
-		add(content);
+		//add(content);
 
 		
-		addKeyListener(new DigDugKeyHandler(world));
+		addKeyListener(keyboard);
 //		setResizable(false);
 		
 		pack();
+		component.requestFocus();
+
 	}
 
 	/**
@@ -58,10 +65,10 @@ public class DigDugFrame extends JFrame {
 //				.setBorder(BorderFactory.createEmptyBorder(0, GAP, GAP, GAP));
 //		quitPanel.add(Box.createHorizontalGlue());
 		JButton quitButton = new JButton("Quit");
-//		quitPanel.add(quitButton);
+		quitPanel.add(quitButton);
 		
 		JButton newGameButton = new JButton("New Game");
-//		quitPanel.add(newGameButton);
+		quitPanel.add(newGameButton);
 
 		ActionListener newGamer = new ActionListener() {
 			@Override

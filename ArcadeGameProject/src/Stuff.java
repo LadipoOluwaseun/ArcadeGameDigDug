@@ -49,9 +49,14 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 		updatePosition();
 		}
 	}
+	
+	public void updatePosition(int xVel, int yVel) {
+		//ignored for now
+	}
 
 	@Override
 	public void die() {
+		//
 	}
 
 	@Override

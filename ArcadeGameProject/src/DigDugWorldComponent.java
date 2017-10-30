@@ -54,6 +54,7 @@ public class DigDugWorldComponent extends JComponent{
 
 	@Override
 	protected void paintComponent(Graphics g) {
+		//System.out.println("repaint");
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 //		System.out.println("hi");

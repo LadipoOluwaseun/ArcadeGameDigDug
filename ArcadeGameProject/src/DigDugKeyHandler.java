@@ -24,19 +24,23 @@ public class DigDugKeyHandler implements KeyListener{
 			}
 			
 			if(key == 'i') {
-				 this.hero.moveUp();
+				this.hero.updatePosition(0, -5);
+//				 this.hero.moveUp();
 			}
 			
 			if(key == 'k') {
-				 this.hero.moveDown();
+				this.hero.updatePosition(0, 5);
+//				 this.hero.moveDown();
 			}
 			
 			if(key == 'l') {
-				 this.hero.moveRight();
+				this.hero.updatePosition(5, 0);
+//				 this.hero.moveRight();
 			}
 			
 			if(key == 'j') {
-				 this.hero.moveLeft();
+				this.hero.updatePosition(-5, 0);
+//				 this.hero.moveLeft();
 			}
 			
 			if(key== 'c'){
@@ -46,7 +50,26 @@ public class DigDugKeyHandler implements KeyListener{
 	
 		@Override
 		public void keyReleased(KeyEvent e) {
-			//
+			char key = e.getKeyChar();
+			if(key == 'i') {
+				this.hero.updatePosition(0, 0);
+//				 this.hero.moveUp();
+			}
+			
+			if(key == 'k') {
+				this.hero.updatePosition(0, 0);
+//				 this.hero.moveDown();
+			}
+			
+			if(key == 'l') {
+				this.hero.updatePosition(0, 0);
+//				 this.hero.moveRight();
+			}
+			
+			if(key == 'j') {
+				this.hero.updatePosition(0, 0);
+//				 this.hero.moveLeft();
+			}
 		}
 	
 		@Override

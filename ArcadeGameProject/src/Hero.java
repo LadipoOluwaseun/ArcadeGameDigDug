@@ -48,33 +48,36 @@ public class Hero extends Stuff implements Runnable {
 		// System.out.println("i'm a hero!");
 	}
 
-	public void moveUp() {
-		System.out.println("watch me move up!");
-		this.changeY = 5;
-		this.lastDirection = 'u';
-	}
+//	public void moveUp() {
+//		System.out.println("watch me move up!");
+//		this.changeY = 5;
+//		this.lastDirection = 'u';
+//	}
+//
+//	public void moveDown() {
+//		System.out.println("watch me move down!");
+//		this.changeY = -5;
+//		this.lastDirection = 'd';
+//	}
+//
+//	public void moveLeft() {
+//		System.out.println("watch me move left!");
+//		this.changeX = -5;
+//		this.lastDirection = 'l';
+//		updatePosition();
+//	}
 
-	public void moveDown() {
-		System.out.println("watch me move down!");
-		this.changeY = -5;
-		this.lastDirection = 'd';
-	}
-
-	public void moveLeft() {
-		System.out.println("watch me move left!");
-		this.changeX = -5;
-		this.lastDirection = 'l';
-	}
-
-	public void moveRight() {
-		System.out.println("watch me move right!");
-		this.changeX = 5;
-		this.lastDirection = 'r';
-	}
+//	public void moveRight() {
+//		System.out.println("watch me move right!");
+//		this.changeX = 5;
+//		this.lastDirection = 'r';
+//		updatePosition();
+//	}
 
 	@Override
 	public Rectangle getShape() {
-		return this.shape;
+		Rectangle rect =  new Rectangle((int) point.getX(), (int) point.getY(), this.WIDTH, this.HEIGHT);
+		return rect;
 	}
 
 	@Override
@@ -82,12 +85,24 @@ public class Hero extends Stuff implements Runnable {
 		return this.center;
 	}
 
+	@Override
 	public void updatePosition() {
-		double x = this.point.getX() + this.changeX;
-		double y = this.point.getY() + this.changeY;
+		double x = this.point.getX();
+		double y = this.point.getY();
 		this.point = new Point2D.Double(x, y);
-		this.changeX = 0;
-		this.changeY = 0;
+		
+	}
+	
+	@Override
+	public void updatePosition(int xVel, int yVel) {
+
+		double x = this.point.getX() + xVel;
+		double y = this.point.getY() + yVel;
+		this.point = new Point2D.Double(x, y);
+//		this.changeX = 0;
+//		this.changeY = 0;
+		System.out.println("updating position " + point);
+
 	}
 
 	public void updateSize() {
@@ -214,4 +229,6 @@ public class Hero extends Stuff implements Runnable {
 		}
 
 	}
+
+	
 }
