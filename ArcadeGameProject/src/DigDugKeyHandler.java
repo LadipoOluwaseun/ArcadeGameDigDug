@@ -3,9 +3,11 @@ import java.awt.event.KeyListener;
 
 public class DigDugKeyHandler implements KeyListener{
 		DigDugWorld world;
+		Hero hero;
 		
-		DigDugKeyHandler(DigDugWorld world) {
+		DigDugKeyHandler(DigDugWorld world, SimulationPanel sp) {
 			this.world = world;
+			this.hero = sp.worldComponent.getHero();
 //			System.out.println("world");
 		}
 	
@@ -14,27 +16,31 @@ public class DigDugKeyHandler implements KeyListener{
 //			System.out.println("gwf ");
 			char key = e.getKeyChar();
 			if(key == 'u') {
-				world.changeLevel(true);
+				this.world.changeLevel(true);
 			}
 			
 			if(key == 'd') {
-				world.changeLevel(false);
+				this.world.changeLevel(false);
 			}
 			
-			if(key == KeyEvent.VK_UP) {
-//				 Hero.moveUp();
+			if(key == 'i') {
+				 this.hero.moveUp();
 			}
 			
-			if(key == KeyEvent.VK_DOWN) {
-//				 Hero.moveDown();
+			if(key == 'k') {
+				 this.hero.moveDown();
 			}
 			
-			if(key == KeyEvent.VK_RIGHT) {
-//				 Hero.moveRight();
+			if(key == 'l') {
+				 this.hero.moveRight();
 			}
 			
-			if(key == KeyEvent.VK_LEFT) {
-//				 Hero.moveLeft();
+			if(key == 'j') {
+				 this.hero.moveLeft();
+			}
+			
+			if(key== 'c'){
+				this.hero.extendCord();
 			}
 		}
 	
