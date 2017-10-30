@@ -23,6 +23,7 @@ public class DigDugWorldComponent extends JComponent{
 	private static final int FRAMES_PER_SECOND = 30;
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
 	private boolean hasShownNullErrorMessage = false;
+	private Hero hero;
 
 	DigDugWorldComponent(DigDugWorld world) {
 		this.world = world;
@@ -57,7 +58,9 @@ public class DigDugWorldComponent extends JComponent{
 		drawDrawable(g2, this.world);
 		List<Drawable> drawableParts = this.world.getDrawableParts();
 		for (Drawable d : drawableParts) {
-			
+			if (d instanceof Hero) {
+				this.hero = (Hero) d;
+			}
 			drawDrawable(g2, d);
 			
 		}
