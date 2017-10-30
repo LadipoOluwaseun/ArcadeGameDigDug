@@ -26,6 +26,7 @@ public class DigDugWorldComponent extends JComponent{
 
 	DigDugWorldComponent(DigDugWorld world) {
 		this.world = world;
+		this.hero = world.getHero();
 //		addKeyListener(new DigDugKeyHandler(this.world, this.hero));
 
 
@@ -58,15 +59,16 @@ public class DigDugWorldComponent extends JComponent{
 		drawDrawable(g2, this.world);
 		List<Drawable> drawableParts = this.world.getDrawableParts();
 		for (Drawable d : drawableParts) {
-			if (d instanceof Hero) {
-				this.hero = (Hero) d;
-//				System.out.println(hero.toString());
-			}
-
+//			if (d instanceof Hero) {
+//				this.hero = (Hero) d;
+////				System.out.println(hero.toString());
+//			}
+//			System.out.println();
 			drawDrawable(g2, d);
+//			Line2D.Double line = this.hero.cord;
 //			drawCord(g2, this.hero.cord);
-//			System.out.println(this.hero.getCord());
-//			drawCord(g2, this.hero.getCord());
+//			System.out.println(this.hero.);
+			drawCord(g2, this.hero.cord);
 			
 		}
 		
