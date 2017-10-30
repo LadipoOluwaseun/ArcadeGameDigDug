@@ -38,6 +38,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private final double WIDTH_OF_EACH_STUFF = 30;
 	private final double HEIGHT_OF_EACH_STUFF = 30;
 	public int current;
+	Hero hero;
 	
 	public DigDugWorld(){
 		this.current = 1;
@@ -185,6 +186,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 					initialBoardLayout.add(o);
 				} else if (currentChar=='H') {
 					Hero h = new Hero(this,p);
+					this.hero = h;
 					initialBoardLayout.add(h);
 				}
 				this.stuff = initialBoardLayout;
@@ -201,6 +203,10 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 			exception.printStackTrace();
 		}
 		
+	}
+	
+	public Hero getHero() {
+		return this.hero;
 	}
 
 	@Override
