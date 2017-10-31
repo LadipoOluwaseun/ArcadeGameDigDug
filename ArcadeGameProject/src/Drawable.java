@@ -1,6 +1,7 @@
 import java.awt.Color;
+import java.awt.Rectangle;
 
-import com.sun.javafx.geom.Rectangle;
+//import com.sun.javafx.geom.Rectangle;
 
 /**
  * @author smithea2.
