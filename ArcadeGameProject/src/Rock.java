@@ -73,7 +73,7 @@ public class Rock extends Stuff{
 	public void intercepts(Stuff stuff) {
 		for(int i = 1; i + 1 < this.getBorder().length; i++) {
 			for(int j = 0; j < stuff.getBorder().length; j++) {
-				if(this.getBorder()[i].getY() == stuff.getBorder()[j].getY()) {
+				if(this.getBorder()[2].getY() == stuff.getBorder()[1].getY()) {
 					if(stuff == this.hero) {
 						this.hero.die();
 					}
