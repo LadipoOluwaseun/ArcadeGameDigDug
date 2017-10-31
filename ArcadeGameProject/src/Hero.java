@@ -11,7 +11,7 @@ import com.sun.javafx.geom.Rectangle;
  * @author smithea2. Created Oct 26, 2017.
  */
 
-public class Hero extends Stuff implements Runnable {
+public class Hero extends Stuff{
 
 	public Point2D.Double point;
 	// public int y;
@@ -24,7 +24,7 @@ public class Hero extends Stuff implements Runnable {
 	public int changeX;
 	public int changeY;
 	public Line2D.Double cord;
-//	public Line2D.Double DEFAULT_CORD;
+	// public Line2D.Double DEFAULT_CORD;
 	public boolean cordExtended;
 	public int WIDTH;
 	public int HEIGHT;
@@ -45,7 +45,7 @@ public class Hero extends Stuff implements Runnable {
 		this.shape = new Rectangle((int) point.getX(), (int) point.getY(), this.WIDTH, this.HEIGHT);
 		this.cord = new Line2D.Double(new Point2D.Double(this.center.getX(), this.center.getY()),
 				new Point2D.Double(this.center.getX(), this.center.getY()));
-//		this.cord = this.DEFAULT_CORD;
+		// this.cord = this.DEFAULT_CORD;
 
 		// System.out.println("i'm a hero!");
 	}
@@ -97,7 +97,7 @@ public class Hero extends Stuff implements Runnable {
 
 	@Override
 	public void updatePosition(int xVel, int yVel) {
-
+		updateLastDirection(xVel, yVel);
 		double x = this.point.getX() + xVel;
 		double y = this.point.getY() + yVel;
 		if (this.point.getX() > 420) {
@@ -114,10 +114,24 @@ public class Hero extends Stuff implements Runnable {
 		}
 		this.point = new Point2D.Double(x, y);
 		System.out.println("updating position " + this.point);
-		this.center = new Point2D.Double(this.point.getX()+WIDTH/2,this.point.getY()+HEIGHT/2);
-		this.cord = new Line2D.Double(this.center.getX(), this.center.getY(), this.center.getX(),
-				this.center.getY());
+		this.center = new Point2D.Double(this.point.getX() + this.WIDTH / 2, this.point.getY() + this.HEIGHT / 2);
+		this.cord = new Line2D.Double(this.center.getX(), this.center.getY(), this.center.getX(), this.center.getY());
 
+	}
+
+	public void updateLastDirection(int xVel, int yVel) {
+		if (xVel < 0) {
+			this.lastDirection = 'l';
+		}
+		if (xVel > 0) {
+			this.lastDirection = 'r';
+		}
+		if (yVel < 0) {
+			this.lastDirection = 'u';
+		}
+		if (yVel > 0) {
+			this.lastDirection = 'd';
+		}
 	}
 
 	public void updateSize() {
@@ -130,12 +144,29 @@ public class Hero extends Stuff implements Runnable {
 	}
 
 	public Line2D.Double extendCord() {
-		// Thread thread = new Thread(this);
-		// thread.start();
-		// this.run();
-		// System.out.println("extendCord");
-		this.cord = new Line2D.Double(this.center.getX(), this.center.getY(), this.center.getX() + 30,
-				this.center.getY());
+		if (this.cord.getX2()-this.cord.getX1()==0 && this.cord.getY2()-this.cord.getY1()==0) {
+			
+		
+		if (this.lastDirection == 'u') {
+
+			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
+					new Point2D.Double(this.cord.getX2(), this.cord.getY2() - this.HEIGHT));
+
+		}
+		if (this.lastDirection == 'd') {
+			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
+					new Point2D.Double(this.cord.getX2(), this.cord.getY2() + this.HEIGHT));
+
+		}
+		if (this.lastDirection == 'l') {
+			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
+					new Point2D.Double(this.cord.getX2() - this.WIDTH, this.cord.getY2()));
+
+		}
+		if (this.lastDirection == 'r') {
+			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
+					new Point2D.Double(this.cord.getX2() + this.WIDTH, this.cord.getY2()));
+		}}
 
 		return this.cord;
 
@@ -145,7 +176,7 @@ public class Hero extends Stuff implements Runnable {
 	public Line2D.Double retractCord() {
 		this.cord = new Line2D.Double(new Point2D.Double(this.center.getX(), this.center.getY()),
 				new Point2D.Double(this.center.getX(), this.center.getY()));
-//		this.cord = this.DEFAULT_CORD;
+		// this.cord = this.DEFAULT_CORD;
 		return this.cord;
 	}
 
@@ -159,8 +190,8 @@ public class Hero extends Stuff implements Runnable {
 		// return null;
 	}
 
-	@Override
-	public void run() {
+//	@Override
+//	public void run() {
 		// try {
 		// /*
 		// * Main "brains" inside an infinite loop, so the thread keeps
@@ -261,6 +292,6 @@ public class Hero extends Stuff implements Runnable {
 		// //
 		// }
 
-	}
+//	}
 
 }

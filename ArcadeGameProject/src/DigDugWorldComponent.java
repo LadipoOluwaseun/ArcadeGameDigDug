@@ -108,7 +108,7 @@ public class DigDugWorldComponent extends JComponent{
 	}
 	
 	private static void drawCord(Graphics2D g2, Line2D.Double d){
-		System.out.println("drawCordStart");
+//		System.out.println("drawCordStart");
 		g2.setColor(new Color(255, 0, 0));
 		g2.draw(d);
 //		System.out.println("drawCord End");
