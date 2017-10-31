@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
-import com.sun.javafx.geom.Rectangle;
+//import com.sun.javafx.geom.Rectangle;
 
 /**
  * 
@@ -23,6 +23,7 @@ public class DigDugWorldComponent extends JComponent{
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
 	private boolean hasShownNullErrorMessage = false;
 	Hero hero;
+//	public ArrayList<Dirt> dirtArray;
 
 	DigDugWorldComponent(DigDugWorld world) {
 		this.world = world;
@@ -61,11 +62,12 @@ public class DigDugWorldComponent extends JComponent{
 		drawDrawable(g2, this.world);
 		List<Drawable> drawableParts = this.world.getDrawableParts();
 		for (Drawable d : drawableParts) {
+			this.handleCollisions();
 //			if (d instanceof Hero) {
 //				this.hero = (Hero) d;
 ////				System.out.println(hero.toString());
 //			}
-//			System.out.println();
+//			System.out.println("Paint component");
 			drawDrawable(g2, d);
 //			Line2D.Double line = this.hero.cord;
 //			drawCord(g2, this.hero.cord);
@@ -92,7 +94,7 @@ public class DigDugWorldComponent extends JComponent{
 			showNullPointerMessage("color", d);
 			return;
 		}
-		Rectangle shape = d.getShape();
+		java.awt.Rectangle shape = d.getShape();
 		if (shape == null) {
 			showNullPointerMessage("shape", d);
 			return;
@@ -105,6 +107,14 @@ public class DigDugWorldComponent extends JComponent{
 		g2.fillRect(shape.x, shape.y, shape.width, shape.height);
 		
 		
+	}
+	
+	private void handleCollisions() {
+		for (Dirt d : this.world.getDirtArray()){
+			if (d.getShape().intersects((this.hero.getShape()))) {
+				d.die();
+			}
+		}
 	}
 	
 	private static void drawCord(Graphics2D g2, Line2D.Double d){
