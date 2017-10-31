@@ -78,6 +78,7 @@ public class DigDugWorldComponent extends JComponent{
 		
 		
 	}
+	
 
 /**
  * This helper method draws the given drawable object on the given graphics
@@ -114,6 +115,7 @@ public class DigDugWorldComponent extends JComponent{
 			if (d.getShape().intersects((this.hero.getShape()))) {
 				d.die();
 			}
+			
 		}
 	}
 	

@@ -5,21 +5,21 @@ import java.awt.geom.Point2D.Double;
 
 //import com.sun.javafx.geom.Rectangle;
 
-public class Pookas extends Stuff{
+public class Pookas extends Enemy{
 	
-	public Hero hero;
-	private static final int WIDTH = 30;
-	private static final int HEIGHT = 30;
-	private DigDugEnvironment world;
-	public Point2D.Double point;
-	private boolean intercepts;
+//	public Hero hero;
+//	private static final int WIDTH = 30;
+//	private static final int HEIGHT = 30;
+//	private DigDugEnvironment world;
+//	public Point2D.Double point;
+//	private boolean intercepts;
 	
 	
 	public Pookas(DigDugEnvironment world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
-		this.world = world;
-		this.point = new Point2D.Double(point.getX(), point.getY());
-		this.intercepts = false;
+//		this.world = world;
+//		this.point = new Point2D.Double(point.getX(), point.getY());
+//		this.intercepts = false;
 	}
 
 	@Override

@@ -38,6 +38,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	public int current;
 	Hero hero;
 	private ArrayList<Dirt> dirtArray;
+	private ArrayList<Enemy> enemyArray;
 
 	
 	public DigDugWorld(){
