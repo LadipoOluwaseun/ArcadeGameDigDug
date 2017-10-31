@@ -5,16 +5,16 @@ import java.awt.geom.Point2D.Double;
 
 //import com.sun.javafx.geom.Rectangle;
 
-public class Fygar extends Stuff{
+public class Fygar extends Enemy{
 	
-	public DigDugEnvironment world;
-	public Point2D.Double point;
-	private static final int WIDTH = 30;
-	private static final int HEIGHT = 30;
+//	public DigDugEnvironment world;
+//	public Point2D.Double point;
+//	private static final int WIDTH = 30;
+//	private static final int HEIGHT = 30;
 	
 	public Fygar(DigDugEnvironment world, Double point, Hero heroman) {
 		super(world, point, heroman);
-		this.point = point;
+//		this.point = point;
 		// TODO Auto-generated constructor stub.
 	}
 
@@ -26,7 +26,7 @@ public class Fygar extends Stuff{
 
 	@Override
 	public Rectangle getShape() {
-		return new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
+		return new Rectangle((int) this.point.getX(), (int) this.point.getY(), super.WIDTH, super.HEIGHT);
 	}
 
 	@Override
