@@ -43,6 +43,7 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	//need to implement the methods below
 	@Override
 	public void timePassed() {
+//		System.out.println("time");
 		if (!this.isPaused) {
 		updateSize();
 		updatePosition();
@@ -89,6 +90,8 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	 * @return the score
 	 */
 	public abstract double getscore();
+
+	public abstract Point2D.Double[] getBorder();
 	
 //	public abstract void intercepts(Stuff stuff);
 }
