@@ -1,7 +1,8 @@
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 
-import com.sun.javafx.geom.Rectangle;
+//import com.sun.javafx.geom.Rectangle;
 
 public class Rock extends Stuff{
 	
