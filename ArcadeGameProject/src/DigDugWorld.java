@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -8,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.javafx.geom.Rectangle;
+//import com.sun.javafx.geom.Rectangle;
 
 /**
  * 
@@ -36,8 +37,11 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private final double HEIGHT_OF_EACH_STUFF = 30;
 	public int current;
 	Hero hero;
+	private ArrayList<Dirt> dirtArray;
+
 	
 	public DigDugWorld(){
+		this.dirtArray = new ArrayList<>();
 		this.current = 1;
 		readLevelFile("Level" + this.current + ".txt");
 		this.background = new Rectangle(0, 0, this.WIDTH, this.HEIGHT);
@@ -69,7 +73,6 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	public synchronized void timePassed() {
 		if (!this.isPaused) {
 			for (Temporal t : this.stuff) {
-				System.out.println("timePassed worlds");
 				t.timePassed();
 			}
 		}
@@ -79,10 +82,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		this.stuffToAdd.clear();
 	}
 
-	@Override
-	public Rectangle getShape() {
-		return this.background;
-	}
+
 
 	@Override
 	public void addStuff(Stuff stuff) {
@@ -109,13 +109,17 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		
 	}
 	
+	public ArrayList<Dirt> getDirtArray(){
+		return this.dirtArray;
+	}
+	
 	public Dimension getSize(){
 		Dimension d = new Dimension(this.WIDTH, this.HEIGHT);
 		return d;
 	}
 	
 	public void changeLevel(boolean levelUp) {
-		System.out.println(current);
+		System.out.println(this.current);
 		
 		if(levelUp) {
 			this.current++;
@@ -155,7 +159,8 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 				Point2D.Double p = new Point2D.Double(column*this.WIDTH_OF_EACH_STUFF, row*this.HEIGHT_OF_EACH_STUFF);
 				char currentChar = (char) br.read();
 				if (currentChar=='d') {
-					Dirt d = new Dirt(this, p, hero);
+					Dirt d = new Dirt(this, p, this.hero);
+					this.dirtArray.add(d);
 					initialBoardLayout.add(d);
 					this.addStuff(d);
 				} else if (currentChar=='O') {
@@ -213,5 +218,16 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		// TODO Auto-generated method stub.
 		return false;
 	}
+
+
+	@Override
+	public Rectangle getShape() {
+		// TODO Auto-generated method stub.
+		return hero.getShape();
+	}
+
+
+
+
 
 }
