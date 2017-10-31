@@ -48,9 +48,9 @@ public class Pookas extends Stuff{
 
 	@Override
 	public void updateSize() {
-		if(intercepts(hero.cord)) {
-			this.
-		}
+//		if(intercepts(hero.cord)) {
+//			this.
+//		}
 		
 	}
 
@@ -58,6 +58,12 @@ public class Pookas extends Stuff{
 	public double getscore() {
 		// TODO Auto-generated method stub.
 		return 0;
+	}
+
+	@Override
+	public Double[] getBorder() {
+		// TODO Auto-generated method stub.
+		return null;
 	}
 
 }

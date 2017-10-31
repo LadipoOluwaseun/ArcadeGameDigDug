@@ -69,6 +69,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	public synchronized void timePassed() {
 		if (!this.isPaused) {
 			for (Temporal t : this.stuff) {
+				System.out.println("timePassed worlds");
 				t.timePassed();
 			}
 		}

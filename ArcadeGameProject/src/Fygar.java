@@ -52,4 +52,10 @@ public class Fygar extends Stuff{
 		return 0;
 	}
 
+	@Override
+	public Double[] getBorder() {
+		// TODO Auto-generated method stub.
+		return null;
+	}
+
 }

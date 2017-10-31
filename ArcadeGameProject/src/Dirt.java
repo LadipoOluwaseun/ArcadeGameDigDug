@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 
 import com.sun.javafx.geom.Rectangle;
 
@@ -57,6 +58,12 @@ public class Dirt extends Stuff{
 	@Override
 	public Color getColor() {
 		return Color.orange;
+	}
+
+	@Override
+	public Double[] getBorder() {
+		// TODO Auto-generated method stub.
+		return null;
 	}
 
 }

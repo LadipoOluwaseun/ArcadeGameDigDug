@@ -92,11 +92,11 @@ public class Hero extends Stuff{
 		double x = this.point.getX();
 		double y = this.point.getY();
 		this.point = new Point2D.Double(x, y);
-
 	}
 
 	@Override
 	public void updatePosition(int xVel, int yVel) {
+		
 		updateLastDirection(xVel, yVel);
 		double x = this.point.getX() + xVel;
 		double y = this.point.getY() + yVel;
@@ -188,6 +188,16 @@ public class Hero extends Stuff{
 	public Line2D.Double getCord() {
 		return this.cord;
 		// return null;
+	}
+
+	@Override
+	public Point2D.Double[] getBorder() {
+		Point2D.Double[] borderPoints = new Point2D.Double[4];
+		borderPoints[0] = new Point2D.Double(this.point.getX(), this.point.getY());
+		borderPoints[1] = new Point2D.Double(this.point.getX(), this.point.getY() + HEIGHT);
+		borderPoints[2] = new Point2D.Double(this.point.getX() + WIDTH, this.point.getY() + HEIGHT);
+		borderPoints[3] = new Point2D.Double(this.point.getX() + WIDTH, this.point.getY());
+		return borderPoints;
 	}
 
 //	@Override
