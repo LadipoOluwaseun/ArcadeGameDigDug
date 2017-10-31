@@ -12,7 +12,7 @@ public class Fygar extends Enemy{
 //	private static final int WIDTH = 30;
 //	private static final int HEIGHT = 30;
 	
-	public Fygar(DigDugEnvironment world, Double point, Hero heroman) {
+	public Fygar(DigDugEnvironment world, Point2D.Double point, Hero heroman) {
 		super(world, point, heroman);
 //		this.point = point;
 		// TODO Auto-generated constructor stub.
