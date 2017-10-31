@@ -1,8 +1,9 @@
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 
-import com.sun.javafx.geom.Rectangle;
+//import com.sun.javafx.geom.Rectangle;
 
 public class EmptySpace extends Stuff{
 
@@ -56,7 +57,6 @@ public class EmptySpace extends Stuff{
 		return Color.black;
 	}
 
-	@Override
 	public Double[] getBorder() {
 		// TODO Auto-generated method stub.
 		return null;
