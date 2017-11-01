@@ -29,7 +29,7 @@ public class Hero extends Stuff{
 	public boolean cordExtended;
 	public int WIDTH;
 	public int HEIGHT;
-	private int TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS;
+//	private static final int TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS = 100;
 	char lastDirection;
 	int lastXVelocity;
 	int lastYVelocity;
@@ -43,7 +43,7 @@ public class Hero extends Stuff{
 		this.color = Color.CYAN;
 		this.WIDTH = 30;
 		this.HEIGHT = 30;
-		this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS = 100;
+//		this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS = 100;
 		this.center = new Point2D.Double(point.getX() + this.WIDTH / 2, point.getY() + this.HEIGHT / 2);
 		this.shape = new Rectangle((int) point.getX(), (int) point.getY(), this.WIDTH, this.HEIGHT);
 		this.cord = new Line2D.Double(new Point2D.Double(this.center.getX(), this.center.getY()),
