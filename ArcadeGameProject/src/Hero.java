@@ -18,7 +18,7 @@ public class Hero extends Stuff{
 	// public int y;
 	// public int x;
 	public Rectangle shape;
-	public Point2D center;
+	public Point2D.Double center;
 	// private Dimension size;
 	private Color color;
 	public int score;
