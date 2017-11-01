@@ -69,10 +69,14 @@ public class DigDugWorldComponent extends JComponent{
 		List<Drawable> drawableParts = this.world.getDrawableParts();
 //		System.out.println(this.world.getDrawableParts().toString());
 		for (Enemy e: this.world.getEnemyArray()){
-			e.updatePosition();
+			e.iterateCounter();
+			if (e.getCounter()%3==0) {
+				e.updatePosition(1,1);
+			}
 		}
 		this.handleCollisions();
 		drawCord(g2, this.hero.cord);
+		
 		for (Drawable d : drawableParts) {
 			
 //			if (d instanceof Hero) {
@@ -132,14 +136,16 @@ public class DigDugWorldComponent extends JComponent{
 		for (Enemy e : this.world.getEnemyArray()){
 			if (e.getShape().intersectsLine(this.hero.getCord())) {
 //				System.out.println("enemy intersect cord handle collision method component");
-				e.die();
+				if (e.getCounter()%10==0) {
+					e.expand();
+				}
 			}
 			if (e.getShape().intersects(this.hero.getShape())) {
 				this.hero.die();
 			}
 		}
 		for (Rock r : this.world.getRockArray()){
-			if (r.getShape().intersects(this.hero.getShape())) {
+			while (r.getShape().intersects(this.hero.getShape())) {
 				this.hero.reversePosition();
 			}
 		}
