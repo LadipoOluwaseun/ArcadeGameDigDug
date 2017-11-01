@@ -18,6 +18,10 @@ import javax.swing.JOptionPane;
  */
 
 public class DigDugWorldComponent extends JComponent{
+	/**
+	 * TODO Put here a description of this field.
+	 */
+	private static final long serialVersionUID = 1L;
 	private DigDugWorld world;
 	private static final int FRAMES_PER_SECOND = 30;
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
@@ -127,11 +131,11 @@ public class DigDugWorldComponent extends JComponent{
 				this.hero.die();
 			}
 		}
-//		for (Rock r : this.world.getRockArray()){
-//			if (r.getShape().intersects(this.hero.getShape())) {
-//				this.hero.get
-//			}
-//		}
+		for (Rock r : this.world.getRockArray()){
+			if (r.getShape().intersects(this.hero.getShape())) {
+				this.hero.reversePosition();
+			}
+		}
 	}
 	
 	private static void drawCord(Graphics2D g2, Line2D.Double d){

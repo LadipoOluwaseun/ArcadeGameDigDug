@@ -31,6 +31,8 @@ public class Hero extends Stuff{
 	public int HEIGHT;
 	private int TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS;
 	char lastDirection;
+	int lastXVelocity;
+	int lastYVelocity;
 
 	public Hero(DigDugEnvironment world, Point2D.Double point) {
 		super(world, point);
@@ -117,6 +119,8 @@ public class Hero extends Stuff{
 		System.out.println("updating position " + this.point);
 		this.center = new Point2D.Double(this.point.getX() + this.WIDTH / 2, this.point.getY() + this.HEIGHT / 2);
 		this.cord = new Line2D.Double(this.center.getX(), this.center.getY(), this.center.getX(), this.center.getY());
+		this.lastXVelocity = xVel;
+		this.lastYVelocity = yVel;
 
 	}
 
@@ -132,6 +136,16 @@ public class Hero extends Stuff{
 		}
 		if (yVel > 0) {
 			this.lastDirection = 'd';
+		}
+	}
+	
+	public void reversePosition(){
+		System.out.println("reversePosition Hero");
+		if (this.lastDirection=='u' || this.lastDirection=='d') {
+			updatePosition(this.lastXVelocity, this.lastYVelocity*(-1));
+		}
+		else {
+			updatePosition(this.lastXVelocity*(-1), this.lastYVelocity);
 		}
 	}
 
@@ -174,7 +188,7 @@ public class Hero extends Stuff{
 	}
 	
 	public char getLastDirection(){
-		return lastDirection;
+		return this.lastDirection;
 	}
 
 	//
@@ -199,9 +213,9 @@ public class Hero extends Stuff{
 	public Point2D.Double[] getBorder() {
 		Point2D.Double[] borderPoints = new Point2D.Double[4];
 		borderPoints[0] = new Point2D.Double(this.point.getX(), this.point.getY());
-		borderPoints[1] = new Point2D.Double(this.point.getX(), this.point.getY() + HEIGHT);
-		borderPoints[2] = new Point2D.Double(this.point.getX() + WIDTH, this.point.getY() + HEIGHT);
-		borderPoints[3] = new Point2D.Double(this.point.getX() + WIDTH, this.point.getY());
+		borderPoints[1] = new Point2D.Double(this.point.getX(), this.point.getY() + this.HEIGHT);
+		borderPoints[2] = new Point2D.Double(this.point.getX() + this.WIDTH, this.point.getY() + this.HEIGHT);
+		borderPoints[3] = new Point2D.Double(this.point.getX() + this.WIDTH, this.point.getY());
 		return borderPoints;
 	}
 
