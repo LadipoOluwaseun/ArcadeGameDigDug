@@ -56,7 +56,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 				try {
 					while (true) {
 						Thread.sleep(UPDATE_INTERVAL_MS);
-//						timePassed();
+						timePassed();
 					}
 				} catch (InterruptedException exception) {
 					// Stop when interrupted
