@@ -57,7 +57,8 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	@Override
 	public void die() {
 //		System.out.println(this.getShape().toString());
-		this.getShape().setSize(0, 0);
+//		this.getShape().setSize(0, 0);
+		world.removeStuff(this);
 //		this.getShape().
 //		System.out.println(this.getShape().toString());
 	}
