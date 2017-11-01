@@ -5,10 +5,12 @@ public class DigDugKeyHandler implements KeyListener{
 		DigDugWorld world;
 		Hero hero;
 		String direction;
+		int distanceToMove;
 		
 		DigDugKeyHandler(DigDugWorld world) {
 			this.world = world;
 			this.hero = world.getHero();
+			this.distanceToMove = DigDugWorld.getDistanceToMoveHeroWhenButtonIsPressed();
 //			System.out.println("world");
 		}
 	
@@ -25,25 +27,25 @@ public class DigDugKeyHandler implements KeyListener{
 			}
 			
 			if(key == 'i') {
-				this.hero.updatePosition(0, -5);
+				this.hero.updatePosition(0, this.distanceToMove*(-1));
 //				 this.hero.moveUp();
 				this.direction = "up";
 			}
 			
 			if(key == 'k') {
-				this.hero.updatePosition(0, 5);
+				this.hero.updatePosition(0, this.distanceToMove);
 //				 this.hero.moveDown();
 				this.direction = "down";
 			}
 			
 			if(key == 'l') {
-				this.hero.updatePosition(5, 0);
+				this.hero.updatePosition(this.distanceToMove, 0);
 //				 this.hero.moveRight();
 				this.direction = "right";
 			}
 			
 			if(key == 'j') {
-				this.hero.updatePosition(-5, 0);
+				this.hero.updatePosition(this.distanceToMove*(-1), 0);
 //				 this.hero.moveLeft();
 				this.direction = "left";
 			}
