@@ -48,7 +48,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		this.enemyArray = new ArrayList<>();
 		this.rockArray = new ArrayList<>();
 		this.current = 1;
-		readLevelFile("Level" + this.current + ".txt");
+		readLevelFile("Level" + this.current + ".txt", true);
 		this.background = new Rectangle(0, 0, this.WIDTH, this.HEIGHT);
 		Runnable tickTock = new Runnable() {
 			@Override
@@ -131,22 +131,24 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	
 	public void changeLevel(boolean levelUp) {
 		System.out.println(this.current);
-		
+		try{
 		if(levelUp) {
 			this.current++;
-			this.readLevelFile("Level" + this.current + ".txt");
+			this.readLevelFile("Level" + this.current + ".txt", levelUp);
 //			System.out.println(current);
 //			this.current++;
 		} else {
-			this.readLevelFile("Level" + (this.current - 1) + ".txt");
+			this.readLevelFile("Level" + (this.current - 1) + ".txt", levelUp);
 			this.current--;
 		}
 		System.out.println(this.current);
-		
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
 	
-	public void readLevelFile(String filename) {
+	public void readLevelFile(String filename, boolean levelUp) {
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -208,8 +210,13 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 //			System.out.println(initialBoardLayout);
 			br.close();
 		} catch (FileNotFoundException exception) {
+			if(levelUp){
+			this.current--;}
+			else {
+				this.current++;
+			}
 			// TODO Auto-generated catch-block stub.
-			exception.printStackTrace();
+//			exception.printStackTrace();
 		} catch (IOException exception) {
 			// TODO Auto-generated catch-block stub.
 			exception.printStackTrace();
