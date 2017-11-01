@@ -69,7 +69,7 @@ public class DigDugWorldComponent extends JComponent{
 		List<Drawable> drawableParts = this.world.getDrawableParts();
 //		System.out.println(this.world.getDrawableParts().toString());
 		for (Enemy e: this.world.getEnemyArray()){
-			System.out.println(this.world.getEnemyArray());
+//			System.out.println(this.world.getEnemyArray());
 			e.updatePosition(10, 10);
 		}
 		this.handleCollisions();
