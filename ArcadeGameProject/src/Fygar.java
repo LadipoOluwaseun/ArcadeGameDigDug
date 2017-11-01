@@ -13,7 +13,7 @@ public class Fygar extends Enemy{
 //	private static final int WIDTH = 30;
 //	private static final int HEIGHT = 30;
 	
-	public Fygar(DigDugEnvironment world, Point2D.Double point, Hero hero) {
+	public Fygar(DigDugWorld world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
 //		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
 

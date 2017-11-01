@@ -16,7 +16,7 @@ public class Pookas extends Enemy{
 //	private boolean intercepts;
 	
 	
-	public Pookas(DigDugEnvironment world, Point2D.Double point, Hero hero) {
+	public Pookas(DigDugWorld world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
 //		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
 //		this.world = world;
@@ -68,6 +68,7 @@ public class Pookas extends Enemy{
 		return 0;
 	}
 
+	@Override
 	public Double[] getBorder() {
 		// TODO Auto-generated method stub.
 		return null;
