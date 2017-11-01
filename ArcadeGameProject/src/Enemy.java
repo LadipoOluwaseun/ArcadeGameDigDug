@@ -1,6 +1,6 @@
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
-import java.util.Random;
+//import util.Random;
 
 /**
  * TODO Put here a description of what this class does.
@@ -18,7 +18,7 @@ public abstract class Enemy extends Stuff{
 	protected double amountExpanded;
 	protected static final int AMOUNT_TO_EXPAND = 1;
 	public Rectangle rect;
-	public Random rand;
+	public double rand;
 	char lastDirection;
 	int lastXVelocity;
 	int lastYVelocity;
@@ -36,10 +36,10 @@ public abstract class Enemy extends Stuff{
 		this.point = new Point2D.Double(point.getX(), point.getY());
 		this.intercepts = false;
 		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
-		this.rand = new Random();
+		this.rand = Math.random();
 		this.center = new Point2D.Double(point.getX() + WIDTH / 2, point.getY() + HEIGHT / 2);
-		this.yVel = 0;
-		this.xVel = 0;
+//		this.yVel = 0;
+//		this.xVel = 0;
 		this.counter = 0;
 		
 
@@ -84,9 +84,24 @@ public abstract class Enemy extends Stuff{
 	
 	
 	@Override
-	public void updatePosition() {
+	public void updatePosition(int xVel, int yVel) {
+		System.out.println("help");
 //		if(this.xVel == 0 && this.yVel == 0) {
-//			
+//			xVel = 4;
+//			yVel = 4;
+//		}
+//		rand = Math.random();
+//		for(Dirt d: this.world.getDirtArray()) {
+//		if(this.getShape().intersects(d.getShape())){
+//			if(rand > 0.7 && this.lastDirection == 'l' || rand > 0.7 && this.lastDirection == 'r') {
+//				xVel = -4;
+//				yVel = 4;
+//			}
+//			if(rand < 0.3 && this.lastDirection == 'u' || rand < 0.3 && this.lastDirection == 'd') {
+//				xVel = 4;
+//				yVel = -4;
+//			}
+//		}
 //		}
 		System.out.println("Enemy Update" + this.getShape());
 //		this.point = new Point2D.Double(this.point.getX() + xVel, this.point.getY() + yVel);

@@ -188,12 +188,12 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 					this.hero = h;
 					initialBoardLayout.add(h);
 				} else if (currentChar=='F') {
-					Fygar f = new Fygar(this, q, this.hero);
+					Enemy f = new Fygar(this, q, this.hero);
 					this.enemyArray.add(f);
 					initialBoardLayout.add(f);
 					this.addStuff(f);
 				} else if (currentChar=='P') {
-					Pookas p = new Pookas(this, q, this.hero);
+					Enemy p = new Pookas(this, q, this.hero);
 					this.enemyArray.add(p);
 					initialBoardLayout.add(p);
 					this.addStuff(p);
