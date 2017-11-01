@@ -1,12 +1,11 @@
 import java.awt.Color;
-import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 
 //import com.sun.javafx.geom.Rectangle;
 
 public class Fygar extends Enemy{
-	public Rectangle rect;
+//	public Rectangle rect;
 
 	
 //	public DigDugEnvironment world;
@@ -16,16 +15,16 @@ public class Fygar extends Enemy{
 	
 	public Fygar(DigDugEnvironment world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
-		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
+//		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
 
 //		this.point = point;
 		// TODO Auto-generated constructor stub.
 	}
 
-	@Override
-	public Rectangle getShape() {
-		return this.rect;
-	}
+//	@Override
+//	public Rectangle getShape() {
+//		return this.rect;
+//	}
 	
 	@Override
 	public Color getColor() {

@@ -1,3 +1,4 @@
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 
 /**
@@ -13,6 +14,10 @@ public abstract class Enemy extends Stuff {
 	protected DigDugEnvironment world;
 	public Point2D.Double point;
 	protected boolean intercepts;
+	protected double amountExpanded;
+	protected static final int AMOUNT_TO_EXPAND = 1;
+	public Rectangle rect;
+	
 //	public Rectangle rect;
 
 	
@@ -21,14 +26,21 @@ public abstract class Enemy extends Stuff {
 		this.world = world;
 		this.point = new Point2D.Double(point.getX(), point.getY());
 		this.intercepts = false;
+		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
+		
+
 //		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
 
 	}
 	
-//	@Override
-//	public Rectangle getShape() {
-//		return this.rect;
-//	}
+	public void expand(){
+		this.rect.grow(AMOUNT_TO_EXPAND, AMOUNT_TO_EXPAND);
+	}
+	
+	@Override
+	public Rectangle getShape() {
+		return this.rect;
+	}
 	
 //	public Rectangle getShape(){
 //		return this.
