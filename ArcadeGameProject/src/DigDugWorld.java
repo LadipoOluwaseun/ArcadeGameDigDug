@@ -206,6 +206,10 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	public Hero getHero() {
 		return this.hero;
 	}
+	
+	public ArrayList<Enemy> getEnemyArray(){
+		return this.enemyArray;
+	}
 
 	@Override
 	public Color getColor() {

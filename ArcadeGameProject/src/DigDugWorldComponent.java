@@ -117,6 +117,12 @@ public class DigDugWorldComponent extends JComponent{
 			}
 			
 		}
+		for (Enemy e : this.world.getEnemyArray()){
+			if (e.getShape().intersectsLine(this.hero.getCord())) {
+//				System.out.println("enemy intersect cord handle collision method component");
+				e.die();
+			}
+		}
 	}
 	
 	private static void drawCord(Graphics2D g2, Line2D.Double d){

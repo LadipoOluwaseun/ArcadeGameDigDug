@@ -6,6 +6,8 @@ import java.awt.geom.Point2D.Double;
 //import com.sun.javafx.geom.Rectangle;
 
 public class Pookas extends Enemy{
+	public Rectangle rect;
+
 	
 //	public Hero hero;
 //	private static final int WIDTH = 30;
@@ -17,6 +19,7 @@ public class Pookas extends Enemy{
 	
 	public Pookas(DigDugEnvironment world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
+		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
 //		this.world = world;
 //		this.point = new Point2D.Double(point.getX(), point.getY());
 //		this.intercepts = false;
@@ -27,9 +30,14 @@ public class Pookas extends Enemy{
 		return Color.blue;
 	}
 
+//	@Override
+//	public Rectangle getShape() {
+//		return new Rectangle((int) this.point.getX(),(int) this.point.getY(), WIDTH, HEIGHT);
+//	}
+	
 	@Override
 	public Rectangle getShape() {
-		return new Rectangle((int) this.point.getX(),(int) this.point.getY(), WIDTH, HEIGHT);
+		return this.rect;
 	}
 
 	@Override

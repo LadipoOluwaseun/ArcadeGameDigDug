@@ -13,12 +13,24 @@ public abstract class Enemy extends Stuff {
 	protected DigDugEnvironment world;
 	public Point2D.Double point;
 	protected boolean intercepts;
-	
+//	public Rectangle rect;
+
 	
 	public Enemy(DigDugEnvironment world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
 		this.world = world;
 		this.point = new Point2D.Double(point.getX(), point.getY());
 		this.intercepts = false;
+//		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
+
 	}
+	
+//	@Override
+//	public Rectangle getShape() {
+//		return this.rect;
+//	}
+	
+//	public Rectangle getShape(){
+//		return this.
+//	}
 }
