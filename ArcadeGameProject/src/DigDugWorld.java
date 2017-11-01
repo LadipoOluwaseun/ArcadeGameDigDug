@@ -40,6 +40,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private ArrayList<Dirt> dirtArray;
 	private ArrayList<Enemy> enemyArray;
 	private ArrayList<Rock> rockArray;
+	private static final int DISTANCE_TO_MOVE_HERO_WHEN_BUTTON_IS_PRESSED = 5;
 
 	
 	public DigDugWorld(){
@@ -86,7 +87,9 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		this.stuffToAdd.clear();
 	}
 
-
+	public static int getDistanceToMoveHeroWhenButtonIsPressed() {
+		return DISTANCE_TO_MOVE_HERO_WHEN_BUTTON_IS_PRESSED;
+	}
 
 	@Override
 	public void addStuff(Stuff stuff) {
@@ -98,6 +101,10 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	public void removeStuff(Stuff stuff) {
 		this.stuffToRemove.add(stuff);
 		
+	}
+	
+	public ArrayList<Rock> getRockArray() {
+		return this.rockArray;
 	}
 
 	@Override

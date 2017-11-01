@@ -22,6 +22,7 @@ public class DigDugWorldComponent extends JComponent{
 	private static final int FRAMES_PER_SECOND = 30;
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
 	private boolean hasShownNullErrorMessage = false;
+
 	Hero hero;
 //	public ArrayList<Dirt> dirtArray;
 
@@ -122,7 +123,15 @@ public class DigDugWorldComponent extends JComponent{
 //				System.out.println("enemy intersect cord handle collision method component");
 				e.die();
 			}
+			if (e.getShape().intersects(this.hero.getShape())) {
+				this.hero.die();
+			}
 		}
+//		for (Rock r : this.world.getRockArray()){
+//			if (r.getShape().intersects(this.hero.getShape())) {
+//				this.hero.get
+//			}
+//		}
 	}
 	
 	private static void drawCord(Graphics2D g2, Line2D.Double d){

@@ -172,6 +172,10 @@ public class Hero extends Stuff{
 		return this.cord;
 
 	}
+	
+	public char getLastDirection(){
+		return lastDirection;
+	}
 
 	//
 	public Line2D.Double retractCord() {
