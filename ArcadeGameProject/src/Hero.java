@@ -116,7 +116,7 @@ public class Hero extends Stuff{
 			y = 445;
 		}
 		this.point = new Point2D.Double(x, y);
-		System.out.println("updating position " + this.point);
+//		System.out.println("updating position " + this.point);
 		this.center = new Point2D.Double(this.point.getX() + this.WIDTH / 2, this.point.getY() + this.HEIGHT / 2);
 		this.cord = new Line2D.Double(this.center.getX(), this.center.getY(), this.center.getX(), this.center.getY());
 		this.lastXVelocity = xVel;
@@ -142,10 +142,10 @@ public class Hero extends Stuff{
 	public void reversePosition(){
 		System.out.println("reversePosition Hero");
 		if (this.lastDirection=='u' || this.lastDirection=='d') {
-			updatePosition(this.lastXVelocity, this.lastYVelocity*(-1));
+			updatePosition(this.lastXVelocity*3, this.lastYVelocity*(-1)*3);
 		}
 		else {
-			updatePosition(this.lastXVelocity*(-1), this.lastYVelocity);
+			updatePosition(this.lastXVelocity*(-1)*3, this.lastYVelocity*3);
 		}
 	}
 
