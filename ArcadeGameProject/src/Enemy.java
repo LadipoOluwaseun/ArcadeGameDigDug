@@ -60,6 +60,9 @@ public abstract class Enemy extends Stuff{
 	}
 	
 	public void expand(){
+		if(this.rect.getSize().getHeight() > 45) {
+			this.die();
+		}
 		this.rect.grow(AMOUNT_TO_EXPAND, AMOUNT_TO_EXPAND);
 	}
 	
