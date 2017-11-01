@@ -23,8 +23,8 @@ public class EmptySpace extends Stuff{
 	public EmptySpace(DigDugEnvironment world, Point2D.Double point) {
 		super(world, point);
 		this.point = point;
-		this.WIDTH = 30;
-		this.HEIGHT = 30;
+		this.WIDTH = 0;
+		this.HEIGHT = 0;
 		this.shape = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
 		}
 
