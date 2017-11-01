@@ -203,6 +203,9 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 					initialBoardLayout.add(r);
 					this.addStuff(r);
 				}
+//				for(Enemy e: this.enemyArray) {
+//					e.updatePosition(10, 10);
+//				}
 				this.stuff = initialBoardLayout;
 			}
 			

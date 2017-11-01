@@ -44,10 +44,10 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	@Override
 	public void timePassed() {
 //		System.out.println("time");
-		if (!this.isPaused) {
-		updateSize();
-		updatePosition();
-		}
+//		if (!this.isPaused) {
+//		updateSize();
+//		updatePosition();
+//		}
 	}
 	
 	public void updatePosition(int xVel, int yVel) {

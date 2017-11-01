@@ -64,28 +64,31 @@ public abstract class Enemy extends Stuff{
 	
 	@Override
 	public void updatePosition(int xVel, int yVel) {
-		
-		updateLastDirection(xVel, yVel);
-		double x = this.point.getX() + xVel;
-		double y = this.point.getY() + yVel;
-		if (this.point.getX() > 420) {
-			x = 0;
-		}
-		if (this.point.getX() < 0) {
-			x = 420;
-		}
-		if (this.point.getY() < 0) {
-			y = 0;
-		}
-		if (this.point.getY() > 450) {
-			y = 445;
-		}
-		this.point = new Point2D.Double(x, y);
-		System.out.println("updating position " + this.point);
-		this.center = new Point2D.Double(this.point.getX() + WIDTH / 2, this.point.getY() + HEIGHT / 2);
-//		this.cord = new Line2D.Double(this.center.getX(), this.center.getY(), this.center.getX(), this.center.getY());
-		this.lastXVelocity = xVel;
-		this.lastYVelocity = yVel;
+		this.point = new Point2D.Double(this.point.getX() + xVel, this.point.getY() + yVel);
+		this.center = new Point2D.Double(this.point.getX() + WIDTH, this.point.getY() + HEIGHT);
+//		this.rect.grow(10, 10);
+//		System.out.println("updatePostion Enemy"+ this.getClass().toString());
+//		updateLastDirection(xVel, yVel);
+//		double xPos = this.point.getX() + xVel;
+//		double yPos= this.point.getY() + yVel;
+//		if (this.point.getX() > 420) {
+//			xPos = 0;
+//		}
+//		if (this.point.getX() < 0) {
+//			xPos = 420;
+//		}
+//		if (this.point.getY() < 0) {
+//			yPos = 0;
+//		}
+//		if (this.point.getY() > 450) {
+//			yPos = 445;
+//		}
+//		this.point = new Point2D.Double(xPos, yPos);
+////		System.out.println("updating position " + this.point);
+//		this.center = new Point2D.Double(this.point.getX() + WIDTH / 2, this.point.getY() + HEIGHT / 2);
+////		this.cord = new Line2D.Double(this.center.getX(), this.center.getY(), this.center.getX(), this.center.getY());
+//		this.lastXVelocity = xVel;
+//		this.lastYVelocity = yVel;
 
 	}
 	

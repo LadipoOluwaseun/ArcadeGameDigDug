@@ -26,6 +26,7 @@ public class DigDugWorldComponent extends JComponent{
 	private static final int FRAMES_PER_SECOND = 30;
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
 	private boolean hasShownNullErrorMessage = false;
+	private static final int ENEMY_VELOCITY = 4;
 
 	Hero hero;
 //	public ArrayList<Dirt> dirtArray;
@@ -66,8 +67,14 @@ public class DigDugWorldComponent extends JComponent{
 //		System.out.println("hi");
 		drawDrawable(g2, this.world);
 		List<Drawable> drawableParts = this.world.getDrawableParts();
+//		System.out.println(this.world.getDrawableParts().toString());
+		for (Enemy e: this.world.getEnemyArray()){
+			e.updatePosition(10, 10);
+		}
+		this.handleCollisions();
+		drawCord(g2, this.hero.cord);
 		for (Drawable d : drawableParts) {
-			this.handleCollisions();
+			
 //			if (d instanceof Hero) {
 //				this.hero = (Hero) d;
 ////				System.out.println(hero.toString());
@@ -77,7 +84,7 @@ public class DigDugWorldComponent extends JComponent{
 //			Line2D.Double line = this.hero.cord;
 //			drawCord(g2, this.hero.cord);
 //			System.out.println(this.hero.);
-			drawCord(g2, this.hero.cord);
+			
 			
 		}
 		
