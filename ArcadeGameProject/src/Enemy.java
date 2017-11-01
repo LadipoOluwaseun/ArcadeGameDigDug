@@ -25,6 +25,7 @@ public abstract class Enemy extends Stuff{
 	public Point2D.Double center;
 	private int yVel;
 	private int xVel;
+	public double counter;
 	
 //	public Rectangle rect;
 
@@ -39,10 +40,23 @@ public abstract class Enemy extends Stuff{
 		this.center = new Point2D.Double(point.getX() + WIDTH / 2, point.getY() + HEIGHT / 2);
 		this.yVel = 0;
 		this.xVel = 0;
+		this.counter = 0;
 		
 
 //		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
 
+	}
+	
+	public void iterateCounter() {
+		this.counter++;
+	}
+	
+	public double getCounter() {
+		return this.counter;
+	}
+	
+	public void resetCounter() {
+		this.counter = 0;
 	}
 	
 	public void expand(){
