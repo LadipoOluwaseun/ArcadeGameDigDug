@@ -89,7 +89,8 @@ public class Hero extends Stuff{
 	public Point2D getCenterPoint() {
 		return this.center;
 	}
-
+	
+	
 	@Override
 	public void updatePosition() {
 		double x = this.point.getX();
@@ -99,7 +100,6 @@ public class Hero extends Stuff{
 
 	@Override
 	public void updatePosition(int xVel, int yVel) {
-		
 		updateLastDirection(xVel, yVel);
 		double x = this.point.getX() + xVel;
 		double y = this.point.getY() + yVel;
@@ -151,6 +151,12 @@ public class Hero extends Stuff{
 
 	public void updateSize() {
 		// this.size = this.size;
+	}
+	
+	@Override 
+	public void die(){
+		System.out.println("die");
+		this.point = new Point2D.Double(225.0, 120.0);
 	}
 
 	@Override
