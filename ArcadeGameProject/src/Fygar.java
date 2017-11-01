@@ -26,7 +26,7 @@ public class Fygar extends Enemy{
 
 	@Override
 	public Rectangle getShape() {
-		return new Rectangle((int) this.point.getX(), (int) this.point.getY(), super.WIDTH, super.HEIGHT);
+		return new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
 	}
 
 	@Override
