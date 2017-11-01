@@ -156,7 +156,7 @@ public class Hero extends Stuff{
 	@Override 
 	public void die(){
 		System.out.println("die");
-		this.point = new Point2D.Double(225.0, 120.0);
+		this.point = new Point2D.Double(210.0, 120.0);
 	}
 
 	@Override
