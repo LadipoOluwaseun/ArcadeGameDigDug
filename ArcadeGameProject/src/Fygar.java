@@ -6,28 +6,37 @@ import java.awt.geom.Point2D.Double;
 //import com.sun.javafx.geom.Rectangle;
 
 public class Fygar extends Enemy{
+	public Rectangle rect;
+
 	
 //	public DigDugEnvironment world;
 //	public Point2D.Double point;
 //	private static final int WIDTH = 30;
 //	private static final int HEIGHT = 30;
 	
-	public Fygar(DigDugEnvironment world, Point2D.Double point, Hero heroman) {
-		super(world, point, heroman);
+	public Fygar(DigDugEnvironment world, Point2D.Double point, Hero hero) {
+		super(world, point, hero);
+		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
+
 //		this.point = point;
 		// TODO Auto-generated constructor stub.
 	}
 
+	@Override
+	public Rectangle getShape() {
+		return this.rect;
+	}
+	
 	@Override
 	public Color getColor() {
 		// TODO Auto-generated method stub.
 		return Color.GREEN;
 	}
 
-	@Override
-	public Rectangle getShape() {
-		return new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
-	}
+//	@Override
+//	public Rectangle getShape() {
+//		return new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
+//	}
 
 	@Override
 	public Point2D getCenterPoint() {
