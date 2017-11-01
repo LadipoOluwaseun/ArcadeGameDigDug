@@ -43,6 +43,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	
 	public DigDugWorld(){
 		this.dirtArray = new ArrayList<>();
+		this.enemyArray = new ArrayList<>();
 		this.current = 1;
 		readLevelFile("Level" + this.current + ".txt");
 		this.background = new Rectangle(0, 0, this.WIDTH, this.HEIGHT);
@@ -157,24 +158,34 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 				
 				
 				
-				Point2D.Double p = new Point2D.Double(column*this.WIDTH_OF_EACH_STUFF, row*this.HEIGHT_OF_EACH_STUFF);
+				Point2D.Double q = new Point2D.Double(column*this.WIDTH_OF_EACH_STUFF, row*this.HEIGHT_OF_EACH_STUFF);
 				char currentChar = (char) br.read();
 				if (currentChar=='d') {
-					Dirt d = new Dirt(this, p, this.hero);
+					Dirt d = new Dirt(this, q, this.hero);
 					this.dirtArray.add(d);
 					initialBoardLayout.add(d);
 					this.addStuff(d);
 				} else if (currentChar=='O') {
-					EmptySpace o = new EmptySpace(this, p);
+					EmptySpace o = new EmptySpace(this, q);
 					initialBoardLayout.add(o);
 					this.addStuff(o);
 				} else if (currentChar=='H') {
-					Hero h = new Hero(this,p);
+					Hero h = new Hero(this,q);
 //					Thread thread = new Thread(h);
 //					thread.start();
 					this.addStuff(h);
 					this.hero = h;
 					initialBoardLayout.add(h);
+				} else if (currentChar=='F') {
+					Fygar f = new Fygar(this, q, this.hero);
+					this.enemyArray.add(f);
+					initialBoardLayout.add(f);
+					this.addStuff(f);
+				} else if (currentChar=='P') {
+					Pookas p = new Pookas(this, q, this.hero);
+					this.enemyArray.add(p);
+					initialBoardLayout.add(p);
+					this.addStuff(p);
 				}
 				this.stuff = initialBoardLayout;
 			}
