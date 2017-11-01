@@ -171,22 +171,22 @@ public class Hero extends Stuff{
 		if (this.lastDirection == 'u') {
 
 			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-					new Point2D.Double(this.cord.getX2(), this.cord.getY2() - this.HEIGHT));
+					new Point2D.Double(this.cord.getX2(), this.cord.getY2() - this.HEIGHT*2));
 
 		}
 		if (this.lastDirection == 'd') {
 			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-					new Point2D.Double(this.cord.getX2(), this.cord.getY2() + this.HEIGHT));
+					new Point2D.Double(this.cord.getX2(), this.cord.getY2() + this.HEIGHT*2));
 
 		}
 		if (this.lastDirection == 'l') {
 			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-					new Point2D.Double(this.cord.getX2() - this.WIDTH, this.cord.getY2()));
+					new Point2D.Double(this.cord.getX2() - this.WIDTH*2, this.cord.getY2()));
 
 		}
 		if (this.lastDirection == 'r') {
 			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-					new Point2D.Double(this.cord.getX2() + this.WIDTH, this.cord.getY2()));
+					new Point2D.Double(this.cord.getX2() + this.WIDTH*2, this.cord.getY2()));
 		}}
 
 		return this.cord;
