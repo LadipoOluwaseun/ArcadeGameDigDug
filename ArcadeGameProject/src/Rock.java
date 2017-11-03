@@ -12,6 +12,7 @@ public class Rock extends Stuff{
 	public Hero hero;
 	private boolean hitDirt;
 	private Point2D.Double bottomCorner;
+	public Rectangle rect;
 	
 	public Rock(DigDugEnvironment world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
@@ -19,6 +20,7 @@ public class Rock extends Stuff{
 		this.hero = hero;
 		this.hitDirt = false;
 		this.bottomCorner = new Point2D.Double(point.getX() + WIDTH,point.getY() + HEIGHT);
+		this.rect = new Rectangle((int) point.getX(), (int) point.getY(), WIDTH, HEIGHT);
 		
 	}
 
@@ -29,7 +31,7 @@ public class Rock extends Stuff{
 
 	@Override
 	public Rectangle getShape() {
-		return new Rectangle((int) this.point.getX(),(int) this.point.getY(), WIDTH, HEIGHT);
+		return this.rect;
 	}
 
 	public Point2D.Double getCornerPoint() {
@@ -45,9 +47,13 @@ public class Rock extends Stuff{
 //		}
 	}
 	
-	public double fall() {
-		double fallValue = 5;
+	public boolean falling() {
+		boolean fallValue = true;
 		return fallValue;
+	}
+
+	private void hitDirt() {
+		this.hitDirt =true;
 	}
 
 	@Override
@@ -63,34 +69,32 @@ public class Rock extends Stuff{
 	
 	@Override
 	public Point2D.Double[] getBorder() {
-		Point2D.Double[] borderPoints = new Point2D.Double[4];
-		borderPoints[0] = this.getCornerPoint();
-		borderPoints[1] = new Point2D.Double(this.point.getX(), this.point.getY() + HEIGHT);
-		borderPoints[2] = this.bottomCorner;
-		borderPoints[3] = new Point2D.Double(this.point.getX() + WIDTH, this.point.getY());
-		return borderPoints;
+//		Point2D.Double[] borderPoints = new Point2D.Double[4];
+//		borderPoints[0] = this.getCornerPoint();
+//		borderPoints[1] = new Point2D.Double(this.point.getX(), this.point.getY() + HEIGHT);
+//		borderPoints[2] = this.bottomCorner;
+//		borderPoints[3] = new Point2D.Double(this.point.getX() + WIDTH, this.point.getY());
+//		return borderPoints;
+		return null;
 	}
-	
+//	
 	public void intercepts(Stuff stuff) {
-		for(int i = 1; i + 1 < this.getBorder().length; i++) {
-			for(int j = 0; j < stuff.getBorder().length; j++) {
-				if(this.getBorder()[2].getY() == stuff.getBorder()[1].getY()) {
-					if(stuff == this.hero) {
-						this.hero.die();
-					}
-					if(stuff.getColor() == Color.orange) {
-						this.hitDirt = true;
-					}
-					if(stuff.getColor() == Color.red) {
-						stuff.die();
-					}
-					if(stuff.getColor() == Color.blue) {
-						stuff.die();
-					}
-				}
+		if(this.getShape().getMaxY() == stuff.getShape().getMinY()) {
+			if(stuff == this.hero) {
+				this.hero.die();
 			}
-		}
-		
+			if(stuff.getColor() == Color.orange) {
+				this.hitDirt();
+				this.point = new Point2D.Double(stuff.getCenterPoint().getX() - WIDTH/2, stuff.getCenterPoint().getY() - HEIGHT*3/2);
+				this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
+			}
+			if(stuff.getColor() == Color.red) {
+				stuff.die();
+			}
+			if(stuff.getColor() == Color.blue) {
+				stuff.die();
+			}
+		}		
 	}
 
 	@Override
