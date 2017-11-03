@@ -95,7 +95,7 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	 */
 	public abstract double getscore();
 
-	public abstract Point2D.Double[] getBorder();
+//	public abstract Point2D.Double[] getBorder();
 	
 //	public abstract void intercepts(Stuff stuff);
 }

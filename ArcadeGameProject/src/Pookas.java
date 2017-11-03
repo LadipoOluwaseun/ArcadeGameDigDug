@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 
 //import com.sun.javafx.geom.Rectangle;
 
@@ -66,12 +65,6 @@ public class Pookas extends Enemy{
 	public double getscore() {
 		// TODO Auto-generated method stub.
 		return 0;
-	}
-
-	@Override
-	public Double[] getBorder() {
-		// TODO Auto-generated method stub.
-		return null;
 	}
 
 }

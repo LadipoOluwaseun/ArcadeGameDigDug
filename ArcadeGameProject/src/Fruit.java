@@ -38,9 +38,4 @@ public class Fruit extends Stuff{
 		return 400;
 	}
 
-	@Override
-	public Double[] getBorder() {
-		return null;
-	}
-
 }

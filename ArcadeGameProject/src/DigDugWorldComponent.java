@@ -148,10 +148,12 @@ public class DigDugWorldComponent extends JComponent{
 					r.getShape().getMaxX() >=this.hero.getShape().getMinX() ||
 					r.getShape().getMinX() <= this.hero.getShape().getMaxX() &&
 					r.getShape().getMinX() >= this.hero.getShape().getMinX())) {
-				System.out.println("falling Rock");
-//				while(r.falling()) {
-//					if(r.intercepts(this.hero))
-//				}
+//				System.out.println("falling Rock");
+				r.falling();
+//				for()
+//					if(r.getShape().getMinY() == )
+//				r.fall();
+//			}
 			}
 			while (r.getShape().intersects(this.hero.getShape())) {
 				this.hero.reversePosition();

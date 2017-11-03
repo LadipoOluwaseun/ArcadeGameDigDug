@@ -215,15 +215,15 @@ public class Hero extends Stuff{
 		// return null;
 	}
 
-	@Override
-	public Point2D.Double[] getBorder() {
-		Point2D.Double[] borderPoints = new Point2D.Double[4];
-		borderPoints[0] = new Point2D.Double(this.point.getX(), this.point.getY());
-		borderPoints[1] = new Point2D.Double(this.point.getX(), this.point.getY() + this.HEIGHT);
-		borderPoints[2] = new Point2D.Double(this.point.getX() + this.WIDTH, this.point.getY() + this.HEIGHT);
-		borderPoints[3] = new Point2D.Double(this.point.getX() + this.WIDTH, this.point.getY());
-		return borderPoints;
-	}
+//	@Override
+//	public Point2D.Double[] getBorder() {
+//		Point2D.Double[] borderPoints = new Point2D.Double[4];
+//		borderPoints[0] = new Point2D.Double(this.point.getX(), this.point.getY());
+//		borderPoints[1] = new Point2D.Double(this.point.getX(), this.point.getY() + this.HEIGHT);
+//		borderPoints[2] = new Point2D.Double(this.point.getX() + this.WIDTH, this.point.getY() + this.HEIGHT);
+//		borderPoints[3] = new Point2D.Double(this.point.getX() + this.WIDTH, this.point.getY());
+//		return borderPoints;
+//	}
 
 //	@Override
 //	public void run() {
