@@ -27,8 +27,8 @@ public class Hero extends Stuff{
 	public Line2D.Double cord;
 	// public Line2D.Double DEFAULT_CORD;
 	public boolean cordExtended;
-	public int WIDTH;
-	public int HEIGHT;
+	public static final int WIDTH = 30;
+	public static final int HEIGHT = 30;
 //	private static final int TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS = 100;
 	char lastDirection;
 	int lastXVelocity;
@@ -41,11 +41,11 @@ public class Hero extends Stuff{
 		this.changeY = 0;
 		this.cordExtended = false;
 		this.color = Color.CYAN;
-		this.WIDTH = 30;
-		this.HEIGHT = 30;
+//		this.WIDTH = 30;
+//		this.HEIGHT = 30;
 //		this.TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS = 100;
-		this.center = new Point2D.Double(point.getX() + this.WIDTH / 2, point.getY() + this.HEIGHT / 2);
-		this.shape = new Rectangle((int) point.getX(), (int) point.getY(), this.WIDTH, this.HEIGHT);
+		this.center = new Point2D.Double(point.getX() + WIDTH / 2, point.getY() + HEIGHT / 2);
+		this.shape = new Rectangle((int) point.getX(), (int) point.getY(), WIDTH, HEIGHT);
 		this.cord = new Line2D.Double(new Point2D.Double(this.center.getX(), this.center.getY()),
 				new Point2D.Double(this.center.getX(), this.center.getY()));
 		System.out.println(this.point);
@@ -83,7 +83,7 @@ public class Hero extends Stuff{
 
 	@Override
 	public Rectangle getShape() {
-		this.shape = new Rectangle((int) this.point.getX(), (int) this.point.getY(), this.WIDTH, this.HEIGHT);
+		this.shape = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
 //		System.out.println(rect.);
 		return this.shape;
 	}
@@ -120,7 +120,7 @@ public class Hero extends Stuff{
 		}
 		this.point = new Point2D.Double(x, y);
 //		System.out.println("updating position " + this.point);
-		this.center = new Point2D.Double(this.point.getX() + this.WIDTH / 2, this.point.getY() + this.HEIGHT / 2);
+		this.center = new Point2D.Double(this.point.getX() + WIDTH / 2, this.point.getY() + HEIGHT / 2);
 		this.cord = new Line2D.Double(this.center.getX(), this.center.getY(), this.center.getX(), this.center.getY());
 		this.lastXVelocity = xVel;
 		this.lastYVelocity = yVel;
@@ -152,6 +152,7 @@ public class Hero extends Stuff{
 		}
 	}
 
+	@Override
 	public void updateSize() {
 		// this.size = this.size;
 	}
@@ -174,22 +175,22 @@ public class Hero extends Stuff{
 		if (this.lastDirection == 'u') {
 
 			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-					new Point2D.Double(this.cord.getX2(), this.cord.getY2() - this.HEIGHT*2));
+					new Point2D.Double(this.cord.getX2(), this.cord.getY2() - HEIGHT*2));
 
 		}
 		if (this.lastDirection == 'd') {
 			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-					new Point2D.Double(this.cord.getX2(), this.cord.getY2() + this.HEIGHT*2));
+					new Point2D.Double(this.cord.getX2(), this.cord.getY2() + HEIGHT*2));
 
 		}
 		if (this.lastDirection == 'l') {
 			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-					new Point2D.Double(this.cord.getX2() - this.WIDTH*2, this.cord.getY2()));
+					new Point2D.Double(this.cord.getX2() - WIDTH*2, this.cord.getY2()));
 
 		}
 		if (this.lastDirection == 'r') {
 			this.cord = new Line2D.Double(new Point2D.Double(this.cord.getX1(), this.cord.getY1()),
-					new Point2D.Double(this.cord.getX2() + this.WIDTH*2, this.cord.getY2()));
+					new Point2D.Double(this.cord.getX2() + WIDTH*2, this.cord.getY2()));
 		}}
 
 		return this.cord;
