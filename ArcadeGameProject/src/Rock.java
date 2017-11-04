@@ -2,6 +2,12 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 
+//import com.sun.webkit.Timer;
+
+//import javax.swing.Timer;
+
+
+
 //import com.sun.javafx.geom.Rectangle;
 
 public class Rock extends Stuff{
@@ -15,6 +21,7 @@ public class Rock extends Stuff{
 	public Rectangle rect;
 	boolean falling;
 	DigDugWorld world;
+//	public int counter;
 	
 	public Rock(DigDugWorld world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
@@ -22,11 +29,25 @@ public class Rock extends Stuff{
 		this.point = point;
 		this.hero = hero;
 		this.hitDirt = false;
+//		this.counter = 0;
 //		this.bottomCorner = new Point2D.Double(point.getX() + WIDTH,point.getY() + HEIGHT);
 		this.rect = new Rectangle((int) point.getX(), (int) point.getY(), WIDTH, HEIGHT);
 		this.falling = false;
 	}
 
+//	public void iterateCounter() {
+//		this.counter++;
+//		// System.out.println(this.counter);
+//	}
+//
+//	public double getCounter() {
+//		return this.counter;
+//	}
+//
+//	public void resetCounter() {
+//		this.counter = 0;
+//	}
+	
 	@Override
 	public Color getColor() {
 		return Color.gray;
@@ -83,6 +104,7 @@ public class Rock extends Stuff{
 	public void fall() {
 //		System.out.println("falling");
 		while(this.falling) {
+//			if (this.getCounter()%10==0) {
 			for(Dirt d: this.world.getDirtArray()) {
 				if(this.getShape().getMaxY() == d.getShape().getMinY() &&
 						this.getShape().getMinX() == d.getShape().getMinX() &&
@@ -90,15 +112,25 @@ public class Rock extends Stuff{
 					System.out.println("ouch");
 //					System.out.println(this.hero.getMax);
 					this.falling = false;
+					return;
 				}
 			}
-			if(this.point.getY() == 220) {
+			for(Enemy e: this.world.getEnemyArray()) {
+				if(this.getShape().intersects(e.getShape())) {
+					e.die();
+				}
+			}
+			if(this.hero.getShape().intersects(this.getShape())) {
+				this.hero.die();
+			}
+			if(this.point.getY() > 450) {
 				this.falling = false;
+				return;
 			}
 //			System.out.println("please Fall");
 			this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 1);
 			this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
-			
+//			}
 		}
 	}
 	

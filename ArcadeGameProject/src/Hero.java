@@ -34,7 +34,7 @@ public class Hero extends Stuff{
 	int lastXVelocity;
 	int lastYVelocity;
 
-	public Hero(DigDugEnvironment world, Point2D.Double point) {
+	public Hero(DigDugWorld world, Point2D.Double point) {
 		super(world, point);
 		this.point = point;
 		this.changeX = 0;
@@ -48,6 +48,8 @@ public class Hero extends Stuff{
 		this.shape = new Rectangle((int) point.getX(), (int) point.getY(), this.WIDTH, this.HEIGHT);
 		this.cord = new Line2D.Double(new Point2D.Double(this.center.getX(), this.center.getY()),
 				new Point2D.Double(this.center.getX(), this.center.getY()));
+		System.out.println(this.point);
+//		System.out.println("new Hero");
 		// this.cord = this.DEFAULT_CORD;
 
 		// System.out.println("i'm a hero!");
@@ -81,8 +83,9 @@ public class Hero extends Stuff{
 
 	@Override
 	public Rectangle getShape() {
-		Rectangle rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), this.WIDTH, this.HEIGHT);
-		return rect;
+		this.shape = new Rectangle((int) this.point.getX(), (int) this.point.getY(), this.WIDTH, this.HEIGHT);
+//		System.out.println(rect.);
+		return this.shape;
 	}
 
 	@Override
@@ -211,6 +214,7 @@ public class Hero extends Stuff{
 	}
 
 	public Line2D.Double getCord() {
+//		return null;
 		return this.cord;
 		// return null;
 	}
