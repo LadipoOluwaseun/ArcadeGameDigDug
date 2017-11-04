@@ -25,6 +25,9 @@ public class Pookas extends Enemy{
 
 	@Override
 	public Color getColor() {
+		if (this.isGhost) {
+			return Color.orange;
+		}
 		return Color.blue;
 	}
 
