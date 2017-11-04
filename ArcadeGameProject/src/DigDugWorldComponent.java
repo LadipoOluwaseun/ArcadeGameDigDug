@@ -144,10 +144,11 @@ public class DigDugWorldComponent extends JComponent{
 		}
 		for (Rock r : this.world.getRockArray()){
 			if(r.getShape().getMaxY() == this.hero.getShape().getMinY() && 
-					(r.getShape().getMaxX() <= this.hero.getShape().getMaxX() && 
+					r.getShape().getMaxX() <= this.hero.getShape().getMaxX() && 
 					r.getShape().getMaxX() >=this.hero.getShape().getMinX() ||
 					r.getShape().getMinX() <= this.hero.getShape().getMaxX() &&
-					r.getShape().getMinX() >= this.hero.getShape().getMinX())) {
+					r.getShape().getMinX() >= this.hero.getShape().getMinX() &&
+					r.getShape().getMaxY() == this.hero.getShape().getMinY()) {
 //				System.out.println("falling Rock");
 				r.falling();
 //				r.hitDirt();
