@@ -73,7 +73,7 @@ public class DigDugWorldComponent extends JComponent{
 			e.updatePositionHelper();
 		}
 		this.handleCollisions();
-		drawCord(g2, this.hero.cord);
+		drawCord(g2, this.hero.getCord());
 		
 		for (Drawable d : drawableParts) {
 			
