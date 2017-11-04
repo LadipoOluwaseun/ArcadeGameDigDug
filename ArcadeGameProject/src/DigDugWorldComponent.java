@@ -150,6 +150,8 @@ public class DigDugWorldComponent extends JComponent{
 					r.getShape().getMinX() >= this.hero.getShape().getMinX())) {
 //				System.out.println("falling Rock");
 				r.falling();
+//				r.hitDirt();
+				r.fall();
 //				for()
 //					if(r.getShape().getMinY() == )
 //				r.fall();

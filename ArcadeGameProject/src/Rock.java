@@ -11,16 +11,18 @@ public class Rock extends Stuff{
 	public Point2D.Double point;
 	public Hero hero;
 	private boolean hitDirt;
-	private Point2D.Double bottomCorner;
+//	private Point2D.Double bottomCorner;
 	public Rectangle rect;
 	boolean falling;
+	DigDugWorld world;
 	
-	public Rock(DigDugEnvironment world, Point2D.Double point, Hero hero) {
+	public Rock(DigDugWorld world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
+		this.world = world;
 		this.point = point;
 		this.hero = hero;
 		this.hitDirt = false;
-		this.bottomCorner = new Point2D.Double(point.getX() + WIDTH,point.getY() + HEIGHT);
+//		this.bottomCorner = new Point2D.Double(point.getX() + WIDTH,point.getY() + HEIGHT);
 		this.rect = new Rectangle((int) point.getX(), (int) point.getY(), WIDTH, HEIGHT);
 		this.falling = false;
 	}
@@ -49,12 +51,21 @@ public class Rock extends Stuff{
 	}
 	
 	public boolean falling() {
+//		System.out.println("falling");
 		this.falling = true;
 		return this.falling;
 	}
 
-	private void hitDirt() {
-		this.hitDirt =true;
+	public void hitDirt() {
+		for(Dirt d: this.world.getDirtArray()) {
+			if(this.getShape().getMaxY() == d.getShape().getMinY() && 
+					this.getShape().getMaxX() == d.getShape().getMaxX() &&
+					this.getShape().getMinX() == d.getShape().getMinX()) {
+				System.out.println(d.getShape().getMaxX() + " " + d.getShape().getMinX() + " " + d.getShape().getMinY());
+				this.hitDirt =true;
+			}			
+		}
+		
 	}
 
 	@Override
@@ -69,10 +80,16 @@ public class Rock extends Stuff{
 	}
 	
 	public void fall() {
+//		System.out.println("falling");
 		while(this.falling) {
-			this.point = new Point2D.Double(this.point.getX(), this.point.getY());
+//			System.out.println("please Fall");
+			this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 4);
 			this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
+			this.hitDirt();
 			if(this.hitDirt) {
+				System.out.println("ouch");
+				this.falling = false;
+				this.hitDirt = false;
 				return;
 			}
 		}
