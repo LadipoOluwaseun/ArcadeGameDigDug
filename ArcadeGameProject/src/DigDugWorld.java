@@ -23,23 +23,24 @@ import java.util.List;
 public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	boolean isPaused;
 	private static final long UPDATE_INTERVAL_MS = 10;
-	private final int WIDTH = 450;
-	private final int HEIGHT = 450;
+	private final static int WIDTH = 450;
+	private final static int HEIGHT = 450;
 	
 	private List<Stuff> stuff = new ArrayList<>();
 	private List<Stuff> stuffToAdd = new ArrayList<>();
 	private List<Stuff> stuffToRemove = new ArrayList<>();
 	private Rectangle background;
 	
-	private final int NUMBER_OF_OBJECTS_WIDE = 15;
-	private final int NUMBER_OF_OBJECTS_HIGH = 15;
-	private final double WIDTH_OF_EACH_STUFF = 30;
-	private final double HEIGHT_OF_EACH_STUFF = 30;
+	private final static int NUMBER_OF_OBJECTS_WIDE = 15;
+	private final static int NUMBER_OF_OBJECTS_HIGH = 15;
+	private final static double WIDTH_OF_EACH_STUFF = 30;
+	private final static double HEIGHT_OF_EACH_STUFF = 30;
 	public int current;
 	Hero hero;
 	private ArrayList<Dirt> dirtArray;
 	private ArrayList<Enemy> enemyArray;
 	private ArrayList<Rock> rockArray;
+	private ArrayList<EmptySpace> emptySpaceArray;
 	private static final int DISTANCE_TO_MOVE_HERO_WHEN_BUTTON_IS_PRESSED = 5;
 
 	
@@ -47,9 +48,10 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		this.dirtArray = new ArrayList<>();
 		this.enemyArray = new ArrayList<>();
 		this.rockArray = new ArrayList<>();
+		this.emptySpaceArray = new ArrayList<>();
 		this.current = 1;
 		readLevelFile("Level" + this.current + ".txt", true);
-		this.background = new Rectangle(0, 0, this.WIDTH, this.HEIGHT);
+		this.background = new Rectangle(0, 0, WIDTH, HEIGHT);
 		Runnable tickTock = new Runnable() {
 			@Override
 			public void run() {
@@ -100,6 +102,18 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	@Override
 	public void removeStuff(Stuff stuff) {
 		this.stuffToRemove.add(stuff);
+		if(this.dirtArray.contains(stuff)) {
+			this.dirtArray.remove(stuff);
+			this.emptySpaceArray.add(new EmptySpace(this, 
+					new Point2D.Double(stuff.getCenterPoint().getX()- WIDTH_OF_EACH_STUFF/2,
+							stuff.getCenterPoint().getY() - HEIGHT_OF_EACH_STUFF/2)));
+		}
+		if(this.hero == stuff) {
+			this.hero = null;
+		}
+		if(this.enemyArray.contains(stuff)) {
+			this.enemyArray.remove(stuff);
+		}
 		
 	}
 	
@@ -125,7 +139,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	}
 	
 	public Dimension getSize(){
-		Dimension d = new Dimension(this.WIDTH, this.HEIGHT);
+		Dimension d = new Dimension(WIDTH, HEIGHT);
 		return d;
 	}
 	
@@ -158,8 +172,8 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 			int counter = 0;
 			int row = 0;
 			int column = 0;
-			for (int i = 0; i < this.NUMBER_OF_OBJECTS_HIGH*this.NUMBER_OF_OBJECTS_WIDE; i++) {
-				if (counter%this.NUMBER_OF_OBJECTS_WIDE==0){
+			for (int i = 0; i < NUMBER_OF_OBJECTS_HIGH*NUMBER_OF_OBJECTS_WIDE; i++) {
+				if (counter%NUMBER_OF_OBJECTS_WIDE==0){
 					row++;
 					column=0;
 				} else {
@@ -169,7 +183,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 				
 				
 				
-				Point2D.Double q = new Point2D.Double(column*this.WIDTH_OF_EACH_STUFF, row*this.HEIGHT_OF_EACH_STUFF);
+				Point2D.Double q = new Point2D.Double(column*WIDTH_OF_EACH_STUFF, row*HEIGHT_OF_EACH_STUFF);
 				char currentChar = (char) br.read();
 				if (currentChar=='d') {
 					Dirt d = new Dirt(this, q, this.hero);
@@ -178,6 +192,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 					this.addStuff(d);
 				} else if (currentChar=='O') {
 					EmptySpace o = new EmptySpace(this, q);
+//					this.emptySpaceArray.add(o);
 					initialBoardLayout.add(o);
 					this.addStuff(o);
 				} else if (currentChar=='H') {
@@ -263,7 +278,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	@Override
 	public Rectangle getShape() {
 		// TODO Auto-generated method stub.
-		return hero.getShape();
+		return this.hero.getShape();
 	}
 
 

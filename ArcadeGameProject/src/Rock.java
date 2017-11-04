@@ -56,17 +56,18 @@ public class Rock extends Stuff{
 		return this.falling;
 	}
 
-	public void hitDirt() {
-		for(Dirt d: this.world.getDirtArray()) {
-			if(this.getShape().getMaxY() == d.getShape().getMinY() && 
-					this.getShape().getMaxX() == d.getShape().getMaxX() &&
-					this.getShape().getMinX() == d.getShape().getMinX()) {
-				System.out.println(d.getShape().getMaxX() + " " + d.getShape().getMinX() + " " + d.getShape().getMinY());
-				this.hitDirt =true;
-			}			
-		}
-		
-	}
+//	public void hitDirt() {
+//		for(Dirt d: this.world.getDirtArray()) {
+//			if(this.getShape().getMaxY() == d.getShape().getMinY() && 
+//					this.getShape().getMaxX() == d.getShape().getMaxX() &&
+//					this.getShape().getMinX() == d.getShape().getMinX()) {
+//				System.out.println(d.getShape().getMaxX() + " " + d.getShape().getMinX() + " " + d.getShape().getMinY());
+//				System.out.println(this.getShape().getMaxX() + " " + this.getShape().getMinX() + " " + this.getShape().getMaxY() + "rock");
+//				this.hitDirt =true;
+//			}			
+//		}
+//		
+//	}
 
 	@Override
 	public void updateSize() {
@@ -83,14 +84,19 @@ public class Rock extends Stuff{
 //		System.out.println("falling");
 		while(this.falling) {
 //			System.out.println("please Fall");
-			this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 4);
+			this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 1);
 			this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
-			this.hitDirt();
-			if(this.hitDirt) {
-				System.out.println("ouch");
+			for(Dirt d: this.world.getDirtArray()) {
+				if(this.getShape().getMaxY() == d.getShape().getMinY() &&
+						this.getShape().getMinX() == d.getShape().getMinX() &&
+						this.getShape().getMaxX() == d.getShape().getMaxX()) {
+					System.out.println("ouch");
+//					System.out.println(this.hero.getMax);
+					this.falling = false;
+				}
+			}
+			if(this.point.getY() == 220) {
 				this.falling = false;
-				this.hitDirt = false;
-				return;
 			}
 		}
 	}
