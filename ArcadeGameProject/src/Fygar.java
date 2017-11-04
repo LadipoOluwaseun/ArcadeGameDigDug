@@ -28,9 +28,9 @@ public class Fygar extends Enemy{
 	
 	@Override
 	public Color getColor() {
-//		if(this.isGhost){
-//			return Color.orange;
-//		}
+		if(this.isGhost){
+			return Color.pink;
+		}
 		// TODO Auto-generated method stub.
 		return Color.GREEN;
 	}

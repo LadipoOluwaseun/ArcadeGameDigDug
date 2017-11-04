@@ -6,7 +6,6 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-//import util.Random;
 
 
 /**
@@ -31,8 +30,10 @@ public abstract class Enemy extends Stuff {
 	public Point2D.Double center;
 	private int yVel;
 	private int xVel;
-	public double counter;
+	public int counter;
 	public ArrayList<Dirt> dirtArray;
+	public boolean isGhost;
+	private int counterWhenTurnedIntoGhost;
 
 	// public Rectangle rect;
 
@@ -49,6 +50,7 @@ public abstract class Enemy extends Stuff {
 		this.counter = 0;
 		this.dirtArray = world.getDirtArray();
 		this.lastDirection = 'd';
+		this.isGhost = false;
 
 		// this.rect = new Rectangle((int) point.getX(),(int) point.getY(),
 		// WIDTH, HEIGHT);
@@ -78,11 +80,13 @@ public abstract class Enemy extends Stuff {
 
 	}
 
+
 	@Override
 	public Rectangle getShape() {
 		return this.rect;
 	}
 
+	
 	public void reversePosition() {
 		System.out.println("reversePosition Hero");
 		if (this.lastDirection == 'u' || this.lastDirection == 'd') {
@@ -91,8 +95,39 @@ public abstract class Enemy extends Stuff {
 			updatePosition(this.lastXVelocity * (-1), this.lastYVelocity);
 		}
 	}
+	
+	public void makeGhost(){
+		if (!(this.isGhost)) {
+			this.counterWhenTurnedIntoGhost = this.counter;
+			int randNum = util.Random.randRange(200, 1000);
+//			int randNum = 100;
+//			System.out.println(this.counter);
+
+			
+			
+			if (this.counter%randNum==0) {
+				this.isGhost = true;
+			}
+		} else {
+			if (this.counter>this.counterWhenTurnedIntoGhost+100) {
+				
+			
+			for (Dirt d : this.dirtArray) {
+				if (d.getShape().intersects(this.rect)) {
+					this.isGhost = true;
+					break;
+				}
+				this.isGhost = false;
+			}
+		}}
+	}
 
 	public void updatePositionHelper() {
+		this.counter++;
+		makeGhost();
+		if (!(this.isGhost)) {
+
+		
 		// System.out.println("update position helper LastDirection is " +
 		// this.lastDirection);
 		// TODO Auto-generated method stub.
@@ -113,6 +148,28 @@ public abstract class Enemy extends Stuff {
 			this.xVel = 1;
 		}
 		updatePosition(xVel, yVel);
+		}
+		
+		else {
+//			int randNum = util.Random.randRange(100, 200);
+//			if (this.counter%randNum==0) {
+				this.xVel = 0;
+				this.yVel = 0;
+				if (this.lastDirection == 'u') {
+					this.yVel = -1;
+				}
+				if (this.lastDirection == 'd') {
+					this.yVel = 1;
+				}
+				if (this.lastDirection == 'l') {
+					this.xVel = -1;
+				}
+				if (this.lastDirection == 'r') {
+					this.xVel = 1;
+				}
+				updatePosition(xVel, yVel);
+//			}
+		}
 	}
 
 	public void getDirectionToMove() {
