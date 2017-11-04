@@ -4,8 +4,10 @@
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 //import util.Random;
+
 
 /**
  * TODO Put here a description of what this class does.
@@ -162,12 +164,17 @@ public abstract class Enemy extends Stuff {
 		// }
 //		flag = true;
 //		System.out.println(flag);
-		for (HashMap.Entry<Character, Rectangle> entry : rectHashMap.entrySet()) {
-//			System.out.println("Second hashmap loop");
+		ArrayList<Character> randomListOfDirections = new ArrayList<>();
+		randomListOfDirections.add('u');
+		randomListOfDirections.add('d');
+		randomListOfDirections.add('l');
+		randomListOfDirections.add('r');
+		Collections.shuffle(randomListOfDirections);
+		for (int i=0;i<randomListOfDirections.size();i++){
 			flag = true;
 
 			for (Dirt d : this.dirtArray) {
-				if (d.getShape().intersects(entry.getValue())) {
+				if (d.getShape().intersects(rectHashMap.get(randomListOfDirections.get(i)))) {
 
 					flag = false;
 				}
@@ -175,10 +182,14 @@ public abstract class Enemy extends Stuff {
 			}
 			if (flag) {
 				System.out.println("inner dirt array2");
-				this.lastDirection = entry.getKey();
+				this.lastDirection = randomListOfDirections.get(i);
 				return;
 
 			}
+		}
+		for (HashMap.Entry<Character, Rectangle> entry : rectHashMap.entrySet()) {
+//			System.out.println("Second hashmap loop");
+			
 
 		}
 
@@ -237,18 +248,22 @@ public abstract class Enemy extends Stuff {
 		double xPos = this.point.getX();
 		double yPos = this.point.getY();
 		if (this.point.getX() > 420) {
-			xPos = 0;
+			this.lastDirection = 'l';
+//			xPos = 0;
 		}
 		if (this.point.getX() < 0) {
-			xPos = 420;
+			this.lastDirection = 'r';
+//			xPos = 420;
 		}
 		if (this.point.getY() < 0) {
-			yPos = 0;
-			this.yVel = -this.yVel;
+			this.lastDirection = 'd';
+//			yPos = 0;
+//			this.yVel = -this.yVel;
 		}
 		if (this.point.getY() > 450) {
-			yPos = 445;
-			this.yVel = -this.yVel;
+			this.lastDirection = 'u';
+//			yPos = 445;
+//			this.yVel = -this.yVel;
 		}
 		// xPos = this.point.getX() + xVel;
 		// yPos= this.point.getY() + yVel;
