@@ -163,7 +163,15 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	}
 	
 	public void readLevelFile(String filename, boolean levelUp) {
-
+		
+		for(Dirt d: this.dirtArray) {
+//			this.removeStuff();
+		}
+		this.dirtArray = new ArrayList<>();
+		this.emptySpaceArray = new ArrayList<>();
+		this.enemyArray = new ArrayList<>();
+		this.rockArray = new ArrayList<>();
+		this.hero = null;
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
 			
