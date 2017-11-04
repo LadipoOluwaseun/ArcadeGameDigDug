@@ -83,9 +83,6 @@ public class Rock extends Stuff{
 	public void fall() {
 //		System.out.println("falling");
 		while(this.falling) {
-//			System.out.println("please Fall");
-			this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 1);
-			this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
 			for(Dirt d: this.world.getDirtArray()) {
 				if(this.getShape().getMaxY() == d.getShape().getMinY() &&
 						this.getShape().getMinX() == d.getShape().getMinX() &&
@@ -98,6 +95,10 @@ public class Rock extends Stuff{
 			if(this.point.getY() == 220) {
 				this.falling = false;
 			}
+//			System.out.println("please Fall");
+			this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 1);
+			this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
+			
 		}
 	}
 	
