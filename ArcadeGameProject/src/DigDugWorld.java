@@ -54,6 +54,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		this.rockArray = new ArrayList<>();
 		this.emptySpaceArray = new ArrayList<>();
 		this.fygarArray = new ArrayList<>();
+		this.fruitArray = new ArrayList<>();
 		this.readingFile = false;
 		this.current = 1;
 		readLevelFile("Level" + this.current + ".txt", true);
@@ -250,6 +251,12 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 					this.rockArray.add(r);
 					initialBoardLayout.add(r);
 					this.addStuff(r);
+					
+				} else if (currentChar=='U'){
+					Fruit f = new Fruit(this, q, this.hero);
+					this.fruitArray.add(f);
+					initialBoardLayout.add(f);
+					this.addStuff(f);
 				}
 //				for(Enemy e: this.enemyArray) {
 //					e.updatePosition(10, 10);
