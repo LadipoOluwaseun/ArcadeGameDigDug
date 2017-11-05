@@ -14,6 +14,7 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	private Point2D.Double stuffPoint;
 	private boolean isPaused;
 	private Hero hero;
+	private int count;
 	/**
 	 * Constructs stuff centered at the given point in the given world.
 	 * 
@@ -56,11 +57,11 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 
 	@Override
 	public void die() {
-//		System.out.println(this.getShape().toString());
-//		this.getShape().setSize(0, 0);
-		world.removeStuff(this);
-//		this.getShape().
-//		System.out.println(this.getShape().toString());
+		if(count == 0){
+			world.removeStuff(this);
+			world.updateScore(this.getscore());
+			count++;
+		}	
 	}
 
 	@Override
