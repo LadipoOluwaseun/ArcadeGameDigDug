@@ -41,6 +41,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private ArrayList<Dirt> dirtArray;
 	private ArrayList<Enemy> enemyArray;
 	private ArrayList<Rock> rockArray;
+	private ArrayList<Fruit> fruitArray;
 	private ArrayList<EmptySpace> emptySpaceArray;
 	private ArrayList<Fygar> fygarArray;
 	private static final int DISTANCE_TO_MOVE_HERO_WHEN_BUTTON_IS_PRESSED = 5;
@@ -281,6 +282,10 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	public ArrayList<Enemy> getEnemyArray(){
 		return this.enemyArray;
 	}
+	
+	public ArrayList<Fruit> getFruitArray() {
+		return this.fruitArray;
+	}
 
 	@Override
 	public Color getColor() {
@@ -325,6 +330,9 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	public boolean getReadingFile() {
 		return this.readingFile;
 	}
+
+
+	
 
 
 
