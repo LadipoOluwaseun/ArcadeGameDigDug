@@ -41,10 +41,10 @@ public class Pookas extends Enemy{
 //		return this.rect;
 //	}
 
-	@Override
-	public Point2D getCenterPoint() {
-		return null;
-	}
+//	@Override
+//	public Point2D.Double getCenterPoint() {
+//		return null;
+//	}
 	
 	public Point2D.Double getCornerPoint() {
 		return this.point;

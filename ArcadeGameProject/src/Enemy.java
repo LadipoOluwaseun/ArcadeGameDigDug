@@ -151,7 +151,7 @@ public abstract class Enemy extends Stuff {
 		if (this.lastDirection == 'r') {
 			this.xVel = 1;
 		}
-		updatePosition(xVel, yVel);
+		updatePosition(this.xVel, this.yVel);
 		}
 		
 		else {
@@ -171,22 +171,21 @@ public abstract class Enemy extends Stuff {
 				if (this.lastDirection == 'r') {
 					this.xVel = 1;
 				}
-				updatePosition(xVel, yVel);
+				updatePosition(this.xVel, this.yVel);
 //			}
 		}
 	}
 
 	public void getDirectionToMove() {
 
-		Rectangle upRect = new Rectangle(rect.x, rect.y-1, rect.width, rect.height);
-		Rectangle downRect = new Rectangle(rect.x, rect.y+1, rect.width, rect.height);
-		Rectangle leftRect = new Rectangle(rect.x - 1, rect.y, rect.width, rect.height);
-		Rectangle rightRect = new Rectangle(rect.x + 1, rect.y, rect.width, rect.height);
+		Rectangle upRect = new Rectangle(this.rect.x, this.rect.y-1, this.rect.width, this.rect.height);
+		Rectangle downRect = new Rectangle(this.rect.x, this.rect.y+1, this.rect.width, this.rect.height);
+		Rectangle leftRect = new Rectangle(this.rect.x - 1, this.rect.y, this.rect.width, this.rect.height);
+		Rectangle rightRect = new Rectangle(this.rect.x + 1, this.rect.y, this.rect.width, this.rect.height);
 		HashMap<Character, Rectangle> rectHashMap = new HashMap<>();
 		rectHashMap.put('u', upRect);
 		rectHashMap.put('l', leftRect);		
 		rectHashMap.put('d', downRect);
-
 		rectHashMap.put('r', rightRect);
 		boolean flag = false;
 
@@ -329,10 +328,10 @@ public abstract class Enemy extends Stuff {
 		// xPos = this.point.getX() + xVel;
 		// yPos= this.point.getY() + yVel;
 		this.point = new Point2D.Double(xPos + xVel, yPos + yVel);
-		this.rect = new Rectangle((int) point.getX(), (int) point.getY(), this.width, this.height);
+		this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), this.width, this.height);
 
 		// System.out.println("updating position " + this.point);
-		this.center = new Point2D.Double(point.getX() + this.width / 2, point.getY() + this.height / 2);
+		this.center = new Point2D.Double(this.point.getX() + this.width / 2, this.point.getY() + this.height / 2);
 		// this.cord = new Line2D.Double(this.center.getX(), this.center.getY(),
 		// this.center.getX(), this.center.getY());
 		this.lastXVelocity = this.xVel;
@@ -355,7 +354,12 @@ public abstract class Enemy extends Stuff {
 		}
 	}
 	
-	public Line2D.Double getFire(){
+	public Line2D getFire(){
+//		System.out.println(this.getCenterPoint());
 		return new Line2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY(), this.getCenterPoint().getX(), this.getCenterPoint().getY());
+	}
+	
+	public Point2D.Double getCenterPoint() {
+		return new Point2D.Double(this.point.getX() + this.width / 2, this.point.getY() + this.height / 2);
 	}
 }

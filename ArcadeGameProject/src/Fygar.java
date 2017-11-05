@@ -120,11 +120,12 @@ public class Fygar extends Enemy{
 //		return new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
 //	}
 
-	@Override
-	public Point2D getCenterPoint() {
-		// TODO Auto-generated method stub.
-		return null;
-	}
+//	@Override
+//	public Point2D.Double getCenterPoint() {
+//		// TODO Auto-generated method stub.
+//		System.out.println(new Point2D.Double(this.point.getX() + WIDTH/2, this.point.getY() + HEIGHT / 2));
+//		return new Point2D.Double(this.point.getX() + WIDTH/2, this.point.getY() + HEIGHT / 2);
+//	}
 
 	@Override
 	public void updatePosition() {
