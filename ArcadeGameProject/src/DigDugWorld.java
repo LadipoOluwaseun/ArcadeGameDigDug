@@ -319,7 +319,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 
 	@Override
 	public void updateScore(double scoreAdd) {
-		// TODO Auto-generated method stub.
+		this.score = this.score + scoreAdd;
 		
 	}
 	public boolean getReadingFile() {
