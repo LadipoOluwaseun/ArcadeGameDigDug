@@ -46,6 +46,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private ArrayList<Fygar> fygarArray;
 	private static final int DISTANCE_TO_MOVE_HERO_WHEN_BUTTON_IS_PRESSED = 5;
 	private boolean readingFile;
+	private int rockArrayLength;
 
 	
 	public DigDugWorld(){
@@ -56,6 +57,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		this.fygarArray = new ArrayList<>();
 		this.fruitArray = new ArrayList<>();
 		this.readingFile = false;
+		this.rockArrayLength = 0;
 		this.current = 1;
 		readLevelFile("Level" + this.current + ".txt", true);
 		this.background = new Rectangle(0, 0, WIDTH, HEIGHT);
@@ -104,6 +106,9 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	public void addStuff(Stuff stuff) {
 		this.stuffToAdd.add(stuff);
 		
+	}
+	public void addFruit() {
+		this.stuffToAdd.addAll(this.fruitArray);
 	}
 
 	@Override
@@ -251,13 +256,13 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 					this.rockArray.add(r);
 					initialBoardLayout.add(r);
 					this.addStuff(r);
-					
-				} else if (currentChar=='U'){
-					Fruit f = new Fruit(this, q, this.hero);
-					this.fruitArray.add(f);
-					initialBoardLayout.add(f);
-					this.addStuff(f);
+//				} else if (currentChar=='U'){
+//					Fruit f = new Fruit(this, q, this.hero);
+//					this.fruitArray.add(f);
+//					initialBoardLayout.add(f);
+//					this.addStuff(f);
 				}
+				this.rockArrayLength = this.rockArray.size();
 //				for(Enemy e: this.enemyArray) {
 //					e.updatePosition(10, 10);
 //				}
@@ -290,7 +295,11 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		return this.enemyArray;
 	}
 	
-	public ArrayList<Fruit> getFruitArray() {
+	public ArrayList<Fruit> getFruitArray(int count) {
+		if(count == 2 ) {
+		Fruit f = new Fruit(this, this.hero);
+		this.fruitArray.add(f);
+		}
 		return this.fruitArray;
 	}
 
@@ -336,6 +345,10 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	}
 	public boolean getReadingFile() {
 		return this.readingFile;
+	}
+	
+	public int getRockInitialCount() {
+		return this.rockArrayLength;
 	}
 
 

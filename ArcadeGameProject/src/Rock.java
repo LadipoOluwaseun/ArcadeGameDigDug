@@ -17,6 +17,7 @@ public class Rock extends Stuff{
 	DigDugWorld world;
 	public int counter;
 	public int counterWhenHeroMovedUnder;
+	private int countOfFalls;
 	
 	/**
 	 * Returns the value of the field called 'counterWhenHeroMovedUnder'.
@@ -78,9 +79,13 @@ public class Rock extends Stuff{
 	
 	public boolean falling() {
 //		System.out.println("falling");
-		this.falling = true;
+//		this.falling = true;
 		return this.falling;
 	}
+	
+//	public void setFalling(boolean bool) {
+//		this.falling = bool;
+//	}
 
 //	public void hitDirt() {
 //		for(Dirt d: this.world.getDirtArray()) {
@@ -128,6 +133,9 @@ public class Rock extends Stuff{
 //		}
 //	}
 	
+//	public boolean twoHaveFallen() {
+//	}
+	
 	public void fall() {
 		this.counter++;
 //		System.out.println(counter);
@@ -147,14 +155,16 @@ public class Rock extends Stuff{
 //					this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
 					this.rect.translate(0, 1);
 					this.falling = true;
+//					this.twoHaveFallen++;
 					
 				} else {
+//					this.die();
 					this.falling = false;
 				}
 
 			
 		
-	}	
+	}
 	
 	
 

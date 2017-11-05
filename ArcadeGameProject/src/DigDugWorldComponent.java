@@ -28,11 +28,13 @@ public class DigDugWorldComponent extends JComponent {
 	private static final int ENEMY_VELOCITY = 4;
 
 	Hero hero;
+	private int countNumberOfFalls;
 	// public ArrayList<Dirt> dirtArray;
 
 	DigDugWorldComponent(DigDugWorld world) {
 		this.world = world;
 		this.hero = world.getHero();
+		this.countNumberOfFalls = 0;
 		// addKeyListener(new DigDugKeyHandler(this.world, this.hero));
 
 		// setPreferredSize(world.getSize());
@@ -130,7 +132,7 @@ public class DigDugWorldComponent extends JComponent {
 			}
 
 		}
-		for (Fruit f : this.world.getFruitArray()) {
+		for (Fruit f : this.world.getFruitArray(this.countNumberOfFalls)) {
 				if(f.getShape().intersects(this.hero.getShape())){
 				   f.die();
 				}
@@ -159,7 +161,18 @@ public class DigDugWorldComponent extends JComponent {
 		// TODO: move this stuff to the rock class.
 
 		for (Rock r : this.world.getRockArray()) {
+//			if(r.falling()) {
+//				this.countNumberOfFalls++;
+//				}
 			r.fall();
+			if(r.falling() && this.countNumberOfFalls < 2) {
+			this.countNumberOfFalls++;
+			r.setFalling(false);
+			System.out.println(this.countNumberOfFalls);
+			}
+			for(Fruit f: this.world.getFruitArray(this.countNumberOfFalls)) {
+				this.world.addStuff(f);
+			}
 //			r.setCounter(r.getCounter() + 1);
 //
 //			if (r.getShape().getMaxY() == this.hero.getShape().getMinY()
