@@ -1,10 +1,17 @@
 import java.awt.Color;
+import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
+import java.util.Random;
 
 //import com.sun.javafx.geom.Rectangle;
 
 public class Fygar extends Enemy{
+	
+	private boolean fireOut;
+	private Line2D.Double fire;
+	private static final int WIDTH = 30;
+	private static final int HEIGHT = 30;
 //	public Rectangle rect;
 
 	
@@ -15,6 +22,11 @@ public class Fygar extends Enemy{
 	
 	public Fygar(DigDugWorld world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
+		fireOut = false;
+		fire = new Line2D.Double(new Point2D.Double(this.center.getX(), this.center.getY()),
+				new Point2D.Double(this.center.getX(), this.center.getY()));
+		
+		
 //		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
 
 //		this.point = point;
@@ -34,6 +46,53 @@ public class Fygar extends Enemy{
 		// TODO Auto-generated method stub.
 		return Color.GREEN;
 	}
+	
+	public void handleBreatheFire() {
+		Random rand = new Random();
+		if(rand.nextInt(1000) < 3) {
+			this.breatheFire();
+		}
+	}
+	
+	
+	public Line2D.Double breatheFire() {
+		if (this.fire.getX2()-this.fire.getX1()==0 && this.fire.getY2()-this.fire.getY1()==0) {
+			
+		
+		if (this.lastDirection == 'u') {
+
+			this.fire = new Line2D.Double(new Point2D.Double(this.fire.getX1(), this.fire.getY1()),
+					new Point2D.Double(this.fire.getX2(), this.fire.getY2() - HEIGHT*2));
+
+		}
+		if (this.lastDirection == 'd') {
+			this.fire = new Line2D.Double(new Point2D.Double(this.fire.getX1(), this.fire.getY1()),
+					new Point2D.Double(this.fire.getX2(), this.fire.getY2() + HEIGHT*2));
+
+		}
+		if (this.lastDirection == 'l') {
+			this.fire = new Line2D.Double(new Point2D.Double(this.fire.getX1(), this.fire.getY1()),
+					new Point2D.Double(this.fire.getX2() - WIDTH*2, this.fire.getY2()));
+
+		}
+		if (this.lastDirection == 'r') {
+			this.fire = new Line2D.Double(new Point2D.Double(this.fire.getX1(), this.fire.getY1()),
+					new Point2D.Double(this.fire.getX2() + WIDTH*2, this.fire.getY2()));
+		}}
+
+		return this.fire;
+
+	}
+	
+	public Line2D.Double retractFire() {
+		this.fire = new Line2D.Double(new Point2D.Double(this.center.getX(), this.center.getY()),
+				new Point2D.Double(this.center.getX(), this.center.getY()));
+		return this.fire;
+	}
+	
+	public Line2D.Double getFire() {
+		return this.fire;
+	}
 
 //	@Override
 //	public Rectangle getShape() {
@@ -48,7 +107,8 @@ public class Fygar extends Enemy{
 
 	@Override
 	public void updatePosition() {
-		// TODO Auto-generated method stub.
+//		System.out.println("fire");
+		this.fire = new Line2D.Double(this.center.getX(), this.center.getY(), this.center.getX(), this.center.getY());
 		
 	}
 
