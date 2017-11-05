@@ -134,11 +134,6 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		return draw;
 	}
 
-	@Override
-	public void updateScore() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public ArrayList<Dirt> getDirtArray(){
 		return this.dirtArray;
@@ -305,6 +300,13 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	
 	public double getScore(){
 		return score;
+	}
+
+
+	@Override
+	public void updateScore(double scoreAdd) {
+		// TODO Auto-generated method stub.
+		
 	}
 
 
