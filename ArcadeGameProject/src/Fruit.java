@@ -4,25 +4,35 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 
 public class Fruit extends Stuff{
+	
+	private static final int WIDTH = 30;
+	private static final int HEIGHT = 30;
+	public Point2D.Double point;
+	public Hero hero;
+	DigDugWorld world;
+	public Rectangle rect;
 
-	public Fruit(DigDugEnvironment world, Double point) {
+	public Fruit(DigDugWorld world, Point2D.Double point, Hero hero) {
 		super(world, point);
-		
+		this.world = world;
+		this.point = point;
+		this.hero = hero;
+		this.rect = new Rectangle((int) point.getX(), (int) point.getY(), WIDTH, HEIGHT);
 	}
 
 	@Override
 	public Color getColor() {
-		return null;
+		return Color.RED;
 	}
 
 	@Override
 	public Rectangle getShape() {
-		return null;
+		return this.rect;
 	}
 
 	@Override
 	public Point2D getCenterPoint() {
-		return null;
+		return this.point;
 	}
 
 	@Override
@@ -37,5 +47,4 @@ public class Fruit extends Stuff{
 	public double getscore() {
 		return 400;
 	}
-
 }
