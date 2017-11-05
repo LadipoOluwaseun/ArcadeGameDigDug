@@ -69,6 +69,10 @@ public class DigDugFrame extends JFrame {
 		
 		JButton newGameButton = new JButton("New Game");
 		quitPanel.add(newGameButton);
+		
+		JPanel score = new JPanel();
+		score.setName("Score: " + world.getScore());
+		quitPanel.add(score);
 
 		ActionListener newGamer = new ActionListener() {
 			@Override
