@@ -127,6 +127,7 @@ public class DigDugWorldComponent extends JComponent {
 		for (Dirt d : this.world.getDirtArray()) {
 			if (d.getShape().intersects((this.hero.getShape()))) {
 				d.die();
+				System.out.println(world.getScore());
 			}
 
 		}
