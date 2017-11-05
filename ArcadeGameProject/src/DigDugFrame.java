@@ -25,7 +25,7 @@ public class DigDugFrame extends JFrame {
 	 * @param world
 	 *            a non-empty list of simulation panels to display
 	 */
-	public DigDugFrame(SimulationPanel sp, DigDugWorld world) {
+	public DigDugFrame(DigDugWorld world) {
 		setTitle("Dig Dug Worlds");
 
 		DigDugWorldComponent component = new DigDugWorldComponent(world);
