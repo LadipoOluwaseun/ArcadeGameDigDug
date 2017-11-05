@@ -127,10 +127,12 @@ public class DigDugWorldComponent extends JComponent {
 		for (Dirt d : this.world.getDirtArray()) {
 			if (d.getShape().intersects((this.hero.getShape()))) {
 				d.die();
-				System.out.println(world.getScore());
 			}
 
 		}
+		
+
+		
 		for (Enemy e : this.world.getEnemyArray()) {
 			if (e.getShape().intersectsLine(this.hero.getCord())) {
 				// System.out.println("enemy intersect cord handle collision
@@ -147,6 +149,9 @@ public class DigDugWorldComponent extends JComponent {
 					e.die();
 				}
 			}
+//			if (this.hero.getShape().intersectsLine(e.getFire())) {
+//				this.hero.die();
+//			}
 		}
 
 		// TODO: move this stuff to the rock class.
