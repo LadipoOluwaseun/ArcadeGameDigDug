@@ -12,6 +12,10 @@ public class Fygar extends Enemy{
 	private Line2D.Double fire;
 	private static final int WIDTH = 30;
 	private static final int HEIGHT = 30;
+	private int counter;
+	private int counterAtTimeFireStarted;
+	private boolean isBreathingFire;
+
 //	public Rectangle rect;
 
 	
@@ -25,6 +29,9 @@ public class Fygar extends Enemy{
 		fireOut = false;
 		fire = new Line2D.Double(new Point2D.Double(this.center.getX(), this.center.getY()),
 				new Point2D.Double(this.center.getX(), this.center.getY()));
+		this.counter = 0;
+		this.counterAtTimeFireStarted = 0;
+		this.isBreathingFire = false;
 		
 		
 //		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
@@ -47,15 +54,29 @@ public class Fygar extends Enemy{
 		return Color.GREEN;
 	}
 	
+
+	
 	public void handleBreatheFire() {
-		Random rand = new Random();
+		counter++;
+		Random rand = new Random();		
+		if (this.isBreathingFire && this.counter-this.counterAtTimeFireStarted<20) {
+			this.breatheFire();
+		}
+		else if (this.counter-this.counterAtTimeFireStarted>=20) {
+			this.isBreathingFire = false;
+			this.counterAtTimeFireStarted = this.counter;
+		} else
+			
 		if(rand.nextInt(1000) < 3) {
 			this.breatheFire();
+		} else {
+			this.counterAtTimeFireStarted = this.counter;
 		}
 	}
 	
 	
 	public Line2D.Double breatheFire() {
+		this.isBreathingFire = true;
 		if (this.fire.getX2()-this.fire.getX1()==0 && this.fire.getY2()-this.fire.getY1()==0) {
 			
 		
