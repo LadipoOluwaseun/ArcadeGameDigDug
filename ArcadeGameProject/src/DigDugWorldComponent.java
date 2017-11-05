@@ -130,9 +130,11 @@ public class DigDugWorldComponent extends JComponent {
 			}
 
 		}
-		
-
-		
+		for (Fruit f : this.world.getFruitArray()) {
+				if(f.getShape().intersects(this.hero.getShape())){
+				   f.die();
+				}
+			}
 		for (Enemy e : this.world.getEnemyArray()) {
 			if (e.getShape().intersectsLine(this.hero.getCord())) {
 				// System.out.println("enemy intersect cord handle collision
@@ -148,7 +150,7 @@ public class DigDugWorldComponent extends JComponent {
 				if(e.getShape().intersects(r.getShape())){
 					e.die();
 				}
-			}
+			
 //			if (this.hero.getShape().intersectsLine(e.getFire())) {
 //				this.hero.die();
 //			}
@@ -188,6 +190,7 @@ public class DigDugWorldComponent extends JComponent {
 				}
 			}
 		}
+	}
 	}
 
 	private static void drawCord(Graphics2D g2, Line2D.Double d) {
