@@ -54,5 +54,9 @@ public class Fruit extends Stuff{
 //	public void appear() {
 //		
 //	}
+	@Override
+	public void die() {
+		this.rect = new Rectangle(0, 0, 0, 0);
+	}
 	
 }

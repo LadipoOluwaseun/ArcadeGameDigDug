@@ -134,6 +134,7 @@ public class DigDugWorldComponent extends JComponent {
 		}
 		for (Fruit f : this.world.getFruitArray(this.countNumberOfFalls)) {
 				if(f.getShape().intersects(this.hero.getShape())){
+//					System.out.println("fruit eaten");
 				   f.die();
 				}
 			}
@@ -165,7 +166,7 @@ public class DigDugWorldComponent extends JComponent {
 //				this.countNumberOfFalls++;
 //				}
 			r.fall();
-			if(r.falling() && this.countNumberOfFalls < 2) {
+			if(r.falling() && this.countNumberOfFalls < 3) {
 			this.countNumberOfFalls++;
 			r.setFalling(false);
 			System.out.println(this.countNumberOfFalls);
