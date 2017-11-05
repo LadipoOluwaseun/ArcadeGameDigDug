@@ -67,7 +67,7 @@ public class Pookas extends Enemy{
 	@Override
 	public double getscore() {
 		// TODO Auto-generated method stub.
-		return 0;
+		return 1000;
 	}
 
 }
