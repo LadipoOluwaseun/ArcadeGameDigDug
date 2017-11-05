@@ -26,7 +26,7 @@ public class Hero extends Stuff{
 	public int changeY;
 	public Line2D.Double cord;
 	// public Line2D.Double DEFAULT_CORD;
-	public boolean cordExtended;
+//	public boolean cordExtended;
 	public static final int WIDTH = 30;
 	public static final int HEIGHT = 30;
 //	private static final int TIME_TO_SLEEP_WHILE_EXTENDING_CORD_IN_MILLISECONDS = 100;
@@ -39,7 +39,7 @@ public class Hero extends Stuff{
 		this.point = point;
 		this.changeX = 0;
 		this.changeY = 0;
-		this.cordExtended = false;
+//		this.cordExtended = false;
 		this.color = Color.CYAN;
 //		this.WIDTH = 30;
 //		this.HEIGHT = 30;
