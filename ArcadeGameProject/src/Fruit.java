@@ -32,7 +32,7 @@ public class Fruit extends Stuff{
 
 	@Override
 	public Point2D getCenterPoint() {
-		return this.point;
+		return new Point2D.Double(this.point.getX() + WIDTH/2, this.point.getY() + HEIGHT/2);
 	}
 
 	@Override
