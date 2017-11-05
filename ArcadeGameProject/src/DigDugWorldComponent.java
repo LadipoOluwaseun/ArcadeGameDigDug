@@ -151,9 +151,9 @@ public class DigDugWorldComponent extends JComponent {
 					e.die();
 				}
 			
-//			if (this.hero.getShape().intersectsLine(e.getFire())) {
-//				this.hero.die();
-//			}
+			if (this.hero.getShape().intersectsLine(e.getFire())) {
+				this.hero.die();
+			}
 		}
 
 		// TODO: move this stuff to the rock class.
