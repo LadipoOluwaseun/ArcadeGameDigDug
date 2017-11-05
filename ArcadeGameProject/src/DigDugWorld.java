@@ -37,6 +37,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private final static double HEIGHT_OF_EACH_STUFF = 30;
 	public int current;
 	Hero hero;
+	double score;
 	private ArrayList<Dirt> dirtArray;
 	private ArrayList<Enemy> enemyArray;
 	private ArrayList<Rock> rockArray;
@@ -301,7 +302,10 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		// TODO Auto-generated method stub.
 		return this.hero.getShape();
 	}
-
+	
+	public double getScore(){
+		return score;
+	}
 
 
 
