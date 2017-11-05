@@ -42,6 +42,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private ArrayList<Enemy> enemyArray;
 	private ArrayList<Rock> rockArray;
 	private ArrayList<EmptySpace> emptySpaceArray;
+	private ArrayList<Fygar> fygarArray;
 	private static final int DISTANCE_TO_MOVE_HERO_WHEN_BUTTON_IS_PRESSED = 5;
 	private boolean readingFile;
 
@@ -51,6 +52,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		this.enemyArray = new ArrayList<>();
 		this.rockArray = new ArrayList<>();
 		this.emptySpaceArray = new ArrayList<>();
+		this.fygarArray = new ArrayList<>();
 		this.readingFile = false;
 		this.current = 1;
 		readLevelFile("Level" + this.current + ".txt", true);
@@ -120,6 +122,9 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 				this.changeLevel(true);
 			}
 		}
+		if(this.fygarArray.contains(stuff)) {
+			this.fygarArray.remove(stuff);
+		}
 		
 	}
 	
@@ -134,9 +139,18 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		return draw;
 	}
 
+	@Override
+	public void updateScore() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	public ArrayList<Dirt> getDirtArray(){
 		return this.dirtArray;
+	}
+	
+	public ArrayList<Fygar> getFygarArray() {
+		return this.fygarArray;
 	}
 	
 	public Dimension getSize(){
@@ -176,7 +190,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		this.emptySpaceArray = new ArrayList<>();
 		this.enemyArray = new ArrayList<>();
 		this.rockArray = new ArrayList<>();
-		this.hero = null;
+		this.hero = new Hero(this, new Point2D.Double(210, 120));
 	}
 	
 	public void readLevelFile(String filename, boolean levelUp) {
@@ -222,6 +236,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 				} else if (currentChar=='F') {
 					Enemy f = new Fygar(this, q, this.hero);
 					this.enemyArray.add(f);
+					this.fygarArray.add((Fygar) f);
 					initialBoardLayout.add(f);
 					this.addStuff(f);
 				} else if (currentChar=='P') {
@@ -275,8 +290,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 
 	@Override
 	public void die() {
-		// TODO Auto-generated method stub.
-		
+		//
 	}
 
 	@Override
@@ -307,6 +321,9 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	public void updateScore(double scoreAdd) {
 		// TODO Auto-generated method stub.
 		
+	}
+	public boolean getReadingFile() {
+		return this.readingFile;
 	}
 
 
