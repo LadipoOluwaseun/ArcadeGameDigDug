@@ -2,12 +2,6 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 
-//import com.sun.webkit.Timer;
-
-//import javax.swing.Timer;
-
-
-
 //import com.sun.javafx.geom.Rectangle;
 
 public class Rock extends Stuff{
@@ -21,33 +15,44 @@ public class Rock extends Stuff{
 	public Rectangle rect;
 	boolean falling;
 	DigDugWorld world;
-//	public int counter;
+	public int counter;
+	public int counterWhenHeroMovedUnder;
 	
+	/**
+	 * Returns the value of the field called 'counterWhenHeroMovedUnder'.
+	 * @return Returns the counterWhenHeroMovedUnder.
+	 */
+	public int getCounterWhenHeroMovedUnder() {
+		return this.counterWhenHeroMovedUnder;
+	}
+
+	/**
+	 * Sets the field called 'counterWhenHeroMovedUnder' to the given value.
+	 * @param counterWhenHeroMovedUnder The counterWhenHeroMovedUnder to set.
+	 */
+	public void setCounterWhenHeroMovedUnder(int counterWhenHeroMovedUnder) {
+		this.counterWhenHeroMovedUnder = counterWhenHeroMovedUnder;
+	}
+
 	public Rock(DigDugWorld world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
 		this.world = world;
 		this.point = point;
 		this.hero = hero;
 		this.hitDirt = false;
-//		this.counter = 0;
 //		this.bottomCorner = new Point2D.Double(point.getX() + WIDTH,point.getY() + HEIGHT);
 		this.rect = new Rectangle((int) point.getX(), (int) point.getY(), WIDTH, HEIGHT);
 		this.falling = false;
 	}
-
-//	public void iterateCounter() {
-//		this.counter++;
-//		// System.out.println(this.counter);
-//	}
-//
-//	public double getCounter() {
-//		return this.counter;
-//	}
-//
-//	public void resetCounter() {
-//		this.counter = 0;
-//	}
 	
+	public int getCounter() {
+		return this.counter;
+	}
+	
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
+
 	@Override
 	public Color getColor() {
 		return Color.gray;
@@ -101,38 +106,56 @@ public class Rock extends Stuff{
 		return 0;
 	}
 	
-	public void fall() {
-//		System.out.println("falling");
-		while(this.falling) {
-//			if (this.getCounter()%10==0) {
-			for(Dirt d: this.world.getDirtArray()) {
-				if(this.getShape().getMaxY() == d.getShape().getMinY() &&
-						this.getShape().getMinX() == d.getShape().getMinX() &&
-						this.getShape().getMaxX() == d.getShape().getMaxX()) {
-					System.out.println("ouch");
-//					System.out.println(this.hero.getMax);
-					this.falling = false;
-					return;
-				}
-			}
-			for(Enemy e: this.world.getEnemyArray()) {
-				if(this.getShape().intersects(e.getShape())) {
-					e.die();
-				}
-			}
-			if(this.hero.getShape().intersects(this.getShape())) {
-				this.hero.die();
-			}
-			if(this.point.getY() > 450) {
-				this.falling = false;
-				return;
-			}
-//			System.out.println("please Fall");
-			this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 1);
-			this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
+//	public void fall() {
+////		System.out.println("falling");
+//		while(this.falling) {
+//			for(Dirt d: this.world.getDirtArray()) {
+//				if(this.getShape().getMaxY() == d.getShape().getMinY() &&
+//						this.getShape().getMinX() == d.getShape().getMinX() &&
+//						this.getShape().getMaxX() == d.getShape().getMaxX()) {
+//					System.out.println("ouch");
+////					System.out.println(this.hero.getMax);
+//					this.falling = false;
+//				}
 //			}
-		}
-	}
+//			if(this.point.getY() == 220) {
+//				this.falling = false;
+//			}
+////			System.out.println("please Fall");
+//			this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 1);
+//			this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
+//			
+//		}
+//	}
+	
+	public void fall() {
+		this.counter++;
+//		System.out.println(counter);
+//		System.out.println("falling");
+//		while(this.falling) {
+		boolean flag = true;
+		
+			for(Dirt d: this.world.getDirtArray()) {
+				Rectangle newRect = new Rectangle(d.getShape().x, d.getShape().y-1, WIDTH, HEIGHT+1);
+				if (this.getShape().intersects(newRect)) {
+					flag = false;
+					this.counterWhenHeroMovedUnder = this.counter;
+				}}
+				
+				if (flag && this.counter > this.counterWhenHeroMovedUnder + 45) {
+//					this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 1);
+//					this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
+					this.rect.translate(0, 1);
+					this.falling = true;
+					
+				} else {
+					this.falling = false;
+				}
+
+			
+		
+	}	
+	
 	
 
 //	public Point2D.Double[] getBorder() {
@@ -163,6 +186,22 @@ public class Rock extends Stuff{
 //			}
 //		}		
 //	}
+
+	/**
+	 * Returns the value of the field called 'falling'.
+	 * @return Returns the falling.
+	 */
+	public boolean isFalling() {
+		return this.falling;
+	}
+
+	/**
+	 * Sets the field called 'falling' to the given value.
+	 * @param falling The falling to set.
+	 */
+	public void setFalling(boolean falling) {
+		this.falling = falling;
+	}
 
 	@Override
 	public Point2D getCenterPoint() {
