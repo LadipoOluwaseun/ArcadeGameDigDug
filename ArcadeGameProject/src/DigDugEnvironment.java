@@ -7,5 +7,5 @@ public interface DigDugEnvironment {
 	
 	List<Drawable> getDrawableParts();
 	
-	void updateScore();
+	void updateScore(double scoreAdd);
 }
