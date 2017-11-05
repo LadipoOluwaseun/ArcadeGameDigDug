@@ -1,11 +1,12 @@
 
-//Dijsktra algorithum for seekinig hero
+//algorithum for seekinig hero
 
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+//import util.Random;
 
 
 /**
