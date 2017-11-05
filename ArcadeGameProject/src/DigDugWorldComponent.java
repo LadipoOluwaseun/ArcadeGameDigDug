@@ -71,7 +71,12 @@ public class DigDugWorldComponent extends JComponent {
 			e.updatePositionHelper();
 		}
 		this.handleCollisions();
-		drawCord(g2, this.hero.cord);
+		drawCord(g2, this.hero.getCord());
+		for(Fygar f: this.world.getFygarArray()) {
+			drawCord(g2, f.getFire());
+			f.updatePosition();
+			f.handleBreatheFire();
+		}
 
 		for (Drawable d : drawableParts) {
 
