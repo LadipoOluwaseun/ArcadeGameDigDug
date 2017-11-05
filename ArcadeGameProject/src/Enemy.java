@@ -2,11 +2,14 @@
 //algorithum for seekinig hero
 
 import java.awt.Rectangle;
+import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+
 //import util.Random;
+
 
 
 /**
@@ -350,5 +353,9 @@ public abstract class Enemy extends Stuff {
 		if (yVel > 0) {
 			this.lastDirection = 'd';
 		}
+	}
+	
+	public Line2D.Double getFire(){
+		return new Line2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY(), this.getCenterPoint().getX(), this.getCenterPoint().getY());
 	}
 }
