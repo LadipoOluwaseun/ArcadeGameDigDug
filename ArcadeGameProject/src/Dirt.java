@@ -21,6 +21,7 @@ public class Dirt extends Stuff{
 	public int WIDTH;
 	public int HEIGHT;
 	public Hero hero;
+	private double score;
 	
 	
 	public Dirt(DigDugEnvironment world, Point2D.Double point, Hero heroman) {
@@ -30,6 +31,7 @@ public class Dirt extends Stuff{
 		this.HEIGHT = 30;
 		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
 		this.hero = heroman;
+		this.score = 20;
 		}
 
 	@Override
@@ -54,7 +56,11 @@ public class Dirt extends Stuff{
 	
 	@Override
 	public double getscore() {
-		return 0;
+		return score;
+	}
+	
+	public void setScore() {
+		score = 0;
 	}
 
 	@Override
