@@ -1,5 +1,8 @@
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+
 
 public class DigDugKeyHandler implements KeyListener{
 		DigDugWorld world;
@@ -82,20 +85,11 @@ public class DigDugKeyHandler implements KeyListener{
 				this.hero.retractCord();
 			}
 		}
-		
+			
 			public void keyTyped(KeyEvent e) {
-				char key = e.getKeyChar();
-				if(key == 'p'){
-					if(world.getIsPaused() == false){
-						world.setIsPaused(true);
-						System.out.println(world.getIsPaused());
-					}
-					else{
-						world.setIsPaused(false);
-						System.out.println(world.getIsPaused());
-					}
-				}
+			
 			}
+				
 			
 }
 
