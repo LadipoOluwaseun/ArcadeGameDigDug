@@ -14,7 +14,7 @@
 import javax.swing.JFrame;
 
 public class Main {
-	private DigDugWorld world;
+
 	/**
 	 * Starts the application.
 	 * 
@@ -22,7 +22,12 @@ public class Main {
 	 *            ignored
 	 */
 	public static void main(String[] args) {
-		DigDugWorld world = new DigDugWorld();
+		DigDugWorld world = new DigDugWorld(1, true);
+//		if(args.length == 0) {
+//			world = new DigDugWorld(1, true);
+//		} else{
+//			world = new DigDugWorld(Integer.parseInt(args[0]), true);
+//		}
 //		this.world = new DigDugWorld();
 //		SimulationPanel worlds = new SimulationPanel(world);
 		JFrame frame = new DigDugFrame(world);
