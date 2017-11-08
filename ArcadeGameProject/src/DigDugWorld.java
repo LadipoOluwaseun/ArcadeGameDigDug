@@ -341,7 +341,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 
 	@Override
 	public boolean getIsPaused() {
-		return isPaused;
+		return this.isPaused;
 	}
 
 
@@ -352,7 +352,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	}
 	
 	public double getScore(){
-		return score;
+		return this.score;
 	}
 
 
