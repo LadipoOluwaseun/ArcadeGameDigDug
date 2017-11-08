@@ -21,7 +21,7 @@ import java.util.List;
  */
 
 public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
-	boolean isPaused;
+	boolean isPaused = false;
 	private static final long UPDATE_INTERVAL_MS = 10;
 	private final static int WIDTH = 450;
 	private final static int HEIGHT = 450;
@@ -316,14 +316,12 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 
 	@Override
 	public void setIsPaused(boolean isPaused) {
-		// TODO Auto-generated method stub.
-		
+		this.isPaused = isPaused;
 	}
 
 	@Override
 	public boolean getIsPaused() {
-		// TODO Auto-generated method stub.
-		return false;
+		return isPaused;
 	}
 
 
