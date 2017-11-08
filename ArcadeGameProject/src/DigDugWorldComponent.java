@@ -42,25 +42,30 @@ public class DigDugWorldComponent extends JComponent {
 
 		// Creates a separate "thread of execution" to trigger periodic
 		// repainting of this component.
-		Runnable repainter = new Runnable() {
-			@Override
-			public void run() {
-				// Periodically asks Java to repaint this component
-				try {
-					while (true) {
-						Thread.sleep(REPAINT_INTERVAL_MS);
-						repaint();
+		
+		
+			System.out.println(world.getIsPaused());
+			Runnable repainter = new Runnable() {
+				@Override
+				public void run() {
+					// Periodically asks Java to repaint this component
+					try {
+						while (true) {
+							Thread.sleep(REPAINT_INTERVAL_MS);
+							repaint();
+						}
+					} catch (InterruptedException exception) {
+						// Stop when interrupted
 					}
-				} catch (InterruptedException exception) {
-					// Stop when interrupted
 				}
+			};
+			new Thread(repainter).start();
 			}
-		};
-		new Thread(repainter).start();
-	}
-
+		
+	
 	@Override
 	protected void paintComponent(Graphics g) {
+		if(world.getIsPaused() == false){
 		// System.out.println("repaint");
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
@@ -91,9 +96,8 @@ public class DigDugWorldComponent extends JComponent {
 			// Line2D.Double line = this.hero.cord;
 			// drawCord(g2, this.hero.cord);
 			// System.out.println(this.hero.);
-
 		}
-
+		}
 	}
 
 	/**
