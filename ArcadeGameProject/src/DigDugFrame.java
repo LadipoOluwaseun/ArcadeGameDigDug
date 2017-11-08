@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+
 /**
  * This is the main window for the application. It can display a collection of
  * ball simulations.
@@ -70,6 +71,8 @@ public class DigDugFrame extends JFrame {
 		JButton newGameButton = new JButton("New Game");
 		quitPanel.add(newGameButton);
 		
+		quitPanel.add(makePauseResumeButton(world));
+		
 		JPanel score = new JPanel();
 		score.setName("Score: " + world.getScore());
 		quitPanel.add(score);
@@ -99,9 +102,29 @@ public class DigDugFrame extends JFrame {
 //		quitPanel.addKeyListener(new DigDugKeyHandler(world));
 		return quitPanel;
 	}
+	private JButton makePauseResumeButton(final Temporal temporalObj) {
+		final JButton pauseResumeButton = new JButton("Pause");
+		ActionListener pauser = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean isPaused = temporalObj.getIsPaused();
+				isPaused = !isPaused;
+				temporalObj.setIsPaused(isPaused);
+				if (isPaused) {
+					pauseResumeButton.setText("Resume");
+				} else {
+					pauseResumeButton.setText("Pause");
+				}
 
+			}
+		};
+		pauseResumeButton.addActionListener(pauser);
+		Dimension preferredButtonSize = pauseResumeButton.getPreferredSize();
+		Dimension maxButtonSize = new Dimension(preferredButtonSize.width * 2,
+				preferredButtonSize.height);
+		pauseResumeButton.setMaximumSize(maxButtonSize);
+		return pauseResumeButton;
+	}
 	
-
-
 }
 
