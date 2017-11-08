@@ -92,7 +92,7 @@ public abstract class Enemy extends Stuff {
 
 	
 	public void reversePosition() {
-		System.out.println("reversePosition Hero");
+//		System.out.println("reversePosition Hero");
 		if (this.lastDirection == 'u' || this.lastDirection == 'd') {
 			updatePosition(this.lastXVelocity, this.lastYVelocity * (-1));
 		} else {
@@ -241,7 +241,7 @@ public abstract class Enemy extends Stuff {
 
 			}
 			if (flag) {
-				System.out.println("inner dirt array2");
+//				System.out.println("inner dirt array2");
 				this.lastDirection = randomListOfDirections.get(i);
 				return;
 
