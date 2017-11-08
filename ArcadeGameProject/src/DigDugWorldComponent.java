@@ -210,6 +210,12 @@ public class DigDugWorldComponent extends JComponent {
 		}
 	}
 	}
+	
+	public void newWorld(boolean levelUp) {
+		this.world = new DigDugWorld(this.world.getLevel(), levelUp);
+				
+	}
+
 
 	private static void drawCord(Graphics2D g2, Line2D.Double d) {
 		// System.out.println("drawCordStart");
