@@ -44,16 +44,22 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	//need to implement the methods below
 	@Override
 	public void timePassed() {
-//		System.out.println("time");
-//		if (!this.isPaused) {
-//		updateSize();
-//		updatePosition();
-//		}
+		if(isPaused == false){
+			updateSize();
+			updatePosition();
+		}	
 	}
 	
-	public void updatePosition(int xVel, int yVel) {
-		//ignored for now
+	@Override
+	public boolean getIsPaused() {
+		return this.isPaused;	
 	}
+	
+	@Override
+	public void setIsPaused(boolean setIsPaused) {
+		this.isPaused = setIsPaused;
+	}
+	
 
 	@Override
 	public void die() {
@@ -65,21 +71,15 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	}
 
 	@Override
-	public boolean getIsPaused() {
-		return this.isPaused;
-		
-	}
-
-	@Override
-	public void setIsPaused(boolean setIsPaused) {
-		this.isPaused = setIsPaused;
-	}
-	
-	@Override
 	public void moveTo(Point2D.Double point) {
 		Point2D.Double newPoint = new Point2D.Double(point.getX(),point.getY());
 		this.setPoint(newPoint);
 	}
+	
+	public void updatePosition(int xVel, int yVel){
+		//nothing for now
+	}
+	
 	
 	public abstract void updatePosition();
 
