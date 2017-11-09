@@ -131,12 +131,16 @@ public class DigDugWorldComponent extends JComponent {
 	}
 
 	private void handleCollisions() {
+		try{
 		for (Dirt d : this.world.getDirtArray()) {
+			
 			if (d.getShape().intersects((this.hero.getShape()))) {
 				d.die();
 			}
 
-		}
+		}} catch (Exception e) {
+				// TODO: handle exception
+			}
 		for (Fruit f : this.world.getFruitArray()) {
 				if(f.getShape().intersects(this.hero.getShape())){
 //					System.out.println("fruit eaten");
