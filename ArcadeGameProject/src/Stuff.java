@@ -43,11 +43,7 @@ public abstract class Stuff implements Drawable, Temporal, Relocatable {
 	
 	//need to implement the methods below
 	@Override
-	public void timePassed() {
-		if(isPaused == false){
-			updateSize();
-			updatePosition();
-		}	
+	public void timePassed() {	
 	}
 	
 	@Override
