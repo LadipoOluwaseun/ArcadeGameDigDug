@@ -31,8 +31,8 @@ public class DigDugFrame extends JFrame {
 	 */
 	public DigDugFrame(DigDugWorld world) {
 		setTitle("Dig Dug Worlds");
-		JPanel ppn = playerPanelComponent(world);
-		DigDugWorldComponent component = new DigDugWorldComponent(world, ppn);
+		//JPanel ppn = playerPanelComponent(world);
+		DigDugWorldComponent component = new DigDugWorldComponent(world);
 		component.setPreferredSize(new Dimension(600, 600));
 		add(component);
 		DigDugKeyHandler keyboard = new DigDugKeyHandler(world);
