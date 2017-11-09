@@ -1,12 +1,15 @@
 //JUSTIN TODO finish NewGame button
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -32,29 +35,17 @@ public class DigDugFrame extends JFrame {
 		DigDugWorldComponent component = new DigDugWorldComponent(world);
 		component.setPreferredSize(new Dimension(600, 600));
 		add(component);
-		//JPanel content = new JPanel();
-		//content.setPreferredSize();
-		// Changes the layout of the panel so the worlds will stack vertically
-		//content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
-		// add "rigid stuff" to force minimum spacing
-//		content.add(Box.createVerticalStrut(GAP));
-//			content.add(worlds);
-		//content.add(sp, BorderLayout.CENTER);
 		DigDugKeyHandler keyboard = new DigDugKeyHandler(world);
 		component.addKeyListener(keyboard);
 
-//		content.add(Box.createVerticalStrut(GAP));
-		add(quitButtonComponent(world), BorderLayout.SOUTH);
-		
-		//add(content);
 
+		add(quitButtonComponent(world), BorderLayout.SOUTH);
+		add(playerPanelComponent(world), BorderLayout.NORTH);
 		
 		addKeyListener(keyboard);
-//		setResizable(false);
-		
+
 		pack();
 		component.requestFocus();
-
 	}
 
 	/**
@@ -62,9 +53,7 @@ public class DigDugFrame extends JFrame {
 	 */
 	private JPanel quitButtonComponent(DigDugWorld world) {
 		JPanel quitPanel = new JPanel();
-//		quitPanel
-//				.setBorder(BorderFactory.createEmptyBorder(0, GAP, GAP, GAP));
-//		quitPanel.add(Box.createHorizontalGlue());
+		
 		JButton quitButton = new JButton("Quit");
 		quitPanel.add(quitButton);
 		
@@ -73,10 +62,6 @@ public class DigDugFrame extends JFrame {
 		
 		quitPanel.add(makePauseResumeButton(world));
 		
-		JPanel score = new JPanel();
-		score.setName("Score: " + world.getScore());
-		quitPanel.add(score);
-
 		ActionListener newGamer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -100,6 +85,8 @@ public class DigDugFrame extends JFrame {
 		quitButton.addActionListener(quitter);
 		newGameButton.addActionListener(newGamer);
 //		quitPanel.addKeyListener(new DigDugKeyHandler(world));
+		
+		quitPanel.setBackground(Color.LIGHT_GRAY);
 		return quitPanel;
 	}
 	private JButton makePauseResumeButton(final Temporal temporalObj) {
@@ -121,10 +108,33 @@ public class DigDugFrame extends JFrame {
 		pauseResumeButton.addActionListener(pauser);
 		Dimension preferredButtonSize = pauseResumeButton.getPreferredSize();
 		Dimension maxButtonSize = new Dimension(preferredButtonSize.width * 2,
-				preferredButtonSize.height);
+		preferredButtonSize.height);
 		pauseResumeButton.setMaximumSize(maxButtonSize);
 		return pauseResumeButton;
 	}
 	
+	private JPanel playerPanelComponent(DigDugWorld world){
+		
+		Font font  =  new Font("TI-83p Mini Sans",  Font.BOLD,30);
+		JPanel playerPanel = new JPanel();
+		
+		playerPanel.setBackground(Color.LIGHT_GRAY);
+		
+		JLabel title = new JLabel();
+		JLabel lives = new JLabel();
+		JLabel score = new JLabel();
+		
+		//title.setText("DIG DUG");
+		lives.setText("Number of Lives: " + 0 + "  ");
+		lives.setFont(font);
+		score.setText("Score: " + world.getScore() + "  ");
+		score.setFont(font);
+		
+		playerPanel.add(lives);
+		playerPanel.add(score);
+		
+		
+		return playerPanel;
+	}
 }
 
