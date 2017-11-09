@@ -68,6 +68,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		readLevelFile("Level" + currentLevel + ".txt");
 		this.background = new Rectangle(0, 0, WIDTH, HEIGHT);
 		this.numRocksFallen = 0;
+//		this.hero = new Hero(this, new Point2D.Double(210, 120));
 		Runnable tickTock = new Runnable() {
 			@Override
 			public void run() {
@@ -182,18 +183,30 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		try{
 		if(levelUp) {
 			this.current++;
+			if(this.current > 2) {
+				this.current = 2;
+			}
 //			this.readLevelFile("Level" + this.current + ".txt", levelUp);
 //			System.out.println("old this.current = " + this.current);
 //			new DigDugWorld(this.current, levelUp);
-			String[] args = new String[1];
+			String[] args = new String[2];
 //			String var = this.current + ' ';
 			args[0] = Integer.toString(this.current);
+			args[1] = Boolean.toString(levelUp);
 			Main.main(args);
 //			System.out.println(current);
 //			this.current++;
 		} else {
 //			this.readLevelFile("Level" + (this.current - 1) + ".txt", levelUp);
 			this.current--;
+			if(this.current < 1) {
+				this.current = 1;
+			}
+			String[] args = new String[2];
+//			String var = this.current + ' ';
+			args[0] = Integer.toString(this.current);
+			args[1] = Boolean.toString(levelUp);
+			Main.main(args);
 //			new DigDugWorld(this.current, levelUp);
 		}
 		System.out.println(this.current);
@@ -203,9 +216,9 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		
 	}
 	
-	public int getLevel() {
-		return this.current;
-	}
+//	public int getLevel() {
+//		return this.current;
+//	}
 	
 //	public void clearWorld() {
 //		ArrayList<Stuff> stuffList = new ArrayList<>();

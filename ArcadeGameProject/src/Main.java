@@ -26,7 +26,7 @@ public class Main {
 		if(args.length == 0) {
 			world = new DigDugWorld(1, true);
 		} else{
-			world = new DigDugWorld(Integer.parseInt(args[0]), true);
+			world = new DigDugWorld(Integer.parseInt(args[0]), Boolean.parseBoolean(args[1]));
 		}
 //		this.world = new DigDugWorld();
 //		SimulationPanel worlds = new SimulationPanel(world);

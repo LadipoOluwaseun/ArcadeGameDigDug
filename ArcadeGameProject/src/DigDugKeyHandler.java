@@ -56,6 +56,17 @@ public class DigDugKeyHandler implements KeyListener{
 			if(key== 'c'){
 				this.hero.extendCord();
 			}
+			
+			if(key == 'p') {
+				boolean isPaused = this.world.getIsPaused();
+				isPaused = !isPaused;
+				this.world.setIsPaused(isPaused);
+//				if (isPaused) {
+//					pauseResumeButton.setText("Resume");
+//				} else {
+//					pauseResumeButton.setText("Pause");
+//				}
+			}
 		}
 	
 		@Override
