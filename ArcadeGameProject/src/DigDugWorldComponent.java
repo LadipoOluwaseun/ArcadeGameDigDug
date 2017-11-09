@@ -26,6 +26,7 @@ public class DigDugWorldComponent extends JComponent {
 	private static final long REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
 	private boolean hasShownNullErrorMessage = false;
 	private static final int ENEMY_VELOCITY = 4;
+	private int timesRockHasFallen;
 
 	Hero hero;
 	private int countNumberOfFalls;
@@ -136,7 +137,7 @@ public class DigDugWorldComponent extends JComponent {
 			}
 
 		}
-		for (Fruit f : this.world.getFruitArray(this.countNumberOfFalls)) {
+		for (Fruit f : this.world.getFruitArray()) {
 				if(f.getShape().intersects(this.hero.getShape())){
 //					System.out.println("fruit eaten");
 				   f.die();
@@ -154,6 +155,7 @@ public class DigDugWorldComponent extends JComponent {
 				this.hero.die();
 			}
 			for (Rock r: this.world.getRockArray()){
+				r.testIfStartedFalling();
 				if(e.getShape().intersects(r.getShape())){
 					e.die();
 				}
@@ -175,7 +177,7 @@ public class DigDugWorldComponent extends JComponent {
 			r.setFalling(false);
 			System.out.println(this.countNumberOfFalls);
 			}
-			for(Fruit f: this.world.getFruitArray(this.countNumberOfFalls)) {
+			for(Fruit f: this.world.getFruitArray()) {
 				this.world.addStuff(f);
 			}
 //			r.setCounter(r.getCounter() + 1);
