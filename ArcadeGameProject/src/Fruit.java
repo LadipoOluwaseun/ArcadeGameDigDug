@@ -57,6 +57,7 @@ public class Fruit extends Stuff{
 	@Override
 	public void die() {
 		this.rect = new Rectangle(0, 0, 0, 0);
+//		this.world.removeStuff(this);
 	}
 	
 }
