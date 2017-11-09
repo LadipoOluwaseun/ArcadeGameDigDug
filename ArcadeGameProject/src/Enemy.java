@@ -21,6 +21,8 @@ public abstract class Enemy extends Stuff {
 	public Hero hero;
 	protected int width = 30;
 	protected int height = 30;
+	private static final int DEFAULT_WIDTH = 30;
+	private static final int DEFAULT_HEIGHT = 30;
 	protected DigDugWorld world;
 	public Point2D.Double point;
 	protected boolean intercepts;
@@ -39,6 +41,9 @@ public abstract class Enemy extends Stuff {
 	public boolean isGhost;
 	private int counterWhenTurnedIntoGhost;
 	private boolean isPaused;
+	private boolean lastIsPaused;
+	private int counterWhenPaused;
+	private static final int TIME_FOR_THE_ENEMY_TO_PAUSE = 30;
 
 	// public Rectangle rect;
 
@@ -277,9 +282,23 @@ public abstract class Enemy extends Stuff {
 		//
 		// }
 	}
+	
+	private void switchisPaused() {
+		// TODO Auto-generated method stub.
+		if (!this.isPaused) {
+			this.counterWhenPaused = this.counter;
+
+
+		}
+		if (this.isPaused && this.counter-this.counterWhenPaused>TIME_FOR_THE_ENEMY_TO_PAUSE) {
+//			this.rect.grow(DEFAULT_HEIGHT, DEFAULT_WIDTH);
+			this.isPaused = false;
+		}
+	}
 
 	@Override
-	public void updatePosition(int xVel, int yVel) {
+	public void updatePosition(int xVel1, int yVel1) {
+		this.switchisPaused();
 		// System.out.println("help");
 		// if(this.xVel == 0 && this.yVel == 0) {
 		// xVel = 4;
@@ -332,7 +351,7 @@ public abstract class Enemy extends Stuff {
 			}
 			// xPos = this.point.getX() + xVel;
 			// yPos= this.point.getY() + yVel;
-			this.point = new Point2D.Double(xPos + xVel, yPos + yVel);
+			this.point = new Point2D.Double(xPos + xVel1, yPos + yVel1);
 			this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), this.width, this.height);
 	
 			// System.out.println("updating position " + this.point);
