@@ -18,6 +18,7 @@ public class Rock extends Stuff{
 	public int counter;
 	public int counterWhenHeroMovedUnder;
 	private int countOfFalls;
+	private boolean wasFalling;
 	
 	/**
 	 * Returns the value of the field called 'counterWhenHeroMovedUnder'.
@@ -44,6 +45,7 @@ public class Rock extends Stuff{
 //		this.bottomCorner = new Point2D.Double(point.getX() + WIDTH,point.getY() + HEIGHT);
 		this.rect = new Rectangle((int) point.getX(), (int) point.getY(), WIDTH, HEIGHT);
 		this.falling = false;
+		this.wasFalling = false;
 	}
 	
 	public int getCounter() {
@@ -111,6 +113,14 @@ public class Rock extends Stuff{
 		return 0;
 	}
 	
+	public void testIfStartedFalling(){
+		if (this.falling==true && this.wasFalling==false) {
+			this.world.setNumRocksFallen(this.world.getNumRocksFallen()+1);
+
+		}
+		this.wasFalling = this.falling;
+	}
+	
 //	public void fall() {
 ////		System.out.println("falling");
 //		while(this.falling) {
@@ -146,11 +156,15 @@ public class Rock extends Stuff{
 			for(Dirt d: this.world.getDirtArray()) {
 				Rectangle newRect = new Rectangle(d.getShape().x, d.getShape().y-1, WIDTH, HEIGHT+1);
 				if (this.getShape().intersects(newRect)) {
+					
 					flag = false;
 					this.counterWhenHeroMovedUnder = this.counter;
 				}}
 				
 				if (flag && this.counter > this.counterWhenHeroMovedUnder + 45) {
+//					if (this.falling==false) {
+//						this.world.setNumRocksFallen(this.world.getNumRocksFallen()+1);
+//					}
 //					this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 1);
 //					this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
 					this.rect.translate(0, 1);
@@ -159,6 +173,8 @@ public class Rock extends Stuff{
 					
 				} else {
 //					this.die();
+//					this.world.setNumRocksFallen(this.world.getNumRocksFallen()+1);
+
 					this.falling = false;
 				}
 
