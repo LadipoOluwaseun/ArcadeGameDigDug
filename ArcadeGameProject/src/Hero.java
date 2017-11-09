@@ -33,6 +33,7 @@ public class Hero extends Stuff{
 	char lastDirection;
 	int lastXVelocity;
 	int lastYVelocity;
+	DigDugWorld world;
 
 	public Hero(DigDugWorld world, Point2D.Double point) {
 		super(world, point);
@@ -49,6 +50,7 @@ public class Hero extends Stuff{
 		this.cord = new Line2D.Double(new Point2D.Double(this.center.getX(), this.center.getY()),
 				new Point2D.Double(this.center.getX(), this.center.getY()));
 		System.out.println(this.point);
+		this.world = world;
 //		System.out.println("new Hero");
 		// this.cord = this.DEFAULT_CORD;
 
@@ -160,6 +162,7 @@ public class Hero extends Stuff{
 	@Override 
 	public void die(){
 		System.out.println("die");
+		world.setLives(world.getLives() - 1);
 		this.point = new Point2D.Double(210.0, 120.0);
 	}
 
