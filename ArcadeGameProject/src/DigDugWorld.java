@@ -65,7 +65,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		this.fruitArray = new ArrayList<>();
 		this.readingFile = false;
 		this.rockArrayLength = 0;
-		this.current = 1;
+//		this.current = 1;
 		this.levelUp = levelUp;
 		System.out.println("this.current = " + this.current);
 		readLevelFile("Level" + currentLevel + ".txt");
