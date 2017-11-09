@@ -18,8 +18,8 @@ public class Dirt extends Stuff{
 
 	public Rectangle rect;
 	public Point2D.Double point;
-	public int WIDTH;
-	public int HEIGHT;
+	public final static int WIDTH = 15;
+	public final static int HEIGHT = 15;
 	public Hero hero;
 	private double score;
 	
@@ -27,8 +27,8 @@ public class Dirt extends Stuff{
 	public Dirt(DigDugEnvironment world, Point2D.Double point, Hero heroman) {
 		super(world, point, heroman);
 		this.point = point;
-		this.WIDTH = 30;
-		this.HEIGHT = 30;
+//		this.WIDTH = 30;
+//		this.HEIGHT = 30;
 		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
 		this.hero = heroman;
 		this.score = 20;

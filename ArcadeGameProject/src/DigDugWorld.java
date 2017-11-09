@@ -25,6 +25,8 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private static final long UPDATE_INTERVAL_MS = 10;
 	private final static int WIDTH = 450;
 	private final static int HEIGHT = 450;
+	private final static int DIRT_WIDTH = 15;
+	private final static int DIRT_HEIGHT = 15;
 	
 	private List<Stuff> stuff = new ArrayList<>();
 	private List<Stuff> stuffToAdd = new ArrayList<>();
@@ -176,8 +178,8 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		try{
 		if(levelUp) {
 			this.current++;
-			if(this.current > 2) {
-				this.current = 2;
+			if(this.current > 3) {
+				this.current = 3;
 			}
 //			this.readLevelFile("Level" + this.current + ".txt", levelUp);
 //			System.out.println("old this.current = " + this.current);
@@ -253,9 +255,21 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 				char currentChar = (char) br.read();
 				if (currentChar=='d') {
 					Dirt d = new Dirt(this, q, this.hero);
+					Dirt d1 = new Dirt(this, new Point2D.Double(q.getX()+DIRT_WIDTH, q.getY()), this.hero);
+					Dirt d2 = new Dirt(this, new Point2D.Double(q.getX(), q.getY()+DIRT_HEIGHT), this.hero);
+					Dirt d3 = new Dirt(this, new Point2D.Double(q.getX()+DIRT_WIDTH, q.getY()+DIRT_HEIGHT), this.hero);
 					this.dirtArray.add(d);
+					this.dirtArray.add(d1);
+					this.dirtArray.add(d2);
+					this.dirtArray.add(d3);
 					initialBoardLayout.add(d);
+					initialBoardLayout.add(d1);
+					initialBoardLayout.add(d2);
+					initialBoardLayout.add(d3);
 					this.addStuff(d);
+					this.addStuff(d1);
+					this.addStuff(d2);
+					this.addStuff(d3);
 				} else if (currentChar=='O') {
 					EmptySpace o = new EmptySpace(this, q);
 //					this.emptySpaceArray.add(o);
