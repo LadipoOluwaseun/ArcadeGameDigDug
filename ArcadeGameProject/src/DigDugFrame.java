@@ -31,8 +31,8 @@ public class DigDugFrame extends JFrame {
 	 */
 	public DigDugFrame(DigDugWorld world) {
 		setTitle("Dig Dug Worlds");
-
-		DigDugWorldComponent component = new DigDugWorldComponent(world);
+		JPanel ppn = playerPanelComponent(world);
+		DigDugWorldComponent component = new DigDugWorldComponent(world, ppn);
 		component.setPreferredSize(new Dimension(600, 600));
 		add(component);
 		DigDugKeyHandler keyboard = new DigDugKeyHandler(world);
@@ -125,7 +125,7 @@ public class DigDugFrame extends JFrame {
 		JLabel score = new JLabel();
 		
 		//title.setText("DIG DUG");
-		lives.setText("Number of Lives: " + 0 + "  ");
+		lives.setText("Number of Lives: " + world.getLives() + "  ");
 		lives.setFont(font);
 		score.setText("Score: " + world.getScore() + "  ");
 		score.setFont(font);
