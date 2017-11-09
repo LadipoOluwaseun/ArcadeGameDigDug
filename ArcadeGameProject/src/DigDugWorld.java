@@ -21,7 +21,7 @@ import java.util.List;
  */
 
 public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
-	boolean isPaused = false;
+	boolean isPaused;
 	private static final long UPDATE_INTERVAL_MS = 10;
 	private final static int WIDTH = 450;
 	private final static int HEIGHT = 450;
@@ -47,6 +47,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private static final int DISTANCE_TO_MOVE_HERO_WHEN_BUTTON_IS_PRESSED = 5;
 	private boolean readingFile;
 	private int rockArrayLength;
+	private int numRocksFallen;
 	private boolean levelUp;
 
 	
@@ -66,6 +67,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		System.out.println("this.current = " + this.current);
 		readLevelFile("Level" + currentLevel + ".txt");
 		this.background = new Rectangle(0, 0, WIDTH, HEIGHT);
+		this.numRocksFallen = 0;
 		Runnable tickTock = new Runnable() {
 			@Override
 			public void run() {
@@ -315,8 +317,8 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		return this.enemyArray;
 	}
 	
-	public ArrayList<Fruit> getFruitArray(int count) {
-		if(count == 2 ) {
+	public ArrayList<Fruit> getFruitArray() {
+		if(this.numRocksFallen>1 ) {
 		Fruit f = new Fruit(this, this.hero);
 		this.fruitArray.add(f);
 		}
@@ -367,6 +369,24 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	
 	public int getRockInitialCount() {
 		return this.rockArrayLength;
+	}
+
+
+	/**
+	 * Returns the value of the field called 'numRocksFallen'.
+	 * @return Returns the numRocksFallen.
+	 */
+	public int getNumRocksFallen() {
+		return this.numRocksFallen;
+	}
+
+
+	/**
+	 * Sets the field called 'numRocksFallen' to the given value.
+	 * @param numRocksFallen The numRocksFallen to set.
+	 */
+	public void setNumRocksFallen(int numRocksFallen) {
+		this.numRocksFallen = numRocksFallen;
 	}
 
 
