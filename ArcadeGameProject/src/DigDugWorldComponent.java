@@ -154,6 +154,10 @@ public class DigDugWorldComponent extends JComponent {
 				if (e.getCounter() % 10 == 0) {
 					e.expand();
 				}
+			} else {
+				if(e.getCounter() % 10 == 0) {
+					e.retract();
+				}
 			}
 			if (e.getShape().intersects(this.hero.getShape())) {
 				this.hero.die();
