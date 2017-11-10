@@ -95,9 +95,9 @@ public abstract class Enemy extends Stuff {
 	
 	public void retract() {
 		if(this.rect.getSize().getHeight() != 30) {
-			System.out.println("1 " + this.rect.getSize().getHeight());
+//			System.out.println("1 " + this.rect.getSize().getHeight());
 			this.rect.setSize((int) (this.rect.getSize().getWidth() - 1), (int) (this.rect.getSize().getHeight() - 1));
-			System.out.println("2 " + this.rect.getSize().getHeight());
+//			System.out.println("2 " + this.rect.getSize().getHeight());
 			this.width = this.rect.width;
 			this.height = this.rect.height;
 		}

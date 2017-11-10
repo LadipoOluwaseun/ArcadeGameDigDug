@@ -154,8 +154,8 @@ public class Rock extends Stuff{
 		boolean flag = true;
 		
 			for(Dirt d: this.world.getDirtArray()) {
-				Rectangle newRect = new Rectangle(d.getShape().x, d.getShape().y-1, WIDTH, HEIGHT+1);
-				if (this.getShape().intersects(newRect)) {
+//				Rectangle newRect = new Rectangle(d.getShape().x, d.getShape().y-1, WIDTH, HEIGHT+1);
+				if (this.getShape().intersects(d.getShape())) {
 					
 					flag = false;
 					this.counterWhenHeroMovedUnder = this.counter;
@@ -165,7 +165,7 @@ public class Rock extends Stuff{
 //					if (this.falling==false) {
 //						this.world.setNumRocksFallen(this.world.getNumRocksFallen()+1);
 //					}
-//					this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 1);
+					this.point = new Point2D.Double(this.point.getX(), this.point.getY() + 1);
 //					this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), WIDTH, HEIGHT);
 					this.rect.translate(0, 1);
 					this.falling = true;
