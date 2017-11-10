@@ -92,6 +92,16 @@ public abstract class Enemy extends Stuff {
 		this.height = this.rect.height;
 
 	}
+	
+	public void retract() {
+		if(this.rect.getSize().getHeight() != 30) {
+			System.out.println("1 " + this.rect.getSize().getHeight());
+			this.rect.setSize((int) (this.rect.getSize().getWidth() - 1), (int) (this.rect.getSize().getHeight() - 1));
+			System.out.println("2 " + this.rect.getSize().getHeight());
+			this.width = this.rect.width;
+			this.height = this.rect.height;
+		}
+	}
 
 
 	@Override
@@ -329,37 +339,39 @@ public abstract class Enemy extends Stuff {
 		// this.getClass().toString());
 //		updateLastDirection(xVel, yVel);
 		if(!this.isPaused) {
-			double xPos = this.point.getX();
-			double yPos = this.point.getY();
-			if (this.point.getX() > 420) {
-				this.lastDirection = 'l';
-//				xPos = 0;
+			if(this.rect.getSize().getHeight() == 30) {
+				double xPos = this.point.getX();
+				double yPos = this.point.getY();
+				if (this.point.getX() > 420) {
+					this.lastDirection = 'l';
+//					xPos = 0;
+				}
+				if (this.point.getX() < 0) {
+					this.lastDirection = 'r';
+//					xPos = 420;
+				}
+				if (this.point.getY() < 0) {
+					this.lastDirection = 'd';
+//					yPos = 0;
+//					this.yVel = -this.yVel;
+				}
+				if (this.point.getY() > 450) {
+					this.lastDirection = 'u';
+//					yPos = 445;
+//					this.yVel = -this.yVel;
+				}
+				// xPos = this.point.getX() + xVel;
+				// yPos= this.point.getY() + yVel;
+				this.point = new Point2D.Double(xPos + xVel1, yPos + yVel1);
+				this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), this.width, this.height);
+		
+				// System.out.println("updating position " + this.point);
+				this.center = new Point2D.Double(this.point.getX() + this.width / 2, this.point.getY() + this.height / 2);
+				// this.cord = new Line2D.Double(this.center.getX(), this.center.getY(),
+				// this.center.getX(), this.center.getY());
+				this.lastXVelocity = this.xVel;
+				this.lastYVelocity = this.yVel;
 			}
-			if (this.point.getX() < 0) {
-				this.lastDirection = 'r';
-//				xPos = 420;
-			}
-			if (this.point.getY() < 0) {
-				this.lastDirection = 'd';
-//				yPos = 0;
-//				this.yVel = -this.yVel;
-			}
-			if (this.point.getY() > 450) {
-				this.lastDirection = 'u';
-//				yPos = 445;
-//				this.yVel = -this.yVel;
-			}
-			// xPos = this.point.getX() + xVel;
-			// yPos= this.point.getY() + yVel;
-			this.point = new Point2D.Double(xPos + xVel1, yPos + yVel1);
-			this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), this.width, this.height);
-	
-			// System.out.println("updating position " + this.point);
-			this.center = new Point2D.Double(this.point.getX() + this.width / 2, this.point.getY() + this.height / 2);
-			// this.cord = new Line2D.Double(this.center.getX(), this.center.getY(),
-			// this.center.getX(), this.center.getY());
-			this.lastXVelocity = this.xVel;
-			this.lastYVelocity = this.yVel;
 		}
 
 	}
