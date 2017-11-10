@@ -169,7 +169,11 @@ public class DigDugWorldComponent extends JComponent {
 				if(e.getShape().intersects(r.getShape())){
 					e.die();
 				}
-			
+			for (Ice ice : this.world.getIceArray()){
+				if (e.getShape().intersects(ice.getShape())) {
+					e.reversePosition();
+				}
+			}
 			if (this.hero.getShape().intersectsLine(e.getFire())) {
 				this.hero.die();
 			}

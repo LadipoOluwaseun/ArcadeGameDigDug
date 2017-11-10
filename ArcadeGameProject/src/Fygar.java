@@ -15,6 +15,7 @@ public class Fygar extends Enemy{
 	private int counter;
 	private int counterAtTimeFireStarted;
 	private boolean isBreathingFire;
+	private int counterAtTimeIceStarted;
 
 //	public Rectangle rect;
 
@@ -32,6 +33,7 @@ public class Fygar extends Enemy{
 		this.counter = 0;
 		this.counterAtTimeFireStarted = 0;
 		this.isBreathingFire = false;
+		this.counterAtTimeIceStarted = 0;
 		
 		
 //		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
@@ -47,6 +49,17 @@ public class Fygar extends Enemy{
 	
 	@Override
 	public Color getColor() {
+		if (super.isIce) {
+			int timeElapsed = this.counter-this.counterAtTimeIceStarted;
+			if (timeElapsed<=255) {
+				
+			
+			return new Color(255-timeElapsed, 255-timeElapsed, 255-timeElapsed);
+			}
+			super.isIce = false;
+			
+		}
+		this.counterAtTimeIceStarted = this.counter;
 		if(this.isGhost){
 			return Color.pink;
 		}

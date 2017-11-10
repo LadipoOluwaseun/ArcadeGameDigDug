@@ -4,6 +4,8 @@ import java.awt.geom.Point2D;
 //import com.sun.javafx.geom.Rectangle;
 
 public class Pookas extends Enemy{
+private int counterAtTimeIceStarted;
+
 //	public Rectangle rect;
 
 	
@@ -17,6 +19,7 @@ public class Pookas extends Enemy{
 	
 	public Pookas(DigDugWorld world, Point2D.Double point, Hero hero) {
 		super(world, point, hero);
+		this.counterAtTimeIceStarted = 0;
 //		this.rect = new Rectangle((int) point.getX(),(int) point.getY(), WIDTH, HEIGHT);
 //		this.world = world;
 //		this.point = new Point2D.Double(point.getX(), point.getY());
@@ -25,6 +28,18 @@ public class Pookas extends Enemy{
 
 	@Override
 	public Color getColor() {
+		if (super.isIce) {
+			int timeElapsed = this.counter-this.counterAtTimeIceStarted;
+			if (timeElapsed<=255) {
+				
+			
+			return new Color(255-timeElapsed, 255-timeElapsed, 255-timeElapsed);
+			}
+			super.isIce = false;
+			this.lastDirection = 'u';
+		}
+		this.counterAtTimeIceStarted = this.counter;
+
 		if (this.isGhost) {
 			return Color.pink;
 		}

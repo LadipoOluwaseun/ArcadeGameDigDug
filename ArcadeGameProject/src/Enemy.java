@@ -1,6 +1,7 @@
 
 //algorithum for seekinig hero
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
@@ -9,8 +10,6 @@ import java.util.Collections;
 import java.util.HashMap;
 
 //import util.Random;
-
-
 
 /**
  * TODO Put here a description of what this class does.
@@ -44,6 +43,8 @@ public abstract class Enemy extends Stuff {
 	private boolean lastIsPaused;
 	private int counterWhenPaused;
 	private static final int TIME_FOR_THE_ENEMY_TO_PAUSE = 30;
+	protected boolean isIce;
+	private Color defaultColor;
 
 	// public Rectangle rect;
 
@@ -62,7 +63,8 @@ public abstract class Enemy extends Stuff {
 		this.lastDirection = 'd';
 		this.isGhost = false;
 		this.isPaused = false;
-		
+		this.isIce = false;
+		this.defaultColor = this.getColor();
 
 		// this.rect = new Rectangle((int) point.getX(),(int) point.getY(),
 		// WIDTH, HEIGHT);
@@ -92,118 +94,121 @@ public abstract class Enemy extends Stuff {
 		this.height = this.rect.height;
 
 	}
-	
+
 	public void retract() {
-		if(this.rect.getSize().getHeight() != 30) {
-//			System.out.println("1 " + this.rect.getSize().getHeight());
+		if (this.rect.getSize().getHeight() != 30) {
+			// System.out.println("1 " + this.rect.getSize().getHeight());
 			this.rect.setSize((int) (this.rect.getSize().getWidth() - 1), (int) (this.rect.getSize().getHeight() - 1));
-//			System.out.println("2 " + this.rect.getSize().getHeight());
+			// System.out.println("2 " + this.rect.getSize().getHeight());
 			this.width = this.rect.width;
 			this.height = this.rect.height;
 		}
 	}
-
 
 	@Override
 	public Rectangle getShape() {
 		return this.rect;
 	}
 
-	
 	public void reversePosition() {
-//		System.out.println("reversePosition Hero");
+		// System.out.println("reversePosition Hero");
 		if (this.lastDirection == 'u' || this.lastDirection == 'd') {
 			updatePosition(this.lastXVelocity, this.lastYVelocity * (-1));
 		} else {
 			updatePosition(this.lastXVelocity * (-1), this.lastYVelocity);
 		}
 	}
-	
-	public void makeGhost(){
+
+	public void makeGhost() {
 		if (!(this.isGhost)) {
 			this.counterWhenTurnedIntoGhost = this.counter;
 			int randNum = util.Random.randRange(200, 1000);
-//			int randNum = 100;
-//			System.out.println(this.counter);
+			// int randNum = 100;
+			// System.out.println(this.counter);
 
-			
-			
-			if (this.counter%randNum==0) {
+			if (this.counter % randNum == 0) {
 				this.isGhost = true;
 			}
 		} else {
-			if (this.counter>this.counterWhenTurnedIntoGhost+100) {
-				
-			
-			for (Dirt d : this.dirtArray) {
-				if (d.getShape().intersects(this.rect)) {
-					this.isGhost = true;
-					break;
+			if (this.counter > this.counterWhenTurnedIntoGhost + 100) {
+
+				for (Dirt d : this.dirtArray) {
+					if (d.getShape().intersects(this.rect)) {
+						this.isGhost = true;
+						break;
+					}
+					this.isGhost = false;
 				}
-				this.isGhost = false;
 			}
-		}}
+		}
 	}
 
 	public void updatePositionHelper() {
 		this.counter++;
+		if (!isIce) {
+			
+		
 		makeGhost();
 		if (!(this.isGhost)) {
 
-		
-		// System.out.println("update position helper LastDirection is " +
-		// this.lastDirection);
-		// TODO Auto-generated method stub.
-		getDirectionToMove();
-//		System.out.println(this.lastDirection);
-		this.xVel = 0;
-		this.yVel = 0;
-		if (this.lastDirection == 'u') {
-			this.yVel = -1;
+			// System.out.println("update position helper LastDirection is " +
+			// this.lastDirection);
+			// TODO Auto-generated method stub.
+			getDirectionToMove();
+			// System.out.println(this.lastDirection);
+			this.xVel = 0;
+			this.yVel = 0;
+			if (this.lastDirection == 'u') {
+				this.yVel = -1;
+			}
+			if (this.lastDirection == 'd') {
+				this.yVel = 1;
+			}
+			if (this.lastDirection == 'l') {
+				this.xVel = -1;
+			}
+			if (this.lastDirection == 'r') {
+				this.xVel = 1;
+			}
+			updatePosition(this.xVel, this.yVel);
 		}
-		if (this.lastDirection == 'd') {
-			this.yVel = 1;
-		}
-		if (this.lastDirection == 'l') {
-			this.xVel = -1;
-		}
-		if (this.lastDirection == 'r') {
-			this.xVel = 1;
-		}
-		updatePosition(this.xVel, this.yVel);
-		}
-		
+
 		else {
-//			int randNum = util.Random.randRange(100, 200);
-//			if (this.counter%randNum==0) {
-				this.xVel = 0;
-				this.yVel = 0;
-				if (this.lastDirection == 'u') {
-					this.yVel = -1;
-				}
-				if (this.lastDirection == 'd') {
-					this.yVel = 1;
-				}
-				if (this.lastDirection == 'l') {
-					this.xVel = -1;
-				}
-				if (this.lastDirection == 'r') {
-					this.xVel = 1;
-				}
-				updatePosition(this.xVel, this.yVel);
-//			}
+			// int randNum = util.Random.randRange(100, 200);
+			// if (this.counter%randNum==0) {
+			this.xVel = 0;
+			this.yVel = 0;
+			if (this.lastDirection == 'u') {
+				this.yVel = -1;
+			}
+			if (this.lastDirection == 'd') {
+				this.yVel = 1;
+			}
+			if (this.lastDirection == 'l') {
+				this.xVel = -1;
+			}
+			if (this.lastDirection == 'r') {
+				this.xVel = 1;
+			}
+			updatePosition(this.xVel, this.yVel);
+			// }
+		}
+		} else {
+			if (this.getColor().equals(this.defaultColor)) {
+				//
+			}
 		}
 	}
 
 	public void getDirectionToMove() {
 
-		Rectangle upRect = new Rectangle(this.rect.x, this.rect.y-1, this.rect.width, this.rect.height);
-		Rectangle downRect = new Rectangle(this.rect.x, this.rect.y+1, this.rect.width, this.rect.height);
+		Rectangle upRect = new Rectangle(this.rect.x, this.rect.y - 1, this.rect.width, this.rect.height);
+		Rectangle downRect = new Rectangle(this.rect.x, this.rect.y + 1, this.rect.width, this.rect.height);
 		Rectangle leftRect = new Rectangle(this.rect.x - 1, this.rect.y, this.rect.width, this.rect.height);
 		Rectangle rightRect = new Rectangle(this.rect.x + 1, this.rect.y, this.rect.width, this.rect.height);
 		HashMap<Character, Rectangle> rectHashMap = new HashMap<>();
 		rectHashMap.put('u', upRect);
-		rectHashMap.put('l', leftRect);		
+		rectHashMap.put('l', leftRect);
 		rectHashMap.put('d', downRect);
 		rectHashMap.put('r', rightRect);
 		boolean flag = false;
@@ -216,40 +221,55 @@ public abstract class Enemy extends Stuff {
 		// }
 
 		for (HashMap.Entry<Character, Rectangle> entry : rectHashMap.entrySet()) {
-//			System.out.println("eeGetDirectionToMove");
+			// System.out.println("eeGetDirectionToMove");
 			if (this.lastDirection == entry.getKey()) {
-//				 System.out.println("earlierGetDirectionToMove");
-//				System.out.println(this.dirtArray);
+				// System.out.println("earlierGetDirectionToMove");
+				// System.out.println(this.dirtArray);
+				for (Ice ice : this.world.getIceArray()){
+					if (ice.getShape().intersects(entry.getValue()) && !(ice.isInactive)) {
+
+						// System.out.println("Dirt: " + d.getShape().toString()
+						// + "Enemy: " + entry.getValue().toString());
+						this.isIce = true;
+						ice.die();
+						flag = true;
+					}
+				}
 				for (Dirt d : this.dirtArray) {
-//					System.out.println(d);
-//					 System.out.println("getDirectionToMove");
-//					System.out.println(this.rect);
-//					System.out.println(entry.getValue());
-//					System.out.println("d.getShape(): "+d.getShape().toString());
-//					System.out.println("entry.getValue(): "+entry.getValue().toString());
+					// System.out.println(d);
+					// System.out.println("getDirectionToMove");
+					// System.out.println(this.rect);
+					// System.out.println(entry.getValue());
+					// System.out.println("d.getShape():
+					// "+d.getShape().toString());
+					// System.out.println("entry.getValue():
+					// "+entry.getValue().toString());
 
 					if (d.getShape().intersects(entry.getValue())) {
-						
-//						System.out.println("Dirt: " + d.getShape().toString() + "Enemy: " + entry.getValue().toString());
+
+						// System.out.println("Dirt: " + d.getShape().toString()
+						// + "Enemy: " + entry.getValue().toString());
 						flag = true;
 					}
 					
-				}if (flag == false) {
-						return;
-					}
+
+				}
+				if (flag == false) {
+					return;
+				}
 				break;
 			}
 		}
 		// }
-//		flag = true;
-//		System.out.println(flag);
+		// flag = true;
+		// System.out.println(flag);
 		ArrayList<Character> randomListOfDirections = new ArrayList<>();
 		randomListOfDirections.add('u');
 		randomListOfDirections.add('d');
 		randomListOfDirections.add('l');
 		randomListOfDirections.add('r');
 		Collections.shuffle(randomListOfDirections);
-		for (int i=0;i<randomListOfDirections.size();i++){
+		for (int i = 0; i < randomListOfDirections.size(); i++) {
 			flag = true;
 
 			for (Dirt d : this.dirtArray) {
@@ -260,15 +280,14 @@ public abstract class Enemy extends Stuff {
 
 			}
 			if (flag) {
-//				System.out.println("inner dirt array2");
+				// System.out.println("inner dirt array2");
 				this.lastDirection = randomListOfDirections.get(i);
 				return;
 
 			}
 		}
 		for (HashMap.Entry<Character, Rectangle> entry : rectHashMap.entrySet()) {
-//			System.out.println("Second hashmap loop");
-			
+			// System.out.println("Second hashmap loop");
 
 		}
 
@@ -292,16 +311,15 @@ public abstract class Enemy extends Stuff {
 		//
 		// }
 	}
-	
+
 	private void switchisPaused() {
 		// TODO Auto-generated method stub.
 		if (!this.isPaused) {
 			this.counterWhenPaused = this.counter;
 
-
 		}
-		if (this.isPaused && this.counter-this.counterWhenPaused>TIME_FOR_THE_ENEMY_TO_PAUSE) {
-//			this.rect.grow(DEFAULT_HEIGHT, DEFAULT_WIDTH);
+		if (this.isPaused && this.counter - this.counterWhenPaused > TIME_FOR_THE_ENEMY_TO_PAUSE) {
+			// this.rect.grow(DEFAULT_HEIGHT, DEFAULT_WIDTH);
 			this.isPaused = false;
 		}
 	}
@@ -337,37 +355,39 @@ public abstract class Enemy extends Stuff {
 		// this.rect.grow(10, 10);
 		// System.out.println("updatePostion Enemy"+
 		// this.getClass().toString());
-//		updateLastDirection(xVel, yVel);
-		if(!this.isPaused) {
-			if(this.rect.getSize().getHeight() == 30) {
+		// updateLastDirection(xVel, yVel);
+		if (!this.isPaused) {
+			if (this.rect.getSize().getHeight() == 30) {
 				double xPos = this.point.getX();
 				double yPos = this.point.getY();
 				if (this.point.getX() > 420) {
 					this.lastDirection = 'l';
-//					xPos = 0;
+					// xPos = 0;
 				}
 				if (this.point.getX() < 0) {
 					this.lastDirection = 'r';
-//					xPos = 420;
+					// xPos = 420;
 				}
 				if (this.point.getY() < 0) {
 					this.lastDirection = 'd';
-//					yPos = 0;
-//					this.yVel = -this.yVel;
+					// yPos = 0;
+					// this.yVel = -this.yVel;
 				}
 				if (this.point.getY() > 450) {
 					this.lastDirection = 'u';
-//					yPos = 445;
-//					this.yVel = -this.yVel;
+					// yPos = 445;
+					// this.yVel = -this.yVel;
 				}
 				// xPos = this.point.getX() + xVel;
 				// yPos= this.point.getY() + yVel;
 				this.point = new Point2D.Double(xPos + xVel1, yPos + yVel1);
 				this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), this.width, this.height);
-		
+
 				// System.out.println("updating position " + this.point);
-				this.center = new Point2D.Double(this.point.getX() + this.width / 2, this.point.getY() + this.height / 2);
-				// this.cord = new Line2D.Double(this.center.getX(), this.center.getY(),
+				this.center = new Point2D.Double(this.point.getX() + this.width / 2,
+						this.point.getY() + this.height / 2);
+				// this.cord = new Line2D.Double(this.center.getX(),
+				// this.center.getY(),
 				// this.center.getX(), this.center.getY());
 				this.lastXVelocity = this.xVel;
 				this.lastYVelocity = this.yVel;
@@ -390,12 +410,13 @@ public abstract class Enemy extends Stuff {
 			this.lastDirection = 'd';
 		}
 	}
-	
-	public Line2D getFire(){
-//		System.out.println(this.getCenterPoint());
-		return new Line2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY(), this.getCenterPoint().getX(), this.getCenterPoint().getY());
+
+	public Line2D getFire() {
+		// System.out.println(this.getCenterPoint());
+		return new Line2D.Double(this.getCenterPoint().getX(), this.getCenterPoint().getY(),
+				this.getCenterPoint().getX(), this.getCenterPoint().getY());
 	}
-	
+
 	public Point2D.Double getCenterPoint() {
 		return new Point2D.Double(this.point.getX() + this.width / 2, this.point.getY() + this.height / 2);
 	}

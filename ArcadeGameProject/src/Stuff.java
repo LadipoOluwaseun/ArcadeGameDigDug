@@ -10,11 +10,11 @@ import java.awt.geom.Point2D;
  */
 
 public abstract class Stuff implements Drawable, Temporal, Relocatable {
-	private DigDugEnvironment world;
+	protected DigDugEnvironment world;
 	private Point2D.Double stuffPoint;
 	private boolean isPaused;
 	private Hero hero;
-	private int count;
+	protected int count;
 	/**
 	 * Constructs stuff centered at the given point in the given world.
 	 * 

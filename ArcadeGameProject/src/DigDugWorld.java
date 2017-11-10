@@ -52,6 +52,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private int numRocksFallen;
 	private boolean levelUp;
 	private int lives = 3;
+	private ArrayList<Ice> iceArray;
 
 	
 	public DigDugWorld(int currentLevel, boolean levelUp){
@@ -63,6 +64,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		this.emptySpaceArray = new ArrayList<>();
 		this.fygarArray = new ArrayList<>();
 		this.fruitArray = new ArrayList<>();
+		this.iceArray = new ArrayList<>();
 		this.readingFile = false;
 		this.rockArrayLength = 0;
 //		this.current = 1;
@@ -71,6 +73,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		readLevelFile("Level" + currentLevel + ".txt");
 		this.background = new Rectangle(0, 0, WIDTH, HEIGHT);
 		this.numRocksFallen = 0;
+		
 //		this.hero = new Hero(this, new Point2D.Double(210, 120));
 		Runnable tickTock = new Runnable() {
 			@Override
@@ -304,6 +307,11 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 //					this.fruitArray.add(f);
 //					initialBoardLayout.add(f);
 //					this.addStuff(f);
+				} else if (currentChar=='I') {
+					Ice ice = new Ice(this, q, this.hero);
+					this.iceArray.add(ice);
+					initialBoardLayout.add(ice);
+					this.addStuff(ice);
 				}
 				this.rockArrayLength = this.rockArray.size();
 //				for(Enemy e: this.enemyArray) {
@@ -330,6 +338,24 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		
 	}
 	
+	/**
+	 * Returns the value of the field called 'iceArray'.
+	 * @return Returns the iceArray.
+	 */
+	public ArrayList<Ice> getIceArray() {
+		return this.iceArray;
+	}
+
+
+	/**
+	 * Sets the field called 'iceArray' to the given value.
+	 * @param iceArray The iceArray to set.
+	 */
+	public void setIceArray(ArrayList<Ice> iceArray) {
+		this.iceArray = iceArray;
+	}
+
+
 	public Hero getHero() {
 		return this.hero;
 	}
