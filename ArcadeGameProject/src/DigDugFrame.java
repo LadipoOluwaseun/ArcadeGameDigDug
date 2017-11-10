@@ -40,7 +40,11 @@ public class DigDugFrame extends JFrame {
 		add(component);
 		DigDugKeyHandler keyboard = new DigDugKeyHandler(world, this);
 		component.addKeyListener(keyboard);
-
+		JLabel pause = new JLabel();
+		pause.setText("GAME PAUSED PRESS RESUME TO CONTINUE");
+		
+		
+		
 
 		add(quitButtonComponent(world), BorderLayout.SOUTH);
 		add(scorePanel, BorderLayout.NORTH);
@@ -95,6 +99,12 @@ public class DigDugFrame extends JFrame {
 	}
 	private JButton makePauseResumeButton(final Temporal temporalObj) {
 		final JButton pauseResumeButton = new JButton("Pause");
+		JLabel pause = new JLabel();
+		
+		Font font  =  new Font("TI-83p Mini Sans",  Font.BOLD,30);
+		pause.setText("GAME PAUSED " + "\n" + "\n" + "PRESS RESUME" + "\n" +"\n" + " TO CONTINUE");
+		pause.setFont(font);
+		
 		ActionListener pauser = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -102,8 +112,15 @@ public class DigDugFrame extends JFrame {
 				isPaused = !isPaused;
 				temporalObj.setIsPaused(isPaused);
 				if (isPaused) {
+					add(pause);	
+					pause.setSize(1000, 1000);
+					pack();
+					repaint();
 					pauseResumeButton.setText("Resume");
 				} else {
+					remove(pause);
+					pack();
+					repaint();
 					pauseResumeButton.setText("Pause");
 				}
 
