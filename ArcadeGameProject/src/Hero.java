@@ -162,8 +162,8 @@ public class Hero extends Stuff{
 	@Override 
 	public void die(){
 		System.out.println("die");
-//		world.setLives(world.getLives() - 1);
 		this.point = new Point2D.Double(210.0, 120.0);
+		world.setLives(world.getLives() - 1);
 	}
 
 	@Override
