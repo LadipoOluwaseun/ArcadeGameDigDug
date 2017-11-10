@@ -71,7 +71,8 @@ public class DigDugFrame extends JFrame {
 				setVisible(false);
 				dispose();
 //				System.exit(0);
-				Main.main(null);
+				String[] args = new String[0];
+				Main.main(args);
 			}
 		};
 		
