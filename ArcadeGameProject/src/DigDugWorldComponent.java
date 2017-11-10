@@ -27,6 +27,7 @@ public class DigDugWorldComponent extends JComponent {
 	private boolean hasShownNullErrorMessage = false;
 	private static final int ENEMY_VELOCITY = 4;
 	private int timesRockHasFallen;
+	private boolean fruitAppeared;
 
 	Hero hero;
 	private int countNumberOfFalls;
@@ -36,6 +37,7 @@ public class DigDugWorldComponent extends JComponent {
 		this.world = world;
 		this.hero = world.getHero();
 		this.countNumberOfFalls = 0;
+		this.fruitAppeared = false;
 		// addKeyListener(new DigDugKeyHandler(this.world, this.hero));
 
 		// setPreferredSize(world.getSize());
@@ -183,10 +185,15 @@ public class DigDugWorldComponent extends JComponent {
 			if(r.falling() && this.countNumberOfFalls < 3) {
 			this.countNumberOfFalls++;
 			r.setFalling(false);
-			System.out.println(this.countNumberOfFalls);
+//			System.out.println(this.countNumberOfFalls);
 			}
-			for(Fruit f: this.world.getFruitArray()) {
-				this.world.addStuff(f);
+//			System.out.println(this.countNumberOfFalls % 2);
+//			if(this.countNumberOfFalls % 2 == 0) {
+			if(!fruitAppeared) {
+				for(Fruit f: this.world.getFruitArray()) {
+					this.world.addStuff(f);
+					fruitAppeared = true;
+				}
 			}
 //			r.setCounter(r.getCounter() + 1);
 //
