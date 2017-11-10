@@ -1,6 +1,9 @@
 
+import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import javax.swing.JPanel;
 
 
 
@@ -8,18 +11,20 @@ public class DigDugKeyHandler implements KeyListener{
 		DigDugWorld world;
 		Hero hero;
 		String direction;
+		DigDugFrame frame;
 		int distanceToMove;
+		double count;
 		
-		DigDugKeyHandler(DigDugWorld world) {
+		DigDugKeyHandler(DigDugWorld world,DigDugFrame frame) {
 			this.world = world;
 			this.hero = world.getHero();
 			this.distanceToMove = DigDugWorld.getDistanceToMoveHeroWhenButtonIsPressed();
-//			System.out.println("world");
+			this.frame = frame;
+
 		}
 	
 		@Override
 		public void keyPressed(KeyEvent e) {
-//			System.out.println("gwf ");
 			char key = e.getKeyChar();
 			if(key == 'u') {
 				this.world.changeLevel(true);
@@ -53,20 +58,16 @@ public class DigDugKeyHandler implements KeyListener{
 				this.direction = "left";
 			}
 			
-			if(key== 'c'){
+			if(key == 'c'){
 				this.hero.extendCord();
 			}
-			
-			if(key == 'p') {
-				boolean isPaused = this.world.getIsPaused();
-				isPaused = !isPaused;
-				this.world.setIsPaused(isPaused);
-//				if (isPaused) {
-//					pauseResumeButton.setText("Resume");
-//				} else {
-//					pauseResumeButton.setText("Pause");
-//				}
-			}
+			System.out.println("repainting");
+			System.out.println(world.getScore());
+			frame.remove(frame.getScorePanel());
+			frame.add(frame.playerPanelComponent(world, world.getLives(), world.getScore()), BorderLayout.NORTH);
+			frame.pack();
+			frame.repaint();
+			frame.revalidate();
 		}
 	
 		@Override
@@ -95,6 +96,7 @@ public class DigDugKeyHandler implements KeyListener{
 			if(key=='c'){
 				this.hero.retractCord();
 			}
+			
 		}
 			
 			public void keyTyped(KeyEvent e) {
