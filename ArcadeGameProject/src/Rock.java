@@ -155,7 +155,8 @@ public class Rock extends Stuff{
 		
 			for(Dirt d: this.world.getDirtArray()) {
 //				Rectangle newRect = new Rectangle(d.getShape().x, d.getShape().y-1, WIDTH, HEIGHT+1);
-				if (this.getShape().intersects(d.getShape())) {
+				Rectangle trialRect = new Rectangle(rect.x, rect.y+1, WIDTH, HEIGHT);
+				if (trialRect.intersects(d.getShape())) {
 					
 					flag = false;
 					this.counterWhenHeroMovedUnder = this.counter;
