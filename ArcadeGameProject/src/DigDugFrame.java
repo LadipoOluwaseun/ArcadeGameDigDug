@@ -2,6 +2,7 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -32,9 +33,9 @@ public class DigDugFrame extends JFrame {
 	
 	
 	public DigDugFrame(DigDugWorld world) {
-		this.scorePanel = playerPanelComponent(world);
+		this.scorePanel = playerPanelComponent(world, world.getLives(), world.getScore());
+		
 		setTitle("Dig Dug Worlds");
-		//JPanel ppn = playerPanelComponent(world);
 		DigDugWorldComponent component = new DigDugWorldComponent(world);
 		component.setPreferredSize(new Dimension(600, 600));
 		add(component);
@@ -117,7 +118,7 @@ public class DigDugFrame extends JFrame {
 		return pauseResumeButton;
 	}
 	
-	private JPanel playerPanelComponent(DigDugWorld world){
+	public JPanel playerPanelComponent(DigDugWorld world, int nLives, double nScore){
 		
 		Font font  =  new Font("TI-83p Mini Sans",  Font.BOLD,30);
 		JPanel playerPanel = new JPanel();
@@ -129,9 +130,9 @@ public class DigDugFrame extends JFrame {
 		JLabel score = new JLabel();
 		
 		//title.setText("DIG DUG");
-		lives.setText("Number of Lives: " + world.getLives() + "  ");
+		lives.setText("Number of Lives: " + nLives + "  ");
 		lives.setFont(font);
-		score.setText("Score: " + world.getScore() + "  ");
+		score.setText("Score: " + nScore + "  ");
 		score.setFont(font);
 		
 		playerPanel.add(lives);
@@ -143,6 +144,10 @@ public class DigDugFrame extends JFrame {
 
 	public JPanel getScorePanel() {
 		return scorePanel;
+	}
+
+	public void setScorePanel(JPanel panel) {
+		scorePanel = panel;
 	}
 
 }
