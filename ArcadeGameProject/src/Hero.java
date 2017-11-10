@@ -34,6 +34,7 @@ public class Hero extends Stuff{
 	int lastXVelocity;
 	int lastYVelocity;
 	DigDugWorld world;
+	private boolean slow;
 
 	public Hero(DigDugWorld world, Point2D.Double point) {
 		super(world, point);
@@ -51,6 +52,7 @@ public class Hero extends Stuff{
 				new Point2D.Double(this.center.getX(), this.center.getY()));
 		System.out.println(this.point);
 		this.world = world;
+		this.slow = false;
 //		System.out.println("new Hero");
 		// this.cord = this.DEFAULT_CORD;
 
@@ -82,6 +84,10 @@ public class Hero extends Stuff{
 	// this.lastDirection = 'r';
 	// updatePosition();
 	// }
+	
+	public void setSpeed(boolean slow) {
+		this.slow = slow;
+	}
 
 	@Override
 	public Rectangle getShape() {
@@ -105,9 +111,32 @@ public class Hero extends Stuff{
 
 	@Override
 	public void updatePosition(int xVel, int yVel) {
+		int slowX = 0;
+		int slowY = 0;
+		if(xVel < 0) {
+			slowX = 4;
+		} 
+		if(xVel > 0) {
+			slowX = -4;
+		}
+		if(yVel < 0) {
+			slowY = 4;
+		}
+		if(yVel > 0) {
+			slowY = -4;
+		}
+		
 		updateLastDirection(xVel, yVel);
-		double x = this.point.getX() + xVel;
-		double y = this.point.getY() + yVel;
+		double x = this.point.getX();
+		double y = this.point.getY();
+		if(this.slow) {
+		x = this.point.getX() + xVel + slowX;
+		y = this.point.getY() + yVel + slowY;
+		} else {
+		x = this.point.getX() + xVel;
+		y = this.point.getY() + yVel;
+		}
+		System.out.println(xVel + " " + yVel);
 		if (this.point.getX() > 420) {
 			x = 0;
 		}

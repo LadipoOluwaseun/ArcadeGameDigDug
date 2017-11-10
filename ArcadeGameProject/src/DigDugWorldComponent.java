@@ -177,6 +177,18 @@ public class DigDugWorldComponent extends JComponent {
 			if (this.hero.getShape().intersectsLine(e.getFire())) {
 				this.hero.die();
 			}
+			for(Mud m : this.world.getMudArray()) {
+				if(e.getShape().intersects(m.getShape())) {
+					e.setSpeed(true);
+				}
+				else e.setSpeed(false);
+			}
+		}
+			
+		for(Mud m : this.world.getMudArray()) {
+			if(m.getShape().intersects(this.hero.getShape())) {
+				this.hero.setSpeed(true);
+			} else this.hero.setSpeed(false);
 		}
 
 		// TODO: move this stuff to the rock class.

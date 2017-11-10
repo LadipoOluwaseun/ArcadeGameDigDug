@@ -45,6 +45,7 @@ public abstract class Enemy extends Stuff {
 	private static final int TIME_FOR_THE_ENEMY_TO_PAUSE = 30;
 	protected boolean isIce;
 	private Color defaultColor;
+	private boolean slow;
 
 	// public Rectangle rect;
 
@@ -65,6 +66,7 @@ public abstract class Enemy extends Stuff {
 		this.isPaused = false;
 		this.isIce = false;
 		this.defaultColor = this.getColor();
+		this.slow = false;
 
 		// this.rect = new Rectangle((int) point.getX(),(int) point.getY(),
 		// WIDTH, HEIGHT);
@@ -108,6 +110,10 @@ public abstract class Enemy extends Stuff {
 	@Override
 	public Rectangle getShape() {
 		return this.rect;
+	}
+	
+	public void setSpeed(boolean slow) {
+		this.slow = slow;
 	}
 
 	public void reversePosition() {
@@ -356,6 +362,21 @@ public abstract class Enemy extends Stuff {
 		// System.out.println("updatePostion Enemy"+
 		// this.getClass().toString());
 		// updateLastDirection(xVel, yVel);
+		int slowX = 0;
+		int slowY = 0;
+		if(xVel1 < 0) {
+			slowX = 4;
+		} 
+		if(xVel1 > 0) {
+			slowX = -4;
+		}
+		if(yVel1 < 0) {
+			slowY = 4;
+		}
+		if(yVel1 > 0) {
+			slowY = -4;
+		}
+		
 		if (!this.isPaused) {
 			if (this.rect.getSize().getHeight() == 30) {
 				double xPos = this.point.getX();
@@ -378,10 +399,16 @@ public abstract class Enemy extends Stuff {
 					// yPos = 445;
 					// this.yVel = -this.yVel;
 				}
+				if(this.slow) {
+					this.point = new Point2D.Double(xPos + xVel1 + slowX, yPos + yVel1 + slowY);
+					this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), this.width, this.height);
+				}
 				// xPos = this.point.getX() + xVel;
 				// yPos= this.point.getY() + yVel;
+				else {
 				this.point = new Point2D.Double(xPos + xVel1, yPos + yVel1);
 				this.rect = new Rectangle((int) this.point.getX(), (int) this.point.getY(), this.width, this.height);
+				}
 
 				// System.out.println("updating position " + this.point);
 				this.center = new Point2D.Double(this.point.getX() + this.width / 2,

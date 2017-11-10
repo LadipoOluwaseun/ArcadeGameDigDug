@@ -46,6 +46,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private ArrayList<Fruit> fruitArray;
 	private ArrayList<EmptySpace> emptySpaceArray;
 	private ArrayList<Fygar> fygarArray;
+	private ArrayList<Mud> mudArray;
 	private static final int DISTANCE_TO_MOVE_HERO_WHEN_BUTTON_IS_PRESSED = 5;
 	private boolean readingFile;
 	private int rockArrayLength;
@@ -65,6 +66,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		this.fygarArray = new ArrayList<>();
 		this.fruitArray = new ArrayList<>();
 		this.iceArray = new ArrayList<>();
+		this.mudArray = new ArrayList<>();
 		this.readingFile = false;
 		this.rockArrayLength = 0;
 //		this.current = 1;
@@ -312,6 +314,11 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 					this.iceArray.add(ice);
 					initialBoardLayout.add(ice);
 					this.addStuff(ice);
+				} else if(currentChar == 'M') {
+					Mud mud = new Mud(this, q, this.hero);
+					this.mudArray.add(mud);
+					initialBoardLayout.add(mud);
+					this.addStuff(mud);
 				}
 				this.rockArrayLength = this.rockArray.size();
 //				for(Enemy e: this.enemyArray) {
@@ -336,6 +343,11 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 			exception.printStackTrace();
 		}
 		
+	}
+	
+	
+	public ArrayList<Mud> getMudArray() {
+		return this.mudArray;
 	}
 	
 	/**
