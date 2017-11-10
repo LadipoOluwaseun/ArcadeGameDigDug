@@ -146,7 +146,9 @@ public class DigDugFrame extends JFrame {
 	}
 
 	public void setScorePanel(JPanel panel) {
+		this.remove(scorePanel);
 		scorePanel = panel;
+		this.add(panel, BorderLayout.NORTH);
 	}
 
 }
