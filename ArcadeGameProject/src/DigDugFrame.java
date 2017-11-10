@@ -99,7 +99,7 @@ public class DigDugFrame extends JFrame {
 	}
 	private JButton makePauseResumeButton(final Temporal temporalObj) {
 		final JButton pauseResumeButton = new JButton("Pause");
-		JLabel pause = new JLabel();
+		final JLabel pause = new JLabel();
 		
 		Font font  =  new Font("TI-83p Mini Sans",  Font.BOLD,30);
 		pause.setText("GAME PAUSED " + "\n" + "\n" + "PRESS RESUME" + "\n" +"\n" + " TO CONTINUE");
