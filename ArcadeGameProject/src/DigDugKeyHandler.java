@@ -61,11 +61,6 @@ public class DigDugKeyHandler implements KeyListener{
 			if(key == 'c'){
 				this.hero.extendCord();
 			}
-			System.out.println("repainting");
-			System.out.println(world.getScore());
-			System.out.println(world.getLives());
-			frame.remove(frame.getScorePanel());
-			//frame.add(frame.playerPanelComponent(world, world.getLives(), world.getScore()), BorderLayout.NORTH);
 			frame.setScorePanel(frame.playerPanelComponent(world, world.getLives(), world.getScore()));
 			frame.pack();
 			frame.repaint();
