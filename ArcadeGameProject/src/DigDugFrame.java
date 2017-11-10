@@ -22,25 +22,28 @@ import javax.swing.JPanel;
 public class DigDugFrame extends JFrame {
 
 	private static final int GAP = 0;
-
+	private JPanel scorePanel;
 	/**
 	 * Constructs a frame for displaying the given simulations.
 	 * 
 	 * @param world
 	 *            a non-empty list of simulation panels to display
 	 */
+	
+	
 	public DigDugFrame(DigDugWorld world) {
+		this.scorePanel = playerPanelComponent(world);
 		setTitle("Dig Dug Worlds");
 		//JPanel ppn = playerPanelComponent(world);
 		DigDugWorldComponent component = new DigDugWorldComponent(world);
 		component.setPreferredSize(new Dimension(600, 600));
 		add(component);
-		DigDugKeyHandler keyboard = new DigDugKeyHandler(world);
+		DigDugKeyHandler keyboard = new DigDugKeyHandler(world, this);
 		component.addKeyListener(keyboard);
 
 
 		add(quitButtonComponent(world), BorderLayout.SOUTH);
-		add(playerPanelComponent(world), BorderLayout.NORTH);
+		add(scorePanel, BorderLayout.NORTH);
 		
 		addKeyListener(keyboard);
 
@@ -120,7 +123,7 @@ public class DigDugFrame extends JFrame {
 		
 		playerPanel.setBackground(Color.LIGHT_GRAY);
 		
-		JLabel title = new JLabel();
+		
 		JLabel lives = new JLabel();
 		JLabel score = new JLabel();
 		
@@ -136,5 +139,10 @@ public class DigDugFrame extends JFrame {
 		
 		return playerPanel;
 	}
+
+	public JPanel getScorePanel() {
+		return scorePanel;
+	}
+
 }
 
