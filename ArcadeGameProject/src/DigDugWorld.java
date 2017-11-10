@@ -51,7 +51,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 	private int rockArrayLength;
 	private int numRocksFallen;
 	private boolean levelUp;
-	private int lives;
+	private int lives = 3;
 
 	
 	public DigDugWorld(int currentLevel, boolean levelUp){
@@ -87,6 +87,7 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		};
 		new Thread(tickTock).start();
 	}
+	
 	
 	@Override
 	public synchronized void timePassed() {
@@ -337,8 +338,8 @@ public class DigDugWorld implements DigDugEnvironment, Drawable, Temporal{
 		return this.lives;
 	}
 	
-	public void setLives(){
-		this.lives = lives;
+	public void setLives(int nlives){
+		this.lives = nlives;
 	}
 	public ArrayList<Enemy> getEnemyArray(){
 		return this.enemyArray;
